@@ -61,17 +61,27 @@ const events = [
 
 export const Timeline: React.FC = () => {
   return (
-    <div className="py-16 px-4 bg-background">
-      <div className="flex flex-col space-y-16 items-center">
-        {events.map((event, index) => (
-          <TimelineItem
-            key={event.date}
-            {...event}
-            index={index}
-            isLast={index === events.length - 1}
-          />
-        ))}
+    <section className="py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-background">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Journey</h2>
+          <div className="w-20 h-1 bg-primary mx-auto"></div>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Milestones and achievements that have shaped our path to becoming a leader in digital transformation
+          </p>
+        </div>
+        
+        <div className="flex flex-col space-y-12 md:space-y-16">
+          {events.map((event, index) => (
+            <TimelineItem
+              key={event.date}
+              {...event}
+              index={index}
+              isLast={index === events.length - 1}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };

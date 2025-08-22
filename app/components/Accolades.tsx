@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -24,7 +23,7 @@ const accoladesData: Accolade[] = [
     logoSrc: '/images/IPAG.png',
     logoAlt: 'IPAG Logo',
     title: 'R & D Status Company by MIDA',
-    description: 'Innovasi Penyelidikan AG Sdn. Bhd., a company under Ashisuto Group of Companies was awarded R&D Status by the Malaysia Investment Development Authority. We are recognized as a competent and trust-worthy solutions provider. Our clients are able to enjoy double tax exemption when they engage us to simplify digital transformation with our extensive suite of innovative solutions. ',
+    description: 'Innovasi Penyelidikan AG Sdn. Bhd., a company under Ashisuto Group of Companies was awarded R&D Status by the Malaysia Investment Development Authority. Our clients are able to enjoy double tax exemption when they engage us to simplify digital transformation with our extensive suite of innovative solutions. ',
   },
   {
     id: 3,
@@ -34,78 +33,6 @@ const accoladesData: Accolade[] = [
     description: 'We are recognized as a competent and trust-worthy solutions provider. We serve public sector and government linked companies, with our secure solutions that continuously help drive nations towards adopting IR 4.0 best practices for digital transformation. ',
   },
 ];
-
-const Section = styled.section`
-  padding: 5rem 2rem;
-  background: #fefefe;
-  font-family: 'Inter', sans-serif;
-`;
-
-const Grid = styled(motion.div)`
-  max-width: 1040px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-`;
-
-const Card = styled(motion.div)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  background: #fff;
-  border: 1px solid #eee;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-  }
-`;
-
-const Logo = styled.div`
-  width: 160px;
-  height: 160px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-`;
-
-const Text = styled.div`
-  flex: 1;
-  padding-left: 1.5rem;
-
-  @media (max-width: 768px) {
-    padding-left: 0;
-  }
-`;
-
-
-const Title = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #222;
-`;
-
-const Description = styled.p`
-  font-size: 1.05rem;
-  color: #555;
-  line-height: 1.6;
-`;
 
 const containerVariants = {
   hidden: {},
@@ -123,26 +50,35 @@ const itemVariants = {
 
 const AccoladesGrid: FC = () => {
   return (
-    <Section>
-      <Grid
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {accoladesData.map(({ id, logoSrc, logoAlt, title, description }) => (
-          <Card key={id} variants={itemVariants}>
-            <Logo>
-              <Image src={logoSrc} alt={logoAlt} width={200} height={200} />
-            </Logo>
-            <Text>
-              <Title>{title}</Title>
-              <Description>{description}</Description>
-            </Text>
-          </Card>
-        ))}
-      </Grid>
-    </Section>
+    <section className="py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          {accoladesData.map(({ id, logoSrc, logoAlt, title, description }) => (
+            <motion.div
+              key={id}
+              variants={itemVariants}
+              className="flex flex-col items-center gap-6 bg-white border border-gray-200 p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-xl overflow-hidden bg-white flex items-center justify-center border border-gray-100">
+                <Image src={logoSrc} alt={logoAlt} width={200} height={200} className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center md:text-start w-full">
+                <h3 className="text-xl md:text-2xl font-bold mb-3 min-h-[5rem] text-gray-800">
+                  {id === 1 ? 'Top Innovation Award\n2025' : title}
+                </h3>
+                <p className="text-base md:text-lg text-gray-600 leading-relaxed">{description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

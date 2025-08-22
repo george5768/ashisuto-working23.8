@@ -1,5 +1,4 @@
 import React, { FC, ReactNode } from 'react';
-import styled from 'styled-components';
 import { BsTrophy } from "react-icons/bs";
 import { FaGlobeAsia } from "react-icons/fa";
 import { motion } from 'framer-motion';
@@ -11,60 +10,6 @@ interface StatementBlockProps {
   text: string;
 }
 
-// Styled Components
-const Section = styled.section`
-  padding: 5rem 2rem;
-  background-color: #f9f9f9;
-  font-family: 'Inter', sans-serif;
-  color: #111;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  max-width: 960px;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Block = styled(motion.div)`
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-`;
-
-const IconWrapper = styled.div`
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-
-  svg, img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Content = styled.div``;
-
-const Title = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-`;
-
-const Description = styled.p`
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #444;
-`;
-
 // Animate on mount
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -73,37 +18,49 @@ const fadeInUp = {
 
 // Reusable Statement Block with animation
 const StatementBlock: FC<StatementBlockProps> = ({ icon, title, text }) => (
-  <Block
+  <motion.div
     variants={fadeInUp}
     initial="hidden"
     whileInView="visible"
     transition={{ duration: 2, ease: 'easeOut' }}
     viewport={{ once: true, amount: 0.3 }}
+    className="flex items-start gap-6"
   >
-    <IconWrapper>{icon}</IconWrapper>
-    <Content>
-      <Title>{title}</Title>
-      <Description>{text}</Description>
-    </Content>
-  </Block>
+    <div className="flex-shrink-0 w-12 h-12">
+      <div className="w-full h-full flex items-center justify-center">
+        {icon}
+      </div>
+    </div>
+    <div className="flex-1">
+      <h3 className="text-2xl font-bold mb-2">{title}</h3>
+      <p className="text-lg leading-relaxed text-gray-700">{text}</p>
+    </div>
+  </motion.div>
 );
 
 const VisionMission: FC = () => {
   return (
-    <Section>
-      <Grid>
-        <StatementBlock
-          icon={<BsTrophy />}
-          title="Our Vision"
-          text="Become the leader in delivering technology solutions to innovate the future."
-        />
-        <StatementBlock
-          icon={<FaGlobeAsia />}
-          title="Our Mission"
-          text="Deliver pioneering technology solutions while fostering innovation and sustainable business growth."
-        />
-      </Grid>
-    </Section>
+    <section className="py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-gray-50 text-gray-900">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Vision & Mission</h2>
+          <div className="w-20 h-1 bg-primary mx-auto"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <StatementBlock
+            icon={<BsTrophy className="w-10 h-10 text-primary" />}
+            title="Our Vision"
+            text="Become the leader in delivering technology solutions to innovate the future."
+          />
+          <StatementBlock
+            icon={<FaGlobeAsia className="w-10 h-10 text-primary" />}
+            title="Our Mission"
+            text="Deliver pioneering technology solutions while fostering innovation and sustainable business growth."
+          />
+        </div>
+      </div>
+    </section>
   );
 };
 

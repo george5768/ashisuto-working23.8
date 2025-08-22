@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -82,21 +82,21 @@ function Carousel() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
-  };
+  }, [currentIndex]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     const isLastSlide = currentIndex === images.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  };
+  }, [currentIndex]);
 
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
-  };
+  }, []);
 
   // Auto-rotate slides every 5 seconds
   useEffect(() => {
@@ -104,7 +104,7 @@ function Carousel() {
       goToNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, goToNext]);
 
   return (
     <div className="relative w-full max-h-120 overflow-hidden rounded-xl shadow-sm">
