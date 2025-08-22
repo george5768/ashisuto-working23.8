@@ -44,13 +44,15 @@ export default function AiPrediction() {
       />
 
       {/* Optional: Extra visual below */}
-      <Image
-        src="/images/ai_prediction.jpg"
-        alt="ai prediction2"
-        width={800}
-        height={800}
-        className="mx-auto mb-40 rounded-xl shadow-xl object-contain"
-      />
+      <div className="w-full px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 2xl:mb-40">
+        <Image
+          src="/images/ai_prediction.jpg"
+          alt="ai prediction2"
+          width={800}
+          height={800}
+          className="w-full max-w-4xl mx-auto rounded-xl shadow-xl object-cover"
+        />
+      </div>
     </main>
   );
 }
