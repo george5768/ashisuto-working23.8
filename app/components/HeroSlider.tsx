@@ -37,7 +37,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
 
   return (
     <div
-      className="relative w-screen h-100 overflow-hidden"
+      className="relative w-full h-[70vh] min-h-[400px] max-h-[800px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -51,7 +51,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
           className="absolute inset-0 w-full h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${slides[index].backgroundImage})` }}
         >
-          <div className="flex h-full items-center justify-center bg-black/40">
+          <div className="flex h-full items-center justify-center bg-black/40 p-4 sm:p-6">
             {slides[index].header}
           </div>
         </motion.div>
@@ -60,26 +60,26 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
       {/* Navigation Buttons */}
       <Button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-60 p-3 rounded-full text-white"
+        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-60 p-2 sm:p-3 rounded-full text-white z-10"
         aria-label="Previous Slide"
       >
-        <FaArrowLeft />
+        <FaArrowLeft className="text-sm sm:text-base" />
       </Button>
       <Button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-60 p-3 rounded-full text-white"
+        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-60 p-2 sm:p-3 rounded-full text-white z-10"
         aria-label="Next Slide"
       >
-        <FaArrowRight />
+        <FaArrowRight className="text-sm sm:text-base" />
       </Button>
 
       {/* Dot Indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3">
         {slides.map((_, i) => (
           <Button
             key={i}
             onClick={() => setIndex(i)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
               i === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white'
             }`}
             aria-label={`Go to slide ${i + 1}`}
