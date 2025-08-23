@@ -4,10 +4,10 @@ import Image from 'next/image'
 
 const solutionLinks = [
   { name: 'Digital Records', href: '/digitize-records' },
-  { name: 'DocKITA - Process Workflow Digitalization', href: '/docKITA' },
+  { name: 'DocKITA - Workflow Management System', href: '/docKITA' },
   { name: 'AI Optimization', href: '/ai-prediction-optimization' },
-  { name: 'Custom Software', href: '/software-development' },
-  { name: 'Smart Manufacturing', href: '/business-operation' }
+  { name: 'Ai Applications', href: '/ai-applications' },
+  { name: 'Smart Manufacturing', href: '/manufacturing-operation' }
 ]
 
 const features = [
