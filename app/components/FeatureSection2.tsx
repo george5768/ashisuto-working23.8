@@ -6,7 +6,7 @@ const solutionLinks = [
   { name: 'Digital Records', href: '/digitize-records' },
   { name: 'DocKITA - Workflow Management System', href: '/docKITA' },
   { name: 'AI Optimization', href: '/ai-prediction-optimization' },
-  { name: 'Ai Applications', href: '/ai-applications' },
+  { name: 'Ai Applications', href: '/ai-applications-development' },
   { name: 'Smart Manufacturing', href: '/manufacturing-operation' }
 ]
 
