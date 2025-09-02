@@ -31,7 +31,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
   }, [slides.length, interval, isPaused])
 
   const goToPrevious = () =>
-    setIndex(prev => (prev === 0 ? slides.length - 1.5 : prev - 1))
+    setIndex(prev => (prev === 0 ? slides.length - 1 : prev - 1))
   const goToNext = () =>
     setIndex(prev => (prev + 1) % slides.length)
 

@@ -19,8 +19,8 @@ export default function FeatureSection() {
             </li>
             <li className="flex items-start gap-3">
               <span className="text-orange-500 text-lg my-auto font-bold"><Lightbulb/></span>
-              From an idea to the physical device and any stage in between with our embedded system and IC design capabilities
-            </li>
+              From an idea to a real system and any stage in between with our innovative AI capability
+              </li>
           </ul>
           <Link href={"/about"}> 
           <Button className="my-5 mx-5">About Us</Button>
@@ -30,27 +30,39 @@ export default function FeatureSection() {
         </div>
 
         <div className="relative w-full h-72 md:h-96 flex justify-center items-center">
-  {"/"}
-  <div className="absolute top-6 left-6 w-64 h-40 md:w-80 md:h-52 bg-orange-100 border border-orange-300 rounded-xl shadow-md" />
-  
-  {<Image
-  src="/images/EmbeddedSystem.png"
-  alt="Back preview"
-  width={320}
-  height={208}
-  className="absolute top-6 left-6 rounded-xl shadow-md object-cover w-64 h-40 md:w-80 md:h-52"
-/>}
-  <div className="relative z-10 w-64 h-40 md:w-80 md:h-52 bg-white border border-orange-200 rounded-xl shadow-lg flex items-center justify-center">
-    {<Image
-  src="/images/cleanroom.jpg"
-  alt="Front preview"
-  width={320}
-  height={208}
-  className="relative z-10 rounded-xl shadow-lg object-cover w-64 h-40 md:w-80 md:h-52"
-/>
-}
-  </div>
-</div>
+          {/* Back image - positioned at top-left */}
+          <div className="absolute top-4 left-4 w-56 h-36 md:w-72 md:h-48 bg-orange-100 border border-orange-300 rounded-xl shadow-md" />
+          
+          <Image
+            src="/images/mfg.png"
+            alt="Back preview"
+            width={280}
+            height={180}
+            className="absolute top-4 left-4 rounded-xl shadow-md object-cover w-56 h-36 md:w-72 md:h-48"
+          />
+          
+          {/* Middle image - positioned diagonally down and right */}
+          <div className="absolute top-16 left-32 w-56 h-36 md:w-72 md:h-48 bg-white border border-orange-200 rounded-xl shadow-lg overflow-hidden">
+            <Image
+              src="/images/cleanroom.jpg"
+              alt="Middle preview"
+              width={280}
+              height={180}
+              className="object-cover w-full h-full"
+            />
+          </div>
+          
+          {/* Front image - positioned further down and right */}
+          <div className="absolute top-28 right-8 w-56 h-36 md:w-72 md:h-48 bg-white border border-orange-200 rounded-xl shadow-lg overflow-hidden">
+            <Image
+              src="/images/construction-3.png"
+              alt="Front preview"
+              width={280}
+              height={180}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </div>
 
       </div>
     </section>

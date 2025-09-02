@@ -8,6 +8,11 @@ const events = [
     date: "Jun 2025",
   },
   {
+    title: "HRD Corp. Registered Training Provider",
+    description: "Certified Trainer status",
+    date: "Feb 2025",
+  },
+  {
     title: "Obtained Malaysia Digital Company Status",
     description: " from MDEC (Malaysian Digital Economy Corporation)",
     date: "Jun 2024",
@@ -25,6 +30,11 @@ const events = [
   {
     title: "Partnership with RICOH (Thailand) Limited ",
     description: "for Thai market penetration",
+    date: "Dec 2023",
+  },
+  {
+    title: "Obtained CIP SPARK grant from Cradle Fund",
+    description: "for outstanding venture",
     date: "Nov 2023",
   },
   {

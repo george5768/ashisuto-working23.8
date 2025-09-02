@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import HeroSlider from "./HeroSlider"
 import Link from "next/link"

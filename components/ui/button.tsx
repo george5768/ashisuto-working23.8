@@ -47,11 +47,24 @@ function Button({
   }) {
   const Comp = asChild ? Slot : "button"
 
+  // Remove fdprocessedid attribute and other dynamic attributes to prevent hydration mismatches
+  const filteredProps = { ...props }
+  if ('fdprocessedid' in filteredProps) {
+    delete filteredProps.fdprocessedid
+  }
+  // Remove any other potentially problematic attributes
+  const problematicAttrs: string[] = ['data-sonner-toast', 'data-melt-id', 'data-radix-collection-item']
+  problematicAttrs.forEach(attr => {
+    if (attr in filteredProps) {
+      delete filteredProps[attr as keyof typeof filteredProps]
+    }
+  })
+
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
+      {...filteredProps}
     />
   )
 }

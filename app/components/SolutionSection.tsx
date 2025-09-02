@@ -32,7 +32,7 @@ const solutions = [
     title: 'Robtics & IoT System Development',
     description: 'We create AI-driven robotics and IoT solutions, including cobots and AGVs, to boost productivity, accuracy, and operational efficiency.',
     image: '/icons/robot-arm.svg',
-    link: '/robotics-iot'
+    link: '/robotics'
   },
   {
     title: 'Manufacturing Operation',
@@ -56,23 +56,42 @@ const solutions = [
 
 export default function SolutionsSection() {
   return (
-    <section className="bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-16 px-6">
+    <section className="bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-light text-black text-center mb-12">
-          Our <span className="font-medium text-primary text-4xl">Solutions</span>
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-light text-black mb-4">
+            Our <span className="font-semibold text-primary text-5xl md:text-6xl">Solutions</span>
+          </h2>
+          <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12">
           {solutions.map((solution, idx) => (
             <Link href={solution.link} key={idx} className="group">
-              <div className="bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 backdrop-blur-md rounded-xl p-6 text-slate-700 shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:bg-white/30 h-[400px]">
-                <div className="w-40 h-40 mb-4 bg-white/30 rounded-full flex items-center justify-center">
-                  <Image src={solution.image} alt={solution.title} width={80} height={80} className="object-contain" />
+              <div className="bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 backdrop-blur-md rounded-2xl p-8 text-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-white/40 h-full flex flex-col">
+                <div className="w-32 h-32 sm:w-36 sm:h-36 mb-6 bg-white/40 rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                  <Image
+                    src={solution.image}
+                    alt={solution.title}
+                    width={120}
+                    height={120}
+                    className="object-contain p-2"
+                  />
                 </div>
-                <h3 className="text-lg font-semibold group-hover:underline h-[60px] flex items-center justify-center">
+                <h3 className="text-xl font-bold text-center mb-4 group-hover:text-primary transition-colors duration-300 h-16 flex items-center justify-center">
                   {solution.title}
                 </h3>
-                <p className="text-sm flex-grow text-left pt-10">{solution.description}</p>
+                <p className="text-sm sm:text-base flex-grow text-gray-600 leading-relaxed">
+                  {solution.description}
+                </p>
+                <div className="mt-6 text-center">
+                  <span className="inline-flex items-center text-primary font-semibold group-hover:underline">
+                    Learn more
+                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </Link>
           ))}

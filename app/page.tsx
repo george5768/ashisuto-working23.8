@@ -1,11 +1,11 @@
-"Use CLient"
+
 import HeroSection from "./components/HeroSection";
 import TrustedPartners from "./components/trustedpartners";
 import SolutionsSection from "./components/SolutionSection";
 import FeatureSection from "./components/FeatureSection";
 import SectorsSection from "./components/SectorsSection";
 import FeatureSection2 from "./components/FeatureSection2";
-import GalleryFeature from "./components/GalleryFeature";
+import GalleryServer from "./components/GalleryServer";
 import ContactCardForm from "./components/ContactCardForm";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
  <FeatureSection />
  <SectorsSection />
  <FeatureSection2 />
- <GalleryFeature />
+ <GalleryServer />
  <ContactCardForm />
  </main>
     )

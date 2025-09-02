@@ -1,14 +1,5 @@
-
-import Link from 'next/link'
 import Image from 'next/image'
 
-const solutionLinks = [
-  { name: 'Digital Records', href: '/digitize-records' },
-  { name: 'DocKITA - Workflow Management System', href: '/docKITA' },
-  { name: 'AI Optimization', href: '/ai-prediction-optimization' },
-  { name: 'Ai Applications', href: '/ai-applications-development' },
-  { name: 'Smart Manufacturing', href: '/manufacturing-operation' }
-]
 
 const features = [
   {
@@ -27,21 +18,15 @@ export default function FeatureSection2() {
   return (
     <section className="bg-white py-20 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        {/* Left: List of Solutions */}
-        <div>
-          <h3 className="text-2xl font-semibold text-primary mb-6">Realizing Data Traceability and Visualization</h3>
-          <ul className="space-y-4">
-            {solutionLinks.map((link, idx) => (
-              <li key={idx}>
-                <Link
-                  href={link.href}
-                  className="text-lg text-slate-600 hover:underline hover:text-orange-700 transition"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {/* Left: Construction Image */}
+        <div className="flex justify-center pt-12">
+          <Image
+            src="/images/Construction-2.png"
+            alt="Construction"
+            width={400}
+            height={400}
+            className="w-full max-w-md h-auto rounded-lg shadow-lg"
+          />
         </div>
 
         {/* Right: Feature Images with Text */}

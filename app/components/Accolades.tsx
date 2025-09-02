@@ -15,22 +15,37 @@ const accoladesData: Accolade[] = [
     id: 1,
     logoSrc: '/images/md-logo.png',
     logoAlt: 'MD Logo',
-    title: 'Top Innovation Award 2025',
-    description: 'We are recognized by the Malaysian government as an enabler for Artificial Intelligence, Blockchain and BigData by obtaining MD Status (MALAYSIA DIGITAL COMPANY STATUS) from MDEC (Malaysia Digital Economy Corporation).',
+    title: 'MD Status Company',
+    description: 'Awarded Malaysia Digital Status by MDEC (Malaysia Digital Economy Corporation) as a recognized enabler in AI, Blockchain, and Big Data.',
   },
   {
     id: 2,
     logoSrc: '/images/IPAG.png',
     logoAlt: 'IPAG Logo',
-    title: 'R & D Status Company by MIDA',
-    description: 'Innovasi Penyelidikan AG Sdn. Bhd., a company under Ashisuto Group of Companies was awarded R&D Status by the Malaysia Investment Development Authority. Our clients are able to enjoy double tax exemption when they engage us to simplify digital transformation with our extensive suite of innovative solutions. ',
+    title: 'R & D Status Company',
+    description: 'Innovasi Penyelidikan AG Sdn. Bhd., under Ashisuto Group, is MIDA (Malaysian Investment Development Authority) R&D Status certified company, offering clients double tax exemptions and innovative digital transformation solutions.',
   },
   {
     id: 3,
     logoSrc: '/images/MOF.jpeg',
     logoAlt: 'MOF logo',
-    title: 'Registered Company with Ministry of Finance, Malaysia',
-    description: 'We are recognized as a competent and trust-worthy solutions provider. We serve public sector and government linked companies, with our secure solutions that continuously help drive nations towards adopting IR 4.0 best practices for digital transformation. ',
+    title: 'Ministry of Finance (Malaysia) Registered Company',
+    description: 'We are a trusted provider for public sector and Government Links Companies, delivering secure solutions that drives digital transformation and innovation.',
+  },
+
+  {
+    id: 4,
+    logoSrc: '/images/hrd-logo.png',
+    logoAlt: 'HRD Corp logo',
+    title: 'HRD Corp. Registered Training Provider',
+    description: 'We are certified by HRD (Human Resource Development) Corporation as a training provider, with accredited Train-the-Trainer (TTT) certification',
+  },
+  {
+    id: 5,
+    logoSrc: '/images/mpc-cert.png',
+    logoAlt: 'MPC Certificate',
+    title: 'Productivity Champion in LEADER Category',
+    description: 'We are recognized as Productivity Champion in LEADER category by MPC (Malaysia Productivity Corporation).',
   },
 ];
 
@@ -69,8 +84,8 @@ const AccoladesGrid: FC = () => {
                 <Image src={logoSrc} alt={logoAlt} width={200} height={200} className="w-full h-full object-contain" />
               </div>
               <div className="text-center md:text-start w-full">
-                <h3 className="text-xl md:text-2xl font-bold mb-3 min-h-[5rem] text-gray-800">
-                  {id === 1 ? 'Top Innovation Award\n2025' : title}
+                <h3 className="text-xl md:text-2xl font-bold mb-3 min-h-[5rem] text-gray-800 text-center">
+                  {id === 1 ? 'MD Status Company' : title}
                 </h3>
                 <p className="text-base md:text-lg text-gray-600 leading-relaxed">{description}</p>
               </div>

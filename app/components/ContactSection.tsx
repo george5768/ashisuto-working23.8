@@ -1,34 +1,36 @@
 'use client'
 
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', mobile: '', company: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setStatus('loading');
+    e.preventDefault()
+    setStatus('loading')
 
-  try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
 
-    if (res.ok) {
-      setForm({ name: '', email: '', mobile: '', company: '', message: '' });
-      setStatus('success');
-    } else {
-      setStatus('error');
+      if (res.ok) {
+        setForm({ name: '', email: '', mobile: '', company: '', message: '' })
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      // error intentionally ignored
+      setStatus('error') // optional fallback if fetch throws before getting a response
     }
-  } catch {
-    // error intentionally ignored
-    setStatus('error'); // optional fallback if fetch throws before getting a response
   }
-};
-
 
   return (
     <section
@@ -43,60 +45,59 @@ export default function ContactSection() {
         <div className="bg-white/90 backdrop-blur-md rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Send Us a Message</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })}
-              required
-              placeholder="Name"
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={e => setForm({ ...form, email: e.target.value })}
-              required
-              placeholder="Email"
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
+            <div className="grid grid-cols-1 gap-4">
+              <Input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={e => setForm({ ...form, name: e.target.value })}
+                required
+                placeholder="Name"
+                className="w-full"
+              />
+              <Input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={e => setForm({ ...form, email: e.target.value })}
+                required
+                placeholder="Email"
+                className="w-full"
+              />
+              <Input
+                type="tel"
+                name="mobile"
+                value={form.mobile}
+                onChange={e => setForm({ ...form, mobile: e.target.value })}
+                placeholder="Mobile Number"
+                className="w-full"
+              />
+              <Input
+                type="text"
+                name="company"
+                value={form.company}
+                onChange={e => setForm({ ...form, company: e.target.value })}
+                placeholder="Company Name"
+                className="w-full"
+              />
+              <Textarea
+                name="message"
+                value={form.message}
+                onChange={e => setForm({ ...form, message: e.target.value })}
+                required
+                placeholder="Your message"
+                rows={5}
+                className="w-full"
+              />
+            </div>
 
-            <input
-              type="tel"
-              name="mobile"
-              value={form.mobile}
-              onChange={e => setForm({ ...form, mobile: e.target.value })}
-              placeholder="Mobile Number"
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            
-            <input
-            type="text"
-            name="company"
-            value={form.company}
-            onChange={e => setForm({ ...form, company: e.target.value })}
-            placeholder="Company Name"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-
-            <textarea
-              name="message"
-              rows={5}
-              value={form.message}
-              onChange={e => setForm({ ...form, message: e.target.value })}
-              required
-              placeholder="Your message"
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-
-            <button
+            <Button
               type="submit"
               disabled={status === 'loading'}
               className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-md transition"
             >
               {status === 'loading' ? 'Sending...' : 'Send Message'}
-            </button>
+            </Button>
 
             {status === 'success' && (
               <p className="text-green-600 text-sm text-center mt-2">✅ Message sent successfully!</p>
