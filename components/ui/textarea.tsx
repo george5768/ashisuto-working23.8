@@ -6,7 +6,6 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
   // Remove fdprocessedid attribute to prevent hydration mismatches
   const filteredProps = {
     ...props,
-    // @ts-ignore - Remove fdprocessedid if it exists
     ...(props && typeof props === 'object' && 'fdprocessedid' in props && { fdprocessedid: undefined })
   }
 
