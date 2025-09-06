@@ -80,7 +80,7 @@ const AccoladesGrid: FC = () => {
               variants={itemVariants}
               className="flex flex-col items-center gap-6 bg-white border border-gray-200 p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-xl overflow-hidden bg-white flex items-center justify-center border border-gray-100">
+              <div className={`w-24 h-24 md:w-40 md:h-40 flex-shrink-0 rounded-xl overflow-hidden bg-white flex items-center justify-center border border-gray-100 ${logoSrc.includes('hrd-logo') ? 'md:w-40 md:h-40' : ''}`}>
                 <Image src={logoSrc} alt={logoAlt} width={200} height={200} className="w-full h-full object-contain" />
               </div>
               <div className="text-center md:text-start w-full">

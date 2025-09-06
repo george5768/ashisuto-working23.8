@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { filterHydrationSensitiveProps } from "@/lib/hydration-utils"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -47,18 +48,8 @@ function Button({
   }) {
   const Comp = asChild ? Slot : "button"
 
-  // Remove fdprocessedid attribute and other dynamic attributes to prevent hydration mismatches
-  const filteredProps = { ...props }
-  if ('fdprocessedid' in filteredProps) {
-    delete filteredProps.fdprocessedid
-  }
-  // Remove any other potentially problematic attributes
-  const problematicAttrs: string[] = ['data-sonner-toast', 'data-melt-id', 'data-radix-collection-item']
-  problematicAttrs.forEach(attr => {
-    if (attr in filteredProps) {
-      delete filteredProps[attr as keyof typeof filteredProps]
-    }
-  })
+  // Remove hydration-sensitive attributes to prevent hydration mismatches
+  const filteredProps = filterHydrationSensitiveProps(props)
 
   return (
     <Comp

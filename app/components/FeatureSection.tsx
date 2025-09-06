@@ -29,38 +29,43 @@ export default function FeatureSection() {
           <Button className="my-5">Get in touch</Button></Link>
         </div>
 
-        <div className="relative w-full h-72 md:h-96 flex justify-center items-center">
-          {/* Back image - positioned at top-left */}
-          <div className="absolute top-4 left-4 w-56 h-36 md:w-72 md:h-48 bg-orange-100 border border-orange-300 rounded-xl shadow-md" />
-          
-          <Image
-            src="/images/mfg.png"
-            alt="Back preview"
-            width={280}
-            height={180}
-            className="absolute top-4 left-4 rounded-xl shadow-md object-cover w-56 h-36 md:w-72 md:h-48"
-          />
-          
-          {/* Middle image - positioned diagonally down and right */}
-          <div className="absolute top-16 left-32 w-56 h-36 md:w-72 md:h-48 bg-white border border-orange-200 rounded-xl shadow-lg overflow-hidden">
-            <Image
-              src="/images/cleanroom.jpg"
-              alt="Middle preview"
-              width={280}
-              height={180}
-              className="object-cover w-full h-full"
-            />
-          </div>
-          
-          {/* Front image - positioned further down and right */}
-          <div className="absolute top-28 right-8 w-56 h-36 md:w-72 md:h-48 bg-white border border-orange-200 rounded-xl shadow-lg overflow-hidden">
-            <Image
-              src="/images/construction-3.png"
-              alt="Front preview"
-              width={280}
-              height={180}
-              className="object-cover w-full h-full"
-            />
+        <div className="relative w-full h-96 flex justify-center items-center">
+          {/* Modern image grid layout with clean spacing */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+            {/* Main featured image */}
+            <div className="md:col-span-2 md:row-span-2 relative group">
+              <div className="absolute inset-0 bg-orange-100 rounded-2xl transform rotate-3 group-hover:rotate-0 transition-transform duration-300" />
+              <Image
+                src="/images/mfg.png"
+                alt="Featured manufacturing solution"
+                width={400}
+                height={300}
+                className="relative z-10 w-full h-full object-cover rounded-2xl shadow-lg"
+              />
+            </div>
+            
+            {/* Secondary images in a clean arrangement */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-white rounded-xl transform -rotate-2 group-hover:rotate-0 transition-transform duration-300" />
+              <Image
+                src="/images/cleanroom.jpg"
+                alt="Cleanroom technology"
+                width={200}
+                height={150}
+                className="relative z-10 w-full h-full object-cover rounded-xl shadow-md"
+              />
+            </div>
+            
+            <div className="relative group">
+              <div className="absolute inset-0 bg-white rounded-xl transform rotate-2 group-hover:rotate-0 transition-transform duration-300" />
+              <Image
+                src="/images/construction-3.png"
+                alt="Construction innovation"
+                width={200}
+                height={150}
+                className="relative z-10 w-full h-full object-cover rounded-xl shadow-md"
+              />
+            </div>
           </div>
         </div>
 

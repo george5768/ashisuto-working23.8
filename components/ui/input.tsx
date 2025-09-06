@@ -1,13 +1,11 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { filterHydrationSensitiveProps } from "@/lib/hydration-utils"
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
-  // Remove fdprocessedid attribute to prevent hydration mismatches
-  const filteredProps = props ? { ...props } : {}
-  if ('fdprocessedid' in filteredProps) {
-    delete filteredProps.fdprocessedid
-  }
+  // Remove hydration-sensitive attributes to prevent hydration mismatches
+  const filteredProps = filterHydrationSensitiveProps(props)
 
   return (
     <input

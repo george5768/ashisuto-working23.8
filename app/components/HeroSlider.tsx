@@ -19,25 +19,40 @@ interface HeroSliderProps {
 const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
   const [index, setIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Prevent hydration mismatch by only starting animations after mount
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
-    if (isPaused) return
+    if (isPaused || !isMounted) return
 
     const timer = setInterval(() => {
       setIndex(prev => (prev + 1) % slides.length)
     }, interval)
 
     return () => clearInterval(timer)
-  }, [slides.length, interval, isPaused])
+  }, [slides.length, interval, isPaused, isMounted])
 
   const goToPrevious = () =>
     setIndex(prev => (prev === 0 ? slides.length - 1 : prev - 1))
   const goToNext = () =>
     setIndex(prev => (prev + 1) % slides.length)
 
+  // Only render slider content after mount to prevent hydration mismatch
+  if (!isMounted) {
+    return (
+      <div className="relative w-full h-[50vh] min-h-[400px] max-h-[800px] overflow-hidden bg-gray-200 flex items-center justify-center">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    )
+  }
+
   return (
     <div
-      className="relative w-full h-[60vh] min-h-[400px] max-h-[800px] overflow-hidden"
+      className="relative w-full h-[50vh] min-h-[400px] max-h-[800px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

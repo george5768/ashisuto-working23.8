@@ -1,13 +1,11 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { filterHydrationSensitiveProps } from "@/lib/hydration-utils"
 
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
-  // Remove fdprocessedid attribute to prevent hydration mismatches
-  const filteredProps = {
-    ...props,
-    ...(props && typeof props === 'object' && 'fdprocessedid' in props && { fdprocessedid: undefined })
-  }
+  // Remove hydration-sensitive attributes to prevent hydration mismatches
+  const filteredProps = filterHydrationSensitiveProps(props)
 
   return (
     <textarea
