@@ -30,7 +30,7 @@ export type HydrationSensitiveAttr = typeof HYDRATION_SENSITIVE_ATTRS[number];
  * @param props - The original props object
  * @returns Filtered props without hydration-sensitive attributes
  */
-export function filterHydrationSensitiveProps<T extends Record<string, any>>(
+export function filterHydrationSensitiveProps<T extends Record<string, unknown>>(
   props: T
 ): Partial<T> {
   const filteredProps = { ...props };
@@ -49,7 +49,7 @@ export function filterHydrationSensitiveProps<T extends Record<string, any>>(
  * @param props - The original props object
  * @returns Filtered props without hydration-sensitive attributes
  */
-export function createHydrationSafeProps<T extends Record<string, any>>(
+export function createHydrationSafeProps<T extends Record<string, unknown>>(
   props: T
 ): Partial<T> {
   return filterHydrationSensitiveProps(props);
