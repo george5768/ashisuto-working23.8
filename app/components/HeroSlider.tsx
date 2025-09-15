@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import { filterHydrationSensitiveProps } from '@/lib/hydration-utils'
 
 type Slide = {
   id: number
@@ -21,7 +22,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
   const [isPaused, setIsPaused] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
-  // Prevent hydration mismatch by only starting animations after mount
+  // Prevent hydration mismatch by ensuring client-side only behavior
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -44,7 +45,10 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
   // Only render slider content after mount to prevent hydration mismatch
   if (!isMounted) {
     return (
-      <div className="relative w-full h-[50vh] min-h-[400px] max-h-[800px] overflow-hidden bg-gray-200 flex items-center justify-center">
+      <div
+        className="relative w-full h-[50vh] min-h-[400px] max-h-[800px] overflow-hidden bg-gray-200 flex items-center justify-center"
+        {...filterHydrationSensitiveProps({})}
+      >
         <div className="text-gray-500">Loading...</div>
       </div>
     )
@@ -53,8 +57,10 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
   return (
     <div
       className="relative w-full h-[50vh] min-h-[400px] max-h-[800px] overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      {...filterHydrationSensitiveProps({
+        onMouseEnter: () => setIsPaused(true),
+        onMouseLeave: () => setIsPaused(false),
+      })}
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -64,7 +70,9 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5 }}
           className="absolute inset-0 w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${slides[index].backgroundImage})` }}
+          {...filterHydrationSensitiveProps({
+            style: { backgroundImage: `url(${slides[index].backgroundImage})` }
+          })}
         >
           <div className="flex h-full items-center justify-center bg-black/40 p-4 sm:p-6">
             {slides[index].header}
@@ -77,6 +85,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
         onClick={goToPrevious}
         className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-60 p-2 sm:p-3 rounded-full text-white z-10"
         aria-label="Previous Slide"
+        {...filterHydrationSensitiveProps({})}
       >
         <FaArrowLeft className="text-sm sm:text-base" />
       </Button>
@@ -84,6 +93,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
         onClick={goToNext}
         className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-60 p-2 sm:p-3 rounded-full text-white z-10"
         aria-label="Next Slide"
+        {...filterHydrationSensitiveProps({})}
       >
         <FaArrowRight className="text-sm sm:text-base" />
       </Button>
@@ -98,6 +108,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides, interval = 5000 }) => {
               i === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white'
             }`}
             aria-label={`Go to slide ${i + 1}`}
+            {...filterHydrationSensitiveProps({})}
           />
         ))}
       </div>

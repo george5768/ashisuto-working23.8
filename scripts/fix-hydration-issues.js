@@ -25,16 +25,30 @@ const COMPONENT_FILES = [
   'app/components/AboutUs.tsx',
   'app/components/GalleryServer.tsx',
   'app/components/SectorsSection.tsx',
+  'app/components/Navbar.tsx',
+  'app/components/Footer.tsx',
 ];
 
-// Patterns to look for that might cause hydration issues
+// Enhanced patterns to look for that might cause hydration issues
 const HYDRATION_PATTERNS = [
+  // Form library patterns
   {
     name: 'fdprocessedid',
     regex: /\bfdprocessedid\s*=\s*['"`][^'"`]*['"`]/g,
     replacement: '',
     description: 'Form processing ID that changes between server and client'
   },
+  {
+    name: 'react-hook-form dynamic attributes',
+    regex: /\{\.\.\.(form\.register|control\.register)\([^)]*\)\}/g,
+    replacement: (match) => {
+      return match.replace(/\{[^}]*\}/g, (attrMatch) => {
+        return `...${attrMatch.replace(/\{|\}/g, '')}`;
+      });
+    },
+    description: 'React hook form dynamic attributes that may cause hydration mismatches'
+  },
+  // Date and random patterns
   {
     name: 'Date.now',
     regex: /Date\.now\(\)/g,
@@ -47,6 +61,7 @@ const HYDRATION_PATTERNS = [
     replacement: 'typeof window !== "undefined" ? Math.random() : 0.5',
     description: 'Random value that differs between server and client'
   },
+  // Browser API patterns
   {
     name: 'window object',
     regex: /window\./g,
@@ -64,7 +79,46 @@ const HYDRATION_PATTERNS = [
     regex: /navigator\./g,
     replacement: 'typeof navigator !== "undefined" ? navigator.',
     description: 'Direct navigator access without server check'
-  }
+  },
+  {
+    name: 'localStorage',
+    regex: /localStorage\./g,
+    replacement: 'typeof localStorage !== "undefined" ? localStorage.',
+    description: 'Direct localStorage access without server check'
+  },
+  {
+    name: 'sessionStorage',
+    regex: /sessionStorage\./g,
+    replacement: 'typeof sessionStorage !== "undefined" ? sessionStorage.',
+    description: 'Direct sessionStorage access without server check'
+  },
+  // Animation library patterns
+  {
+    name: 'framer-motion initial state',
+    regex: /initial\s*=\s*{[^}]*}/g,
+    replacement: 'initial={{ opacity: 0 }}',
+    description: 'Framer motion initial states that may differ between server and client'
+  },
+  {
+    name: 'animate prop',
+    regex: /animate\s*=\s*{[^}]*}/g,
+    replacement: 'animate={{ opacity: 1 }}',
+    description: 'Framer motion animate states that may cause hydration mismatches'
+  },
+  // React state patterns
+  {
+    name: 'useState default value',
+    regex: /useState\([^)]*\)/g,
+    replacement: 'useState(typeof window !== "undefined" ? ',
+    description: 'useState default values that may differ between server and client'
+  },
+  // useEffect patterns
+  {
+    name: 'useEffect without dependency array',
+    regex: /useEffect\(\s*=>/g,
+    replacement: 'useEffect(() => {',
+    description: 'useEffect without proper cleanup or dependency array'
+  },
 ];
 
 /**
@@ -130,9 +184,48 @@ function fixHydrationIssuesInFile(filePath, content) {
   
   for (const pattern of HYDRATION_PATTERNS) {
     const originalContent = modifiedContent;
-    modifiedContent = modifiedContent.replace(pattern.regex, pattern.replacement);
+    
+    if (typeof pattern.replacement === 'function') {
+      modifiedContent = modifiedContent.replace(pattern.regex, pattern.replacement);
+    } else {
+      modifiedContent = modifiedContent.replace(pattern.regex, pattern.replacement);
+    }
     
     if (originalContent !== modifiedContent) {
+      modifications++;
+    }
+  }
+  
+  return {
+    content: modifiedContent,
+    modifications: modifications
+  };
+}
+
+/**
+ * Add hydration-safe wrapper around form components
+ */
+function addHydrationSafeWrapper(filePath, content) {
+  let modifiedContent = content;
+  let modifications = 0;
+  
+  // Check for form components that need hydration-safe wrappers
+  if (content.includes('useForm') || content.includes('react-hook-form')) {
+    // Add useEffect for client-side detection
+    if (!content.includes('useEffect')) {
+      modifiedContent = content.replace(
+        /export default function [^}]*\{/,
+        `export default function $&\n  const [isClient, setIsClient] = useState(false);\n  \n  useEffect(() => {\n    setIsClient(true);\n  }, []);`
+      );
+      modifications++;
+    }
+    
+    // Add conditional rendering for form components
+    if (!content.includes('isClient &&')) {
+      modifiedContent = modifiedContent.replace(
+        /(<Form[^>]*>.*<\/Form>)/s,
+        `{isClient && $1}`
+      );
       modifications++;
     }
   }
@@ -156,6 +249,7 @@ function main() {
   let totalFilesWithIssues = 0;
   let totalIssuesFound = 0;
   let totalFilesModified = 0;
+  let totalWrappersAdded = 0;
   
   // Check each file
   for (const file of COMPONENT_FILES) {
@@ -185,14 +279,18 @@ function main() {
         console.log(`  - ${issue.pattern}: ${issue.matches} occurrences (${issue.description})`);
       }
       
-      // Ask if we should fix the issues
+      // Fix hydration issues
       const fixResult = fixHydrationIssuesInFile(filePath, content);
       
-      if (fixResult.modifications > 0) {
-        console.log(`\x1b[32mFixed ${fixResult.modifications} issues in ${file}\x1b[0m`);
+      // Add hydration-safe wrappers if needed
+      const wrapperResult = addHydrationSafeWrapper(filePath, fixResult.content);
+      
+      if (fixResult.modifications > 0 || wrapperResult.modifications > 0) {
+        console.log(`\x1b[32mFixed ${fixResult.modifications} issues and added ${wrapperResult.modifications} hydration-safe wrappers in ${file}\x1b[0m`);
         
-        if (writeFile(filePath, fixResult.content)) {
+        if (writeFile(filePath, wrapperResult.content)) {
           totalFilesModified++;
+          totalWrappersAdded += wrapperResult.modifications;
         } else {
           console.log(`\x1b[31mFailed to write fixes to ${file}\x1b[0m`);
         }
@@ -207,6 +305,7 @@ function main() {
   console.log(`Files with issues: ${totalFilesWithIssues}`);
   console.log(`Total issues found: ${totalIssuesFound}`);
   console.log(`Files modified: ${totalFilesModified}`);
+  console.log(`Hydration-safe wrappers added: ${totalWrappersAdded}`);
   
   if (totalFilesModified > 0) {
     console.log('\x1b[32mSuccessfully fixed hydration issues!\x1b[0m');
@@ -223,6 +322,7 @@ if (require.main === module) {
 module.exports = {
   checkFileForHydrationIssues,
   fixHydrationIssuesInFile,
+  addHydrationSafeWrapper,
   HYDRATION_PATTERNS,
   COMPONENT_FILES
 };

@@ -12,8 +12,8 @@ export default function Home() {
     return (
  <main>
   <HeroSection />
- <TrustedPartners />
  <SolutionsSection />
+ <TrustedPartners />
  <FeatureSection />
  <SectorsSection />
  <FeatureSection2 />
