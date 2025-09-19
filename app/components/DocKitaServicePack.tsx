@@ -7,6 +7,7 @@ type ServiceCategory = {
   title: string;
   items: string[];
   position: string; // Tailwind position classes
+  mobilePosition: string; // Tailwind classes for mobile layout
 };
 
 const categories: ServiceCategory[] = [
@@ -18,17 +19,20 @@ const categories: ServiceCategory[] = [
       'AI Cobot & AGV',
       'Secure Port Access',
     ],
-    position: 'top-0 left-1/2 -translate-x-1/2', // top center
+    position: 'md:top-0 md:left-1/2 md:-translate-x-1/2 md:absolute', // top center on desktop
+    mobilePosition: 'mb-8', // spacing on mobile
   },
   {
     title: 'AI Data Prediction & Optimization',
     items: ['Big Data', 'Neural Network', 'Machine Learning Models'],
-    position: 'top-48 left-0', // bottom left
+    position: 'md:top-48 md:left-0 md:absolute', // bottom left on desktop
+    mobilePosition: 'mb-8', // spacing on mobile
   },
   {
     title: 'AI Application Customize',
     items: ['AI Agent', 'AI Chatbot', 'Edge LLM'],
-    position: 'top-48 right-0', // bottom right
+    position: 'md:top-48 md:right-0 md:absolute', // bottom right on desktop
+    mobilePosition: 'mb-8', // spacing on mobile
   },
 ];
 
@@ -55,41 +59,82 @@ const DocKITABubbleChart: React.FC = () => {
       </div>
 
       {/* Bubble Chart Container */}
-      <div className="relative w-full max-w-4xl mx-auto h-[400px]">
-        {categories.map((category, index) => (
-          <motion.div
-            key={index}
-            initial="hidden"
-            animate="visible"
-            variants={bubbleVariants}
-            whileHover={{ scale: 1.05 }}
-            className={`absolute ${category.position} bg-white rounded-full shadow-lg border border-gray-100 w-82 h-82 flex flex-col justify-center items-center p-6 text-center`}
-          >
-            <h2 className="text-lg font-semibold text-primary mb-4">
-              {category.title}
-            </h2>
+      <div className="relative w-full max-w-4xl mx-auto">
+        {/* Mobile - Stacked layout */}
+        <div className="md:hidden space-y-8">
+          {categories.map((category, index) => (
             <motion.div
+              key={index}
               initial="hidden"
               animate="visible"
-              variants={{
-                visible: {
-                  transition: { staggerChildren: 0.1 },
-                },
-              }}
-              className="flex flex-wrap justify-center gap-2"
+              variants={bubbleVariants}
+              whileHover={{ scale: 1.05 }}
+              className={`${category.mobilePosition} bg-white rounded-2xl shadow-lg border border-gray-100 mx-4 p-6 text-center`}
             >
-              {category.items.map((item, i) => (
-                <motion.span
-                  key={i}
-                  variants={itemVariants}
-                  className="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg text-xs font-medium shadow-sm border border-indigo-100"
-                >
-                  {item}
-                </motion.span>
-              ))}
+              <h2 className="text-lg md:text-xl font-semibold text-primary mb-4">
+                {category.title}
+              </h2>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    transition: { staggerChildren: 0.1 },
+                  },
+                }}
+                className="flex flex-wrap justify-center gap-2"
+              >
+                {category.items.map((item, i) => (
+                  <motion.span
+                    key={i}
+                    variants={itemVariants}
+                    className="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg text-xs md:text-sm font-medium shadow-sm border border-indigo-100"
+                  >
+                    {item}
+                  </motion.span>
+                ))}
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          ))}
+        </div>
+
+        {/* Desktop - Bubble layout */}
+        <div className="hidden md:block relative h-[400px] md:h-[500px]">
+          {categories.map((category, index) => (
+            <motion.div
+              key={index}
+              initial="hidden"
+              animate="visible"
+              variants={bubbleVariants}
+              whileHover={{ scale: 1.05 }}
+              className={`absolute ${category.position} bg-white rounded-full shadow-lg border border-gray-100 w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 flex flex-col justify-center items-center p-4 md:p-6 text-center`}
+            >
+              <h2 className="text-base md:text-lg font-semibold text-primary mb-3 md:mb-4">
+                {category.title}
+              </h2>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    transition: { staggerChildren: 0.1 },
+                  },
+                }}
+                className="flex flex-wrap justify-center gap-2"
+              >
+                {category.items.map((item, i) => (
+                  <motion.span
+                    key={i}
+                    variants={itemVariants}
+                    className="bg-indigo-50 text-indigo-700 px-2 py-1 rounded-lg text-xs md:text-sm font-medium shadow-sm border border-indigo-100"
+                  >
+                    {item}
+                  </motion.span>
+                ))}
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
