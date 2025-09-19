@@ -1,7 +1,11 @@
-// components/SolutionsSection.tsx
+'use client';
 
-import Link from "next/link"
-import Image from "next/image"
+import React from 'react';
+import { motion, Variants } from 'framer-motion';
+import Link from "next/link";
+import Image from "next/image";
+import DocKITAFeatures from "./DocKitaFeatures";
+import DocKITAServicePack from "./DocKitaServicePack";
 
 const solutions = [
   {
@@ -9,24 +13,6 @@ const solutions = [
     description: 'Transform physical records into searchable digital files with high-speed scanning and AI-powered character recognition. Your data is safely stored in the cloud or storage device.',
     image: '/icons/digitise-past-records.png',
     link: '/digitize-records'
-  },
-  {
-    title: 'Workflow Management System',
-    description: 'Eliminate Excel dependency with a digital platform that delivers data traceability and powerful visualization for smarter decisions.',
-    image: '/icons/docKITA.png',
-    link: '/docKITA'
-  },
-  {
-    title: 'AI Data Prediction & Optimization',
-    description: 'Harness AI to find patterns, forecast trends, and optimize operations - cut costs, boost performance, and make smarter decisions.',
-    image: '/icons/ai-prediction.png',
-    link: '/ai-prediction-optimization'
-  },
-  {
-    title: 'AI Applications Development',
-    description: 'Deploy AI agents to automate tasks, save time, and cut costs - customized to your needs and seamlessly integrated with your systems.',
-    image: '/icons/AI-agent.png',
-    link: '/ai-applications-development'
   },
   {
     title: 'Robtics & IoT System Development',
@@ -52,51 +38,96 @@ const solutions = [
     image: '/icons/industrial-design.png',
     link: '/industrial-design'
   }
-]
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.6,
+      ease: [0.42, 0, 0.58, 1] as const,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function SolutionsSection() {
   return (
-    <section className="bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-light text-black mb-4">
-            Our <span className="font-semibold text-primary text-5xl md:text-6xl">Solutions</span>
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
-        </div>
+    <section className="bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-16 px-4 md:px-8 lg:px-16">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="max-w-7xl mx-auto"
+      >
+        <motion.div className="text-center mb-16">
+          <motion.h2
+            variants={cardVariants}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+          >
+            Our <span className="font-semibold text-orange-600">Solutions</span>
+          </motion.h2>
+          <motion.div
+            variants={cardVariants}
+            className="w-32 h-1 bg-orange-600 mx-auto mt-8 rounded-full"
+          ></motion.div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12">
+        <DocKITAFeatures/>
+
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto"
+        >
           {solutions.map((solution, idx) => (
-            <Link href={solution.link} key={idx} className="group">
-              <div className="bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 backdrop-blur-md rounded-2xl p-8 text-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-white/40 h-full flex flex-col">
-                <div className="w-32 h-32 sm:w-36 sm:h-36 mb-6 bg-white/40 rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                  <Image
-                    src={solution.image}
-                    alt={solution.title}
-                    width={120}
-                    height={120}
-                    className="object-contain p-2"
-                  />
+            <motion.div
+              key={idx}
+              variants={cardVariants}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group"
+            >
+              <Link href={solution.link}>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-100 h-full flex flex-col">
+                  <div className="w-16 h-16 mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
+                    <Image
+                      src={solution.image}
+                      alt={solution.title}
+                      width={64}
+                      height={64}
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-center mb-3 text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
+                    {solution.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-grow">
+                    {solution.description}
+                  </p>
+                  <div className="mt-8 text-center">
+                    <span className="inline-flex items-center text-orange-600 font-semibold group-hover:underline transition-all duration-300">
+                      Learn more
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-center mb-4 group-hover:text-primary transition-colors duration-300 h-16 flex items-center justify-center">
-                  {solution.title}
-                </h3>
-                <p className="text-sm sm:text-base flex-grow text-gray-600 leading-relaxed">
-                  {solution.description}
-                </p>
-                <div className="mt-6 text-center">
-                  <span className="inline-flex items-center text-primary font-semibold group-hover:underline">
-                    Learn more
-                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+
+        <DocKITAServicePack />
+      </motion.div>
     </section>
-  )
+  );
 }

@@ -11,7 +11,7 @@ import FaqSection from './components/FAQ';
 export default function DocKita () {
   return (
     <main><HeroDockita
-      heading="DocKITA® - Transform the Way You Manage Workflows"
+      heading="DocKITA® - Transform Efficiency Into Revenue Growth with AI"
       tagline="Smarter. Faster. Traceable. Custom-Built for You."
       description="DocKITA® is a next-generation Workflow Management System that upgrades your existing Microsoft 365 or Excel-based processes into a smart, integrated digital platform. With full data traceability, powerful visualization, and complete customization to match your organization’s unique needs and workflows."
       ctaPrimary="Start Digitizing"

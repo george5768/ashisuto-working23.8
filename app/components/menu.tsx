@@ -38,16 +38,13 @@ export function Menu() {
             <ul className="grid w-[200px] gap-4">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link href="/ai-prediction-optimization" >AI Data Prediction & Optimization</Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
                   <Link href="/docKITA">DocKITA® - Workflow Management System</Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link href="/manufacturing-operation">Manufacturing Operation</Link>
+                  <Link href="/ai-prediction-optimization" >AI Data Prediction & Optimization</Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link href="/cyber-security">Cybersecurity – Secure Port Assess</Link>
+                  <Link href="/ai-application-customize">AI Application Customize</Link>
                 </NavigationMenuLink>
               </li>
             </ul>
@@ -58,9 +55,7 @@ export function Menu() {
           <NavigationMenuContent>
             <ul className="grid w-[200px] gap-4">
               <li>
-                <NavigationMenuLink asChild>
-                  <Link href="/ai-applications-development">AI Applications Development</Link>
-                </NavigationMenuLink>
+                
                 <NavigationMenuLink asChild>
                   <Link href="/robotics">Robotic System Development</Link>
                 </NavigationMenuLink>
@@ -69,6 +64,12 @@ export function Menu() {
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
                   <Link href="/digitize-records">Digitize Past Records & Documents</Link>
+                </NavigationMenuLink>
+                <NavigationMenuLink asChild>
+                  <Link href="/manufacturing-operation">Manufacturing Operation</Link>
+                </NavigationMenuLink>
+                <NavigationMenuLink asChild>
+                  <Link href="/cyber-security">Cybersecurity – Secure Port Assess</Link>
                 </NavigationMenuLink>
               </li>
             </ul>
