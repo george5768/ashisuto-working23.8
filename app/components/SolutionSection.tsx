@@ -86,7 +86,7 @@ export default function SolutionsSection() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto auto-rows-fr"
         >
           {solutions.map((solution, idx) => (
             <motion.div
@@ -97,7 +97,7 @@ export default function SolutionsSection() {
             >
               <Link href={solution.link}>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-100 h-full flex flex-col">
-                  <div className="w-16 h-16 mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-16 h-16 mb-6 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300 flex-shrink-0">
                     <Image
                       src={solution.image}
                       alt={solution.title}
@@ -106,13 +106,13 @@ export default function SolutionsSection() {
                       className="object-contain p-2"
                     />
                   </div>
-                  <h3 className="text-lg font-bold text-center mb-3 text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-center mb-10 text-gray-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight flex-shrink-0 h-12">
                     {solution.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-grow">
+                  <p className="text-sm text-gray-600 leading-relaxed flex-grow mb-6">
                     {solution.description}
                   </p>
-                  <div className="mt-8 text-center">
+                  <div className="mt-auto text-center">
                     <span className="inline-flex items-center text-orange-600 font-semibold group-hover:underline transition-all duration-300">
                       Learn more
                       <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
