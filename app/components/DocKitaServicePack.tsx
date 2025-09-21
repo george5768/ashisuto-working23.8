@@ -92,7 +92,7 @@ const DocKITABubbleChart: React.FC = () => {
                   <motion.div
                     key={i}
                     variants={itemVariants}
-                    className="bg-slate-300 text-gray-800 rounded-xl shadow-md border border-slate-400 px-4 py-3 text-sm font-medium w-full text-center flex items-center justify-center"
+                    className="bg-charcoal text-gray-100 rounded-xl shadow-md border px-4 py-3 text-sm font-medium w-full text-center flex items-center justify-center"
                   >
                     {item}
                   </motion.div>
@@ -135,7 +135,7 @@ const DocKITABubbleChart: React.FC = () => {
                     <motion.div
                       key={i}
                       variants={itemVariants}
-                      className="bg-slate-400 text-gray-100 rounded-xl shadow-md border border-slate-400 px-4 py-3 text-sm font-medium w-full flex items-center justify-center min-h-[70px]"
+                      className="bg-charcoal text-gray-100 rounded-xl shadow-md px-4 py-3 text-sm font-medium w-full flex items-center justify-center min-h-[70px]"
                     >
                       {item}
                     </motion.div>
