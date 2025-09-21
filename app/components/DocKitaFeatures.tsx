@@ -62,25 +62,27 @@ const DocKITAFeatures: React.FC = () => {
       >
         <motion.div
           variants={cardVariants}
-          className="flex flex-col md:flex-row items-center justify-center gap-6 mb-6"
+          className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-8 border border-orange-200 shadow-sm"
         >
-          <motion.div
-            className="flex-shrink-0"
-          >
-            <Image
-              src="/icons/dockita_logo.png"
-              width={250}
-              height={250}
-              alt="DocKITA Logo"
-              className="object-contain"
-            />
-          </motion.div>
-          <motion.p
-            variants={cardVariants}
-            className="text-xl md:text-2xl text-gray-700 max-w-3xl text-center md:text-left"
-          >
-            Assist Your Business To Achieve Real Revenue Growth With AI
-          </motion.p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <motion.div
+              className="flex-shrink-0"
+            >
+              <Image
+                src="/icons/dockita_logo.png"
+                width={250}
+                height={250}
+                alt="DocKITA Logo"
+                className="object-contain"
+              />
+            </motion.div>
+            <motion.p
+              variants={cardVariants}
+              className="text-xl md:text-2xl text-gray-700 max-w-3xl text-center md:text-left"
+            >
+              <span className="font-semibold text-orange-600">DocKITA®</span> Assist Your Business <span className='font-semibold text-primary'>Achieve Real Revenue Growth With AI</span>
+            </motion.p>
+          </div>
         </motion.div>
       </motion.div>
 
@@ -129,3 +131,4 @@ const DocKITAFeatures: React.FC = () => {
 };
 
 export default DocKITAFeatures;
+

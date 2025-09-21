@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { hostname } from "os";
 
 const nextConfig: NextConfig = {
   images: {
@@ -9,7 +8,9 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io",
         port:"",
       }
-    ]
+    ],
+    // Allow images from the public directory
+    unoptimized: false
   }
 };
 

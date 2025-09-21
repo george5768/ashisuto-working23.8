@@ -48,7 +48,7 @@ const itemVariants = {
 
 const DocKITABubbleChart: React.FC = () => {
   return (
-    <section className="pt-28 pb-16 px-6 md:px-16">
+    <section className="pt-28 px-6 md:px-16">
       <div className="max-w-5xl mx-auto text-center mb-16">
         <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
           DocKITA® AI Service Pack
@@ -70,7 +70,7 @@ const DocKITABubbleChart: React.FC = () => {
                 animate="visible"
                 variants={bubbleVariants}
                 whileHover={{ scale: 1.02 }}
-                className="bg-gray-800 text-white rounded-2xl shadow-lg border border-gray-700 mx-4 h-32 flex items-center justify-center"
+                className="bg-gray-800 text-white rounded-2xl shadow-lg border border-gray-700 h-32 flex items-center justify-center"
               >
                 <h2 className="text-lg md:text-xl font-semibold text-center px-4">
                   {category.title}
@@ -86,13 +86,13 @@ const DocKITABubbleChart: React.FC = () => {
                     transition: { staggerChildren: 0.1 },
                   },
                 }}
-                className="flex flex-wrap justify-center gap-3"
+                className="space-y-3 w-full"
               >
                 {category.items.map((item, i) => (
                   <motion.div
                     key={i}
                     variants={itemVariants}
-                    className="bg-white text-gray-800 rounded-xl shadow-md border border-gray-200 px-4 py-3 text-sm font-medium h-16 flex items-center justify-center"
+                    className="bg-slate-300 text-gray-800 rounded-xl shadow-md border border-slate-400 px-4 py-3 text-sm font-medium w-full text-center flex items-center justify-center"
                   >
                     {item}
                   </motion.div>
@@ -129,13 +129,13 @@ const DocKITABubbleChart: React.FC = () => {
                       transition: { staggerChildren: 0.1 },
                     },
                   }}
-                  className="flex flex-wrap justify-center gap-3"
+                  className="space-y-3 w-full"
                 >
                   {category.items.map((item, i) => (
                     <motion.div
                       key={i}
                       variants={itemVariants}
-                      className="bg-white text-gray-800 rounded-xl shadow-md border border-gray-200 px-4 py-3 text-sm font-medium h-16 flex items-center justify-center"
+                      className="bg-slate-400 text-gray-100 rounded-xl shadow-md border border-slate-400 px-4 py-3 text-sm font-medium w-full flex items-center justify-center min-h-[70px]"
                     >
                       {item}
                     </motion.div>
