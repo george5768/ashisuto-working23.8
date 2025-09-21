@@ -5,7 +5,7 @@ export default function AiApplicationCustomize() {
   return (
     <main>
       <SolutionPage
-        title="Ai Application Customize"
+        title="AI Application Customize"
         subtitle="Turn Your Vision into an Intelligent Reality"
         description="We design and build custom AI agents that work seamlessly within your business ecosystem — from answering customer inquiries to streamlining operations, generating content, and making intelligent decisions in real time."
         imageUrl="/images/ai-agent.png"

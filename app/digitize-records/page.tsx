@@ -6,7 +6,7 @@ export default function DigitizeRecordsPage() {
   return (
     <main>
       <SolutionPage
-        title="Digitize Past Records & Documents"
+        title="AI Digitize Past Records & Documents - High-Speed AI Scanning & Character Recognition"
         subtitle="Quickly convert hardcopy documents into a searchable digital archive"
         description="Centralize your document repository, reduce storage costs, and enable efficient data access with our digitization solution."
         imageUrl="/images/storage_room.jpeg"

@@ -10,7 +10,7 @@ export default function FeatureSection() {
         {/* Column 1: Text */}
         <div>
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
-            Transform Your Idea Into Real World Impact
+            Transform Efficiency Into Revenue Growth With AI
           </h2>
           <ul className="space-y-4 text-gray-700 pb-3">
             <li className="flex items-start gap-3">

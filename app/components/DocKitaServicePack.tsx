@@ -58,22 +58,26 @@ const DocKITABubbleChart: React.FC = () => {
         </p>
       </div>
 
-      {/* Bubble Chart Container */}
-      <div className="relative w-full max-w-4xl mx-auto">
+      {/* Card Container */}
+      <div className="w-full max-w-4xl mx-auto">
         {/* Mobile - Stacked layout */}
         <div className="md:hidden space-y-8">
           {categories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial="hidden"
-              animate="visible"
-              variants={bubbleVariants}
-              whileHover={{ scale: 1.05 }}
-              className={`${category.mobilePosition} bg-white rounded-2xl shadow-lg border border-gray-100 mx-4 p-6 text-center`}
-            >
-              <h2 className="text-lg md:text-xl font-semibold text-primary mb-4">
-                {category.title}
-              </h2>
+            <div key={index} className="space-y-4">
+              {/* Parent Card - Darker color for title */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={bubbleVariants}
+                whileHover={{ scale: 1.02 }}
+                className="bg-gray-800 text-white rounded-2xl shadow-lg border border-gray-700 mx-4 h-32 flex items-center justify-center"
+              >
+                <h2 className="text-lg md:text-xl font-semibold text-center px-4">
+                  {category.title}
+                </h2>
+              </motion.div>
+              
+              {/* Child Cards - Items */}
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -82,58 +86,64 @@ const DocKITABubbleChart: React.FC = () => {
                     transition: { staggerChildren: 0.1 },
                   },
                 }}
-                className="flex flex-wrap justify-center gap-2"
+                className="flex flex-wrap justify-center gap-3"
               >
                 {category.items.map((item, i) => (
-                  <motion.span
+                  <motion.div
                     key={i}
                     variants={itemVariants}
-                    className="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg text-xs md:text-sm font-medium shadow-sm border border-indigo-100"
+                    className="bg-white text-gray-800 rounded-xl shadow-md border border-gray-200 px-4 py-3 text-sm font-medium h-16 flex items-center justify-center"
                   >
                     {item}
-                  </motion.span>
+                  </motion.div>
                 ))}
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Desktop - Bubble layout */}
-        <div className="hidden md:block relative h-[400px] md:h-[500px]">
-          {categories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial="hidden"
-              animate="visible"
-              variants={bubbleVariants}
-              whileHover={{ scale: 1.05 }}
-              className={`absolute ${category.position} bg-white rounded-full shadow-lg border border-gray-100 w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 flex flex-col justify-center items-center p-4 md:p-6 text-center`}
-            >
-              <h2 className="text-base md:text-lg font-semibold text-primary mb-3 md:mb-4">
-                {category.title}
-              </h2>
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  visible: {
-                    transition: { staggerChildren: 0.1 },
-                  },
-                }}
-                className="flex flex-wrap justify-center gap-2"
-              >
-                {category.items.map((item, i) => (
-                  <motion.span
-                    key={i}
-                    variants={itemVariants}
-                    className="bg-indigo-50 text-indigo-700 px-2 py-1 rounded-lg text-xs md:text-sm font-medium shadow-sm border border-indigo-100"
-                  >
-                    {item}
-                  </motion.span>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
+        {/* Desktop - 3 Column Grid Layout */}
+        <div className="hidden md:block">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {categories.map((category, index) => (
+              <div key={index} className="flex flex-col items-center">
+                {/* Parent Card - Darker color for title */}
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={bubbleVariants}
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-gray-800 text-white rounded-2xl shadow-lg border border-gray-700 w-full h-32 flex items-center justify-center mb-6"
+                >
+                  <h2 className="text-xl md:text-2xl font-semibold text-center px-4">
+                    {category.title}
+                  </h2>
+                </motion.div>
+                
+                {/* Child Cards - Items */}
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    visible: {
+                      transition: { staggerChildren: 0.1 },
+                    },
+                  }}
+                  className="flex flex-wrap justify-center gap-3"
+                >
+                  {category.items.map((item, i) => (
+                    <motion.div
+                      key={i}
+                      variants={itemVariants}
+                      className="bg-white text-gray-800 rounded-xl shadow-md border border-gray-200 px-4 py-3 text-sm font-medium h-16 flex items-center justify-center"
+                    >
+                      {item}
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

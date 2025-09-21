@@ -11,7 +11,7 @@ export default function HeroSection() {
       backgroundImage: '/images/cover_1-1.jpg',
       header: (
         <div className="text-white text-center gap-4 sm:gap-5 px-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight"><span className="text-primary">Reimagine and</span> <br />Co-Creation of your workplace</h1>
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight"><span className="text-primary">Reimagine and</span> <br />Co-Creation of your workplace with AI</h1>
           <h2 className="text-lg sm:text-xl mt-2 sm:mt-4">INNOVATE THE FUTURE</h2>
           <p className="text-lg sm:text-xl mt-2 sm:mt-4">Designed for businesses of all sectors and industries </p>
         </div>
@@ -34,7 +34,7 @@ export default function HeroSection() {
       backgroundImage: '/images/cover_2.jpg',
       header: (
         <div className="text-white text-right pr-4 sm:pr-10 px-4">
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-wide text-white leading-tight">ESG Driven <span className="text-primary">Digital & Sustainable<br />Business Transformation</span></h1>
+          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-wide text-white leading-tight">ESG Driven <span className="text-primary">Digital & Sustainable<br />Business Growth Into Society 5.0</span></h1>
           <p className="mt-1 text-sm sm:text-base">Built with cutting edge technology to assist enterprises across industries to achieve <strong>Society 5.0</strong></p>
         </div>
       )

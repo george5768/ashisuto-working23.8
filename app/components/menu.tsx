@@ -38,7 +38,7 @@ export function Menu() {
             <ul className="grid w-[200px] gap-4">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link href="/docKITA">DocKITA® - Workflow Management System</Link>
+                  <Link href="/docKITA">AI Workflow Management System</Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
                   <Link href="/ai-prediction-optimization" >AI Data Prediction & Optimization</Link>
@@ -57,13 +57,13 @@ export function Menu() {
               <li>
                 
                 <NavigationMenuLink asChild>
-                  <Link href="/robotics">Robotic System Development</Link>
+                  <Link href="/robotics">AI Cobot & AGV Robots</Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
                   <Link href="/industrial-design">Industrial Design & UI/UX Design</Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link href="/digitize-records">Digitize Past Records & Documents</Link>
+                  <Link href="/digitize-records">AI Digitize Past Records & Documents</Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
                   <Link href="/manufacturing-operation">Manufacturing Operation</Link>

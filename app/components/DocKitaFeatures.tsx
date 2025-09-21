@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 type Feature = {
   title: string;
-  points: string[];
+  description: string;
   icon: string;
   link: string;
 };
@@ -15,29 +15,19 @@ type Feature = {
 const features: Feature[] = [
   {
     title: 'AI Workflow Management System',
-    points: [
-      'Eliminates Excel and paper document dependency.',
-      'Offers an AI-driven platform that delivers smarter decisions.',
-    ],
+    description: 'Eliminate Excel and paper document dependency with an AI-driven platform that enables smarter decision making',
     icon: '/icons/Workflow.png',
     link: '/docKITA'
   },
   {
     title: 'AI Data Prediction & Optimization',
-    points: [
-      'Reduces costs, improves performance.',
-      'Enables smarter decisions with clear insights.',
-    ],
+    description: 'Reduces costs, improves performance, and enables smarter decisions with clear insights.',
     icon: '/icons/ai-prediction.png',
     link: '/ai-prediction-optimization'
   },
   {
     title: 'AI Application Customize',
-    points: [
-      'Built-in AI agents and AI chatbot.',
-      'Automates tasks, saves cost and time.',
-      'Offers customization per customer-specific usage.',
-    ],
+    description: 'Built-in AI agents and AI chatbot that automates tasks, saves cost and time, while offering customization per customer-specific usage.',
     icon: '/icons/AI-agent.png',
     link: '/ai-application-customize'
   },
@@ -116,14 +106,12 @@ const DocKITAFeatures: React.FC = () => {
                   className="object-contain p-3"
                 />
               </div>
-              <h2 className="text-xl md:text-2xl font-bold text-center mb-6 text-gray-900 leading-tight flex-shrink-0 h-14">
+              <h2 className="text-xl md:text-2xl font-bold text-left mb-6 text-gray-900 leading-tight flex-shrink-0 h-14">
                 {feature.title}
               </h2>
-              <ul className="list-disc list-inside text-gray-700 space-y-4 flex-grow mb-6">
-                {feature.points.map((point, i) => (
-                  <li key={i} className="text-base md:text-lg leading-relaxed">{point}</li>
-                ))}
-              </ul>
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed flex-grow mb-6 text-left">
+                {feature.description}
+              </p>
               <div className="mt-auto text-center">
                 <span className="inline-flex items-center text-orange-600 font-semibold group-hover:underline transition-all duration-300">
                   Learn more

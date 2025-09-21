@@ -17,20 +17,22 @@ const features = [
 export default function FeatureSection2() {
   return (
     <section className="bg-white py-20 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 h-full">
         {/* Left: Construction Image */}
-        <div className="flex justify-center pt-12">
-          <Image
-            src="/images/Construction-2.png"
-            alt="Construction"
-            width={400}
-            height={400}
-            className="w-full max-w-md h-auto rounded-lg shadow-lg"
-          />
+        <div className="flex-1 flex flex-col justify-center items-center">
+          <div className="w-full max-w-md">
+            <Image
+              src="/images/Construction-2.png"
+              alt="Construction"
+              width={400}
+              height={400}
+              className="w-full h-auto min-h-[340px] rounded-lg shadow-lg object-cover"
+            />
+          </div>
         </div>
 
         {/* Right: Feature Images with Text */}
-        <div className="space-y-10">
+        <div className="flex-1 flex flex-col space-y-6">
           {features.map((feature, idx) => (
             <div key={idx} className="flex flex-col md:flex-row items-center gap-6">
               <Image
