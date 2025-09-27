@@ -15,7 +15,7 @@ const categories: ServiceCategory[] = [
     title: 'AI Workflow Management System',
     items: [
       'High-speed AI scanning & character recognition',
-      'MES',
+      'Signature Workflow',
       'AI Cobot & AGV',
       'Secure Port Access',
     ],
@@ -30,7 +30,7 @@ const categories: ServiceCategory[] = [
   },
   {
     title: 'AI Application Customize',
-    items: ['AI Agent', 'AI Chatbot', 'Edge LLM'],
+    items: ['Accelerated Agentic AI', 'AI Chatbot', 'Edge LLM'],
     position: 'md:top-48 md:right-0 md:absolute', // bottom right on desktop
     mobilePosition: 'mb-8', // spacing on mobile
   },
@@ -135,7 +135,7 @@ const DocKITABubbleChart: React.FC = () => {
                     <motion.div
                       key={i}
                       variants={itemVariants}
-                      className="bg-charcoal text-gray-100 rounded-xl shadow-md px-4 py-3 text-sm font-medium w-full flex items-center justify-center min-h-[70px]"
+                      className="bg-charcoal text-gray-100 rounded-xl shadow-md px-4 py-3 text-base text-center font-medium w-full flex items-center justify-center min-h-[70px]"
                     >
                       {item}
                     </motion.div>

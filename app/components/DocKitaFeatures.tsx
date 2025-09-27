@@ -69,7 +69,7 @@ const DocKITAFeatures: React.FC = () => {
               className="flex-shrink-0"
             >
               <Image
-                src="/icons/dockita_logo.png"
+                src="/icons/dockitaR.png"
                 width={250}
                 height={250}
                 alt="DocKITA Logo"
