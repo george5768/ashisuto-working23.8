@@ -24,10 +24,12 @@ export default function Footer() {
         {/* Column 2 */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Solutions</h4>
-          <ul className="space-y-2">
+          <ul className="space-y-2"><li><Link href="/ai-prediction-optimization" className="hover:underline">AI Data Prediction & Optimization</Link></li>
+
             <li><Link href="/docKITA" className="hover:underline">AI Workflow Management System</Link></li>
-            <li><Link href="/ai-prediction-optimization" className="hover:underline">AI Prediction</Link></li>
+            
             <li><Link href="/ai-application-customize" className="hover:underline">AI Application Customize</Link></li>
+             <li><Link href="/cyber-security" className="hover:underline">Cyber Security - Secure Port Access</Link> </li>
           </ul>
         </div>
 
@@ -36,10 +38,10 @@ export default function Footer() {
           <h4 className="text-lg font-semibold mb-4">Services</h4>
           <ul className="space-y-2">
             <li><Link href="/robotics" className="hover:underline">AI Cobot & AGV Robots</Link></li>
-            <li><Link href="/industrial-design" className="hover:underline">Industrial Design</Link></li>
+            {/* <li><Link href="/industrial-design" className="hover:underline">Industrial Design</Link></li> */}
             <li><Link href="/digitize-records" className="hover:underline">AI Digitize Past Records & Documents</Link></li>
             <li><Link href="/manufacturing-operation" className="hover:underline">Manufacturing Operation</Link></li>
-            <li><Link href="/cyber-security" className="hover:underline">Cyber Security - Secure Port Access</Link> </li>
+           
           </ul>
         </div>
 

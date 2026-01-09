@@ -42,7 +42,7 @@ const cardVariants: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.5, duration: 1, ease: 'easeOut' }
+    transition: { delay: i * 0.2, duration: 0.8, ease: 'easeOut' }
   })
 }
 
@@ -54,15 +54,18 @@ export default function SectorsSection() {
   }, [])
 
   return (
-    <section className="w-full bg-gray-50 py-6 sm:py-8 md:py-12 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 max-w-4xl">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 leading-tight">Industries We Serve</h2>
-        <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg text-gray-600">
+    <section className="w-full bg-gray-50 py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto text-center mb-10 sm:mb-12 md:mb-16 max-w-4xl">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight mb-3 sm:mb-4">
+          Industries We Serve
+        </h2>
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
           Tailored digital solutions across key economic sectors.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 justify-center mx-1 sm:mx-2 px-2 sm:px-0">
+ 
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-6xl mx-auto">
         {sectors.map((sector, idx) => (
           isClient ? (
             <motion.div
@@ -70,32 +73,38 @@ export default function SectorsSection() {
               custom={idx}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              className="bg-white rounded-lg px-2 sm:px-3 py-3 sm:py-4 md:py-5 shadow-sm flex flex-col items-center text-center hover:shadow-md transition min-h-[160px] sm:min-h-[180px] md:min-h-[200px]"
+              className="bg-white rounded-xl sm:rounded-2xl px-4 sm:px-6 py-6 sm:py-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center group hover:scale-[1.02] min-h-[280px] sm:min-h-[320px] md:min-h-[360px]"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-3 sm:mb-4 bg-orange-300 rounded-lg flex items-center justify-center overflow-hidden">
+          
+              <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] h-32 sm:h-40 md:h-48 mb-5 sm:mb-7 rounded-lg sm:rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
                 <Image
                   src={sector.icon}
                   alt={sector.name}
-                  width={300}
+                  width={400}
                   height={300}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 leading-tight px-1">{sector.name}</h3>
-              <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600 line-clamp-2 px-1">{sector.description}</p>
+              
+          
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">
+                {sector.name}
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2 sm:px-4">
+                {sector.description}
+              </p>
             </motion.div>
           ) : (
             <div
               key={idx}
-              className="bg-white rounded-lg px-2 sm:px-3 py-3 sm:py-4 md:py-5 shadow-sm flex flex-col items-center text-center h-[160px] animate-pulse min-h-[160px] sm:min-h-[180px] md:min-h-[200px]"
+              className="bg-white rounded-xl sm:rounded-2xl px-4 sm:px-6 py-6 sm:py-8 shadow-lg flex flex-col items-center text-center min-h-[280px] sm:min-h-[320px] md:min-h-[360px] animate-pulse"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-3 sm:mb-4 bg-orange-300 rounded-lg flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse" />
-              </div>
-              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 leading-tight px-1">{sector.name}</h3>
-              <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600 animate-pulse px-1">{sector.description}</p>
+              <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] h-32 sm:h-40 md:h-48 mb-5 sm:mb-7 rounded-lg sm:rounded-xl bg-gray-200" />
+
+              <div className="h-6 sm:h-7 md:h-8 w-24 sm:w-28 bg-gray-200 rounded mb-2 sm:mb-3" />
+              <div className="h-12 sm:h-14 w-full max-w-xs bg-gray-200 rounded px-2 sm:px-4" />
             </div>
           )
         ))}

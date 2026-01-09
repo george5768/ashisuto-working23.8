@@ -15,120 +15,131 @@ type Feature = {
 const features: Feature[] = [
   {
     title: 'AI Workflow Management System',
-    description: 'Eliminate Excel and paper document dependency with an AI-driven platform that enables smarter decision making',
+    description: 'Eliminate Excel and paper document dependency with an AI-driven platform that delivers smarter decisions',
     icon: '/icons/Workflow.png',
     link: '/docKITA'
   },
   {
     title: 'AI Data Prediction & Optimization',
-    description: 'Reduces costs, improves performance, and enables smarter decisions with clear insights.',
+    description: 'Reduce costs, improve performance, and make smarter decisions with clear insights',
     icon: '/icons/ai-prediction.png',
     link: '/ai-prediction-optimization'
   },
   {
     title: 'AI Application Customize',
-    description: 'Built-in AI agents and AI chatbot that automates tasks, saves cost and time, while offering customization per customer-specific usage.',
+    description: 'Built in AI agents & AI chatbot that automate tasks, save cost and time as per customer specific usage',
     icon: '/icons/AI-agent.png',
     link: '/ai-application-customize'
   },
 ];
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
+const titleVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { 
+    opacity: 1, 
     y: 0,
     transition: {
-      staggerChildren: 0.2,
-      duration: 0.6,
-      ease: [0.42, 0, 0.58, 1] as const, // Using proper easing type
-    },
+      duration: 0.5,
+      ease: "easeOut"
+    }
   },
 };
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const DocKITAFeatures: React.FC = () => {
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="max-w-7xl mx-auto text-center mb-16"
-      >
-        <motion.div
-          variants={cardVariants}
-          className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-8 border border-orange-200 shadow-sm"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <motion.div
-              className="flex-shrink-0"
-            >
-              <Image
-                src="/icons/dockitaR.png"
-                width={250}
-                height={250}
-                alt="DocKITA Logo"
-                className="object-contain"
-              />
-            </motion.div>
-            <motion.p
-              variants={cardVariants}
-              className="text-xl md:text-2xl text-gray-700 max-w-3xl text-center md:text-left"
-            >
-              <span className="font-semibold text-orange-600">DocKITA®</span> Assist Your Business <span className='font-semibold text-primary'>Achieve Real Revenue Growth With AI</span>
-            </motion.p>
-          </div>
-        </motion.div>
-      </motion.div>
+    <section className="py-16 px-4 md:px-8 bg-white">
+      <div className="max-w-6xl mx-auto">
 
+        <div className="text-center mb-12">
+           <div className="mb-8">
+            <Image
+              src="/icons/dockitaR.png"
+              width={300}
+              height={150}
+              alt="DocKITA"
+              className="object-contain mx-auto"
+              priority
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2 mb-4">
+        
+
+        <div className="relative max-w-3xl mx-auto mb-4">
+          <svg className="absolute -top-2 -left-2 w-8 h-8 text-orange-300" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <p className="text-lg md:text-xl text-gray-800 text-center italic px-8 py-4 bg-gradient-to-r from-orange-50/50 to-amber-50/50 rounded-lg border-l-4 border-orange-500">
+            <span className="not-italic font-bold text-orange-700">DocKITA®</span> Assist Your Business <span className="not-italic font-bold text-orange-700">Achieve Real Revenue Growth</span> with our AI-powered solutions
+          </p>
+          <svg className="absolute -bottom-2 -right-2 w-8 h-8 text-orange-300 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+        </div>
+           
+          </div>
+          
+        </div>
+
+    
       <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto auto-rows-fr"
-      >
-        {features.map((feature, index) => (
-          <Link href={feature.link} key={index}>
-            <motion.div
-              variants={cardVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-100 h-full flex flex-col cursor-pointer"
-            >
-              <div className="w-24 h-24 mb-6 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center shadow-md flex-shrink-0">
-                <Image
-                  src={feature.icon}
-                  alt={feature.title}
-                  width={96}
-                  height={96}
-                  className="object-contain p-3"
-                />
-              </div>
-              <h2 className="text-xl md:text-2xl font-bold text-left mb-6 text-gray-900 leading-tight flex-shrink-0 h-14">
-                {feature.title}
-              </h2>
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed flex-grow mb-6 text-left">
-                {feature.description}
-              </p>
-              <div className="mt-auto text-center">
-                <span className="inline-flex items-center text-orange-600 font-semibold group-hover:underline transition-all duration-300">
-                  Learn more
-                  <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
-            </motion.div>
-          </Link>
-        ))}
-      </motion.div>
+            initial="hidden"
+            animate="visible"
+            variants={titleVariants}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              3 Main Pillars of <span className="text-orange-600">DocKITA<span className="align-super text-lg">®</span></span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-amber-500 mx-auto rounded-full"></div>
+          </motion.div>
+
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <div key={index} className="group">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="h-full"
+              >
+
+                <div className="p-6 h-full flex flex-col border border-gray-200 rounded-lg hover:border-orange-300 transition-colors">
+  
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-8 h-8 bg-orange-100 rounded flex items-center justify-center flex-shrink-0">
+                      <span className="text-orange-700 font-bold text-sm">{index + 1}</span>
+                    </div>
+                    <div className="w-10 h-10 bg-gray-50 rounded flex items-center justify-center">
+                      <Image
+                        src={feature.icon}
+                        alt={feature.title}
+                        width={24}
+                        height={24}
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm flex-grow mb-4">
+                    {feature.description}
+                  </p>
+
+                  <Link href={feature.link} className="inline-flex items-center text-orange-600 text-sm font-medium mt-auto">
+                    <span>Learn more</span>
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
 
 export default DocKITAFeatures;
-

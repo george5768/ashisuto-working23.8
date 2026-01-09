@@ -21,10 +21,9 @@ const AboutUs: FC = () => {
           </div>
           <div className="flex flex-col justify-center space-y-6">
             <p className="text-base md:text-lg leading-relaxed text-gray-700 text-justify">
-              Assisting industries in their Digital Transformation Journey and helping them benefit from our cost efficient and customized solutions that are quick to deploy.
+              Ashisuto Global Technologies empowers industries in their digital transformation journey through AI-driven innovation, helping organizations unlock business value using cutting-edge technologies—particularly Artificial Intelligence, Machine Learning, and Agentic AI.  Our solutions are designed to be scalable, cost-efficient, and rapidly deployable, enabling faster adoption and measurable outcomes.
             </p>
             <p className="text-base md:text-lg leading-relaxed text-gray-700 text-justify">
-              Ashisuto is translated from Japanese to &quot;Assist You&quot;, our solutions are designed with this core belief. Our customer first attitude is represented by the way we develop tailored solutions designed to overcome digitalization challenges helping business to adopt the best practices for document management and record keeping.
             </p>
             <div className="flex flex-wrap justify-center lg:justify-center items-center gap-4 lg:gap-6 my-6">
               <Link href={"https://www.youtube.com/@ashisutoglobaltechnologies6942"} className="text-red-600 hover:text-red-700 transition-colors">
@@ -45,21 +44,23 @@ const AboutUs: FC = () => {
 
         <div className="mt-12 lg:mt-16">
           <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6 text-justify">
-            We are a digital transformation (DX) company providing digitalization solutions to industries based on cutting edge technology including AI, Machine Learning, Deep Learning, Blockchain and IoT technology for developing both application and embedded systems.
+            The name Ashisuto, derived from the Japanese phrase meaning &quot;Assist You&quot;, reflects our core philosophy. With a strong customer-first mindset, we deliver tailored digital solutions that address real-world digitalization challenges, enabling businesses to adopt best practices in document management, records management, and intelligent process automation.
+          </p>
+          <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+            As a trusted digital transformation partner, Ashisuto Global Technologies helps organizations unify business processes into a secure, global digital ecosystem—accessible anytime and anywhere. Recognized as business consultants and digital transformation specialists, we provide comprehensive support to international and local organizations across both the public and private sectors.
           </p>
           <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-8 text-justify">
-            Ashisuto Global Technologies is the key to helping companies bring business processes onto one global and digital ecosystem platform. A system that can be used whenever and wherever, with this vision we help companies achieve a digital reality.
-            Being recognized as business consultants and digital transformation specialists, we provide extensive and comprehensive support to both international and local, private and public corporations. Helping to build a secure business environment for our clients. We are committed to serving you with our range of innovative and customizable solutions.
+            We are committed to building secure, future-ready business environments through innovative, flexible, and customizable AI-powered solutions.
           </p>
         </div>
-        
-        <div className="flex justify-center my-8">
+
+        {/* <div className="flex justify-center my-8">
           <Link href={"/docKITA"}>
             <Button className="px-6 md:px-8 py-3 text-base md:text-lg font-medium hover:bg-primary/90 transition-colors">
               Explore Solutions
             </Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );

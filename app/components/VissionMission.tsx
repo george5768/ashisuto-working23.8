@@ -51,12 +51,12 @@ const VisionMission: FC = () => {
           <StatementBlock
             icon={<BsTrophy className="w-10 h-10 text-primary" />}
             title="Our Vision"
-            text="Become the leader in delivering technology solutions to innovate the future."
+            text="To lead the future of digital innovation by transforming businesses through intelligent technology."
           />
           <StatementBlock
             icon={<FaGlobeAsia className="w-10 h-10 text-primary" />}
             title="Our Mission"
-            text="Deliver pioneering technology solutions while fostering innovation and sustainable business growth."
+            text="To create impactful, future-ready solutions powered by AI and emerging technologies, enabling sustainable growth and operational excellence for our customers."
           />
         </div>
       </div>

@@ -2,7 +2,11 @@ import React from "react";
 import { TimelineItem } from "./TimelineItem";
 
 const events = [
-   {
+    {
+    title: "Partnership with Amazon Web System",
+    description: "to delivering reliable, secure, and scalable cloud solutions",
+    date: "Nov 2025",
+  },{
     title: "Partnership with Ziontech Communication, Inc.",
     description: "for Philippines market penetration",
     date: "Jun 2025",

@@ -32,7 +32,6 @@ const accoladesData: Accolade[] = [
     title: 'Ministry of Finance (Malaysia) Registered Company',
     description: 'We are a trusted provider for public sector and Government Links Companies, delivering secure solutions that drives digital transformation and innovation.',
   },
-
   {
     id: 4,
     logoSrc: '/images/hrd-logo.png',
@@ -46,6 +45,13 @@ const accoladesData: Accolade[] = [
     logoAlt: 'MPC Certificate',
     title: 'Productivity Champion in LEADER Category',
     description: 'We are recognized as Productivity Champion in LEADER category by MPC (Malaysia Productivity Corporation).',
+  },
+  {
+    id: 6,
+    logoSrc: '/images/awscert.png',
+    logoAlt: 'AWS Certificate',
+    title: 'Amazon Web Services (AWS) Partners',
+    description: 'We are an AWS Partner, demonstrating our commitment to delivering reliable, secure, and scalable cloud solutions built on Amazon Web Services (AWS).',
   },
 ];
 
@@ -74,23 +80,43 @@ const AccoladesGrid: FC = () => {
           viewport={{ once: true, amount: 0.3 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
-          {accoladesData.map(({ id, logoSrc, logoAlt, title, description }) => (
-            <motion.div
-              key={id}
-              variants={itemVariants}
-              className="flex flex-col items-center gap-6 bg-white border border-gray-200 p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className={`w-24 h-24 md:w-40 md:h-40 flex-shrink-0 rounded-xl overflow-hidden bg-white flex items-center justify-center border border-gray-100 ${logoSrc.includes('hrd-logo') ? 'md:w-40 md:h-40' : ''}`}>
-                <Image src={logoSrc} alt={logoAlt} width={200} height={200} className="w-full h-full object-contain" />
-              </div>
-              <div className="text-center md:text-start w-full">
-                <h3 className="text-xl md:text-2xl font-bold mb-3 min-h-[5rem] text-gray-800 text-center">
-                  {id === 1 ? 'MD Status Company' : title}
-                </h3>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">{description}</p>
-              </div>
-            </motion.div>
-          ))}
+          {accoladesData.map(({ id, logoSrc, logoAlt, title, description }) => {
+            const isLargeLogo = id === 4 || id === 6 || id === 5;
+
+            return (
+              <motion.div
+                key={id}
+                variants={itemVariants}
+                className="flex flex-col items-center gap-6 bg-white border border-gray-200 p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                
+                <div className={`
+                  flex-shrink-0 rounded-xl overflow-hidden bg-white 
+                  flex items-center justify-center border border-gray-100
+                  ${isLargeLogo
+                    ? 'w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 p-3 md:p-4'
+                    : 'w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 p-2 md:p-3'
+                  }
+                `}>
+                  <Image
+                    src={logoSrc}
+                    alt={logoAlt}
+                    width={isLargeLogo ? 400 : 300}
+                    height={isLargeLogo ? 400 : 300}
+                    className="w-full h-full object-contain"
+                    priority={isLargeLogo} 
+                  />
+                </div>
+
+                <div className="text-center md:text-start w-full">
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 min-h-[5rem] text-gray-800 text-center">
+                    {id === 1 ? 'MD Status Company' : title}
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">{description}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
