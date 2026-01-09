@@ -14,9 +14,8 @@ const categories: ServiceCategory[] = [
   {
     title: 'AI Workflow Management System',
     items: [
-      'High-speed AI scanning & character recognition',
       'Signature Workflow',
-      'AI Cobot & AGV',
+      'Process Workflow',
       'Secure Port Access',
     ],
     position: 'md:top-0 md:left-1/2 md:-translate-x-1/2 md:absolute', // top center on desktop
@@ -24,7 +23,7 @@ const categories: ServiceCategory[] = [
   },
   {
     title: 'AI Data Prediction & Optimization',
-    items: ['Big Data', 'Neural Network', 'Machine Learning Models'],
+    items: ['Non-Code Machine Learning', 'AI Studio', 'AI Lifecycle Management'],
     position: 'md:top-48 md:left-0 md:absolute', // bottom left on desktop
     mobilePosition: 'mb-8', // spacing on mobile
   },

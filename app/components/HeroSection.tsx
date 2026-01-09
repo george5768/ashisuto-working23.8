@@ -17,18 +17,18 @@ export default function HeroSection() {
         </div>
       )
     },
-    {
-      id: 2,
-      backgroundImage: '/images/Industrial-Design.png',
-      header: (
-        <div className="text-black text-left max-w-2xl p-4 sm:p-10">
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight"><span className="text-primary">Concept Convergence</span><br />Where Art & Design Collide</h1>
-          <p className="text-base sm:text-lg mt-2 font-bold text-white">Industrial<span className="text-green-500"> Design</span> </p>
-          <p className="text-base sm:text-lg mt-2 font-bold text-white pb-3 sm:pb-5">UI/UX<span className="text-green-500"> Design</span> </p>
-          <Link href="/industrial-design"><Button className="font-bold text-lg sm:text-28 py-3 sm:py-5">Solutions</Button></Link>
-        </div>
-      )
-    },
+    // {
+    //   id: 2,
+    //   backgroundImage: '/images/Industrial-Design.png',
+    //   header: (
+    //     <div className="text-black text-left max-w-2xl p-4 sm:p-10">
+    //       <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight"><span className="text-primary">Concept Convergence</span><br />Where Art & Design Collide</h1>
+    //       <p className="text-base sm:text-lg mt-2 font-bold text-white">Industrial<span className="text-green-500"> Design</span> </p>
+    //       <p className="text-base sm:text-lg mt-2 font-bold text-white pb-3 sm:pb-5">UI/UX<span className="text-green-500"> Design</span> </p>
+    //       <Link href="/industrial-design"><Button className="font-bold text-lg sm:text-28 py-3 sm:py-5">Solutions</Button></Link>
+    //     </div>
+    //   )
+    // },
     {
       id: 3,
       backgroundImage: '/images/cover_2.jpg',
