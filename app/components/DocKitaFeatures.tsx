@@ -32,15 +32,15 @@ const features: Feature[] = [
     link: '/ai-application-customize'
   },
 ];
-const titleVariants = {
+const titleVariants: Variants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut"
-    }
+      ease: [0.16, 1, 0.3, 1],
+    },
   },
 };
 const DocKITAFeatures: React.FC = () => {
@@ -82,6 +82,7 @@ const DocKITAFeatures: React.FC = () => {
       <motion.div
             initial="hidden"
             animate="visible"
+            
             variants={titleVariants}
             className="text-center mb-16"
           >
