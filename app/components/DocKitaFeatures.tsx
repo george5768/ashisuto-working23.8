@@ -103,36 +103,46 @@ const DocKITAFeatures: React.FC = () => {
                 className="h-full"
               >
 
-                <div className="p-6 h-full flex flex-col border border-gray-200 rounded-lg hover:border-orange-300 transition-colors">
+                <div className="p-6 h-full flex flex-col rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg hover:border-orange-300 hover:-translate-y-1 transition-all duration-300">
   
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-8 h-8 bg-orange-100 rounded flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-700 font-bold text-sm">{index + 1}</span>
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="relative flex-shrink-0">
+                      <div className="w-16 h-16 rounded-xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-100 flex items-center justify-center group-hover:from-orange-100 group-hover:to-amber-200 transition-colors">
+                        <Image
+                          src={feature.icon}
+                          alt={feature.title}
+                          width={48}
+                          height={48}
+                          className="object-contain"
+                        />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-white border border-orange-200 flex items-center justify-center text-orange-700 text-xs font-semibold shadow-sm">
+                        {index + 1}
+                      </div>
                     </div>
-                    <div className="w-10 h-10 bg-gray-50 rounded flex items-center justify-center">
-                      <Image
-                        src={feature.icon}
-                        alt={feature.title}
-                        width={24}
-                        height={24}
-                        className="object-contain"
-                      />
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-lg md:text-xl font-semibold text-gray-900 leading-snug whitespace-normal break-words">
+                        {feature.title}
+                      </h3>
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm flex-grow mb-4">
+                  <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed flex-grow mb-5">
                     {feature.description}
                   </p>
 
-                  <Link href={feature.link} className="inline-flex items-center text-orange-600 text-sm font-medium mt-auto">
-                    <span>Learn more</span>
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                  <div className="mt-auto pt-3 border-t border-gray-100">
+                    <Link
+                      href={feature.link}
+                      aria-label={`Learn more about ${feature.title}`}
+                      className="inline-flex items-center gap-2 text-orange-700 hover:text-orange-800 font-medium text-sm md:text-[15px]"
+                    >
+                      <span>Learn more</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             </div>

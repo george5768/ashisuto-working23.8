@@ -21,7 +21,7 @@ const AboutUs: FC = () => {
           </div>
           <div className="flex flex-col justify-center space-y-6">
             <p className="text-base md:text-lg leading-relaxed text-gray-700 text-justify">
-              Ashisuto Global Technologies empowers industries in their digital transformation journey through AI-driven innovation, helping organizations unlock business value using cutting-edge technologies—particularly Artificial Intelligence, Machine Learning, and Agentic AI.  Our solutions are designed to be scalable, cost-efficient, and rapidly deployable, enabling faster adoption and measurable outcomes.
+              Ashisuto Global Technologies empowers industries in their digital transformation journey through AI driven innovation, helping organizations unlock business value using cutting edge technologies particularly Artificial Intelligence, Machine Learning, and Agentic AI.  Our solutions are designed to be scalable, cost-efficient, and rapidly deployable, enabling faster adoption and measurable outcomes.
             </p>
             <p className="text-base md:text-lg leading-relaxed text-gray-700 text-justify">
             </p>
@@ -47,7 +47,7 @@ const AboutUs: FC = () => {
             The name Ashisuto, derived from the Japanese phrase meaning &quot;Assist You&quot;, reflects our core philosophy. With a strong customer-first mindset, we deliver tailored digital solutions that address real-world digitalization challenges, enabling businesses to adopt best practices in document management, records management, and intelligent process automation.
           </p>
           <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6 text-justify">
-            As a trusted digital transformation partner, Ashisuto Global Technologies helps organizations unify business processes into a secure, global digital ecosystem—accessible anytime and anywhere. Recognized as business consultants and digital transformation specialists, we provide comprehensive support to international and local organizations across both the public and private sectors.
+            As a trusted digital transformation partner, Ashisuto Global Technologies helps organizations unify business processes into a secure, global digital ecosystem accessible anytime and anywhere. Recognized as business consultants and digital transformation specialists, we provide comprehensive support to international and local organizations across both the public and private sectors.
           </p>
           <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-8 text-justify">
             We are committed to building secure, future-ready business environments through innovative, flexible, and customizable AI-powered solutions.

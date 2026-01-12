@@ -8,7 +8,7 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      backgroundImage: '/images/cover_1-1.jpg',
+      backgroundImage: '/images/iot-tokyo.webp',
       header: (
         <div className="text-white text-center gap-4 sm:gap-5 px-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight"><span className="text-primary">Reimagine and</span> <br />Co-Creation of your workplace with AI</h1>

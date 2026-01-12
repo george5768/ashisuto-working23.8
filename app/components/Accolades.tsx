@@ -48,7 +48,7 @@ const accoladesData: Accolade[] = [
   },
   {
     id: 6,
-    logoSrc: '/images/awscert.png',
+    logoSrc: '/images/awscert1.png',
     logoAlt: 'AWS Certificate',
     title: 'Amazon Web Services (AWS) Partners',
     description: 'We are an AWS Partner, demonstrating our commitment to delivering reliable, secure, and scalable cloud solutions built on Amazon Web Services (AWS).',
