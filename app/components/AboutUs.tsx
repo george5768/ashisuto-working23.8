@@ -60,8 +60,8 @@ const AboutUs: FC = () => {
               Explore Solutions
             </Button>
           </Link>
-        </div> */}
-      </div>
+        </div> */} 
+      </div> 
     </section>
   );
 };
