@@ -1,0 +1,157 @@
+'use client'
+
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { ImageAlt, Routes, LANG_OPTIONS, Languages } from '@/app/enum/global';
+import { BsYoutube } from 'react-icons/bs';
+import { FaLinkedinIn, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { PiWhatsappLogoBold } from 'react-icons/pi';
+
+const solutions = [
+  { href: Routes.AI_PREDICTION_OPTIMIZATION, label: 'AI Data Prediction & Optimization' },
+  { href: Routes.DOC_KITA,                   label: 'AI Workflow Management' },
+  { href: Routes.AI_APPLICATION_CUSTOMIZE,   label: 'AI Application Customize' },
+  { href: Routes.CYBER_SECURITY,             label: 'Cybersecurity' },
+];
+
+const services = [
+  { href: Routes.ROBOTICS,               label: 'AI Cobots & AGV Robots' },
+  { href: Routes.DIGITIZE_RECORDS,       label: 'AI Digitize Records' },
+  { href: Routes.MANUFACTURING_OPERATION,label: 'Manufacturing Operation' },
+];
+
+const company = [
+  { href: Routes.ABOUT,   label: 'About Us' },
+  { href: Routes.PARTNERS,label: 'Partners' },
+  { href: Routes.GALLERY, label: 'News Gallery' },
+  { href: Routes.CONTACT, label: 'Contact Us' },
+];
+
+const socials = [
+  { href: 'https://www.youtube.com/@ashisutoglobaltechnologies6942', icon: <BsYoutube className="w-4 h-4" />, label: 'YouTube' },
+  { href: 'https://www.linkedin.com/company/ashisuto-global-technologies/', icon: <FaLinkedinIn className="w-4 h-4" />, label: 'LinkedIn' },
+  { href: 'https://www.instagram.com/ashisutoglobal/', icon: <FaInstagram className="w-4 h-4" />, label: 'Instagram' },
+  { href: 'https://www.facebook.com/ashito.glo', icon: <FaFacebook className="w-4 h-4" />, label: 'Facebook' },
+  { href: 'https://wa.link/7ka5zr', icon: <PiWhatsappLogoBold className="w-4 h-4" />, label: 'WhatsApp' },
+];
+
+export default function Footer() {
+  const pathname = usePathname();
+  // Extract lang segment from URL: '/en/about' → '/en'; fall back to English slug via enum
+  const defaultSlug = LANG_OPTIONS.find(l => l.code === Languages.ENGLISH)!.slug;
+  const langRoute = '/' + (pathname.split('/')[1] || defaultSlug);
+
+  return (
+    <footer className="bg-gray-950 text-white">
+      {/* Orange accent top line */}
+      <div className="h-1 bg-gradient-to-r from-orange-600 via-amber-400 to-orange-600" />
+
+      {/* Main grid */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+
+          {/* Brand column – 2 cols wide */}
+          <div className="sm:col-span-2 lg:col-span-2">
+            <Link href={langRoute} className="inline-block mb-5 group">
+              <Image
+                src="/ashisuto-logo-white.png"
+                alt={ImageAlt.logo}
+                width={150}
+                height={52}
+                className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+              Reimagine and co-create your workplace with AI. Delivering intelligent solutions across industries to unlock the future of business.
+            </p>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-2.5">
+              {socials.map(({ href, icon, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/8 hover:bg-orange-500 text-gray-400 hover:text-white border border-white/10 hover:border-orange-500 transition-all duration-300 hover:scale-110"
+                >
+                  {icon}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Solutions */}
+          <div>
+            <h4 className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-5">Solutions</h4>
+            <ul className="space-y-3">
+              {solutions.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={langRoute + href}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-orange-400 transition-colors duration-200 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-orange-500/50 group-hover:bg-orange-400 transition-colors duration-200 flex-shrink-0" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-5">Services</h4>
+            <ul className="space-y-3">
+              {services.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={langRoute + href}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-orange-400 transition-colors duration-200 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-orange-500/50 group-hover:bg-orange-400 transition-colors duration-200 flex-shrink-0" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-5">Company</h4>
+            <ul className="space-y-3">
+              {company.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={langRoute + href}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-orange-400 transition-colors duration-200 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-orange-500/50 group-hover:bg-orange-400 transition-colors duration-200 flex-shrink-0" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-gray-500 text-sm text-center sm:text-left">
+            © {new Date().getFullYear()} Ashisuto Global Technologies Sdn Bhd (1308692U). All rights reserved.
+          </p>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-orange-600" />
+            <span className="w-2 h-2 rounded-full bg-orange-500" />
+            <span className="w-5 h-2 rounded-full bg-orange-400" />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

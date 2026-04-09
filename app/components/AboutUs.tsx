@@ -4,7 +4,6 @@ import { BsYoutube } from "react-icons/bs";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-import { Button } from '@/components/ui/button';
 
 const AboutUs: FC = () => {
   return (

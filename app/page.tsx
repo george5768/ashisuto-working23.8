@@ -1,24 +1,8 @@
+import { redirect } from 'next/navigation';
+import { LANG_OPTIONS, Languages } from '@/app/enum/global';
 
-import HeroSection from "./components/HeroSection";
-import TrustedPartners from "./components/trustedpartners";
-import SolutionsSection from "./components/SolutionSection";
-import FeatureSection from "./components/FeatureSection";
-import SectorsSection from "./components/SectorsSection";
-import FeatureSection2 from "./components/FeatureSection2";
-import GalleryServer from "./components/GalleryServer";
-import ContactCardForm from "./components/ContactCardForm";
+const defaultRoute = LANG_OPTIONS.find(l => l.code === Languages.ENGLISH)!.route;
 
-export default function Home() {
-    return (
- <main>
-  <HeroSection />
- <SolutionsSection />
- <TrustedPartners />
- <FeatureSection />
- <SectorsSection />
- <FeatureSection2 />
- <GalleryServer />
- <ContactCardForm />
- </main>
-    )
-  }
+export default function RootPage() {
+  redirect(defaultRoute);
+}

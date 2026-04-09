@@ -1,55 +1,105 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import HeroSlider from "./HeroSlider"
-import Link from "next/link"
+import HeroSlider from "./HeroSlider";
+import CustomButton from "@/components/ui/custom-button";
+import { useLanguageContext } from "@/app/context/LanguageContext";
+import { usePathname } from 'next/navigation';
+import { Routes, LANG_OPTIONS, Languages } from '@/app/enum/global';
+
+const renderHeader = ({
+  eyebrow,
+  titleTop,
+  titleHighlight,
+  description,
+  showButton = false,
+  buttonText = "Visit Us",
+  langRoute = '/en',
+}: {
+  eyebrow: string;
+  titleTop: string;
+  titleHighlight: string;
+  description: string;
+  showButton?: boolean;
+  buttonText?: string;
+  langRoute?: string;
+}) => (
+  <div className="max-w-3xl mx-auto sm:mx-0 text-center sm:text-left">
+    {/* Eyebrow */}
+    <div className="flex items-center justify-center sm:justify-start gap-3 mb-5">
+      <span className="hidden sm:block h-px w-10 bg-orange-400" />
+      <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.22em]">
+        {eyebrow}
+      </span>
+    </div>
+
+    {/* Title */}
+    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-5">
+      {titleTop}
+      <br />
+      <span className="text-orange-400">{titleHighlight}</span>
+    </h1>
+
+    {/* Description */}
+    <p className="text-sm sm:text-base lg:text-lg text-white/70 mb-8 max-w-xl mx-auto sm:mx-0 leading-relaxed">
+      {description}
+    </p>
+
+    {/* Optional Button */}
+    {showButton && (
+      <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
+        <CustomButton href={langRoute + Routes.CONTACT}>
+          {buttonText}
+        </CustomButton>
+      </div>
+    )}
+  </div>
+);
 
 export default function HeroSection() {
+  const { currentLanguage } = useLanguageContext();
+  const pathname = usePathname();
+  const defaultSlug = LANG_OPTIONS.find(l => l.code === Languages.ENGLISH)!.slug;
+  const langRoute = '/' + (pathname.split('/')[1] || defaultSlug);
+
   const slides = [
     {
       id: 1,
       backgroundImage: '/images/iot-tokyo.webp',
-      header: (
-        <div className="text-white text-center gap-4 sm:gap-5 px-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight"><span className="text-primary">Reimagine and</span> <br />Co-Creation of your workplace with AI</h1>
-          <h2 className="text-lg sm:text-xl mt-2 sm:mt-4">INNOVATE THE FUTURE</h2>
-          <p className="text-lg sm:text-xl mt-2 sm:mt-4">Designed for businesses of all sectors and industries </p>
-        </div>
-      )
+      alt: 'AI-Powered Workplace Transformation',
+      header: renderHeader({
+        eyebrow: currentLanguage.home_slider_1_eyebrow,
+        titleTop: currentLanguage.home_slider_1_title_top,
+        titleHighlight: currentLanguage.home_slider_1_title_highlight,
+        description: currentLanguage.home_slider_1_description,
+      }),
     },
-    // {
-    //   id: 2,
-    //   backgroundImage: '/images/Industrial-Design.png',
-    //   header: (
-    //     <div className="text-black text-left max-w-2xl p-4 sm:p-10">
-    //       <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight"><span className="text-primary">Concept Convergence</span><br />Where Art & Design Collide</h1>
-    //       <p className="text-base sm:text-lg mt-2 font-bold text-white">Industrial<span className="text-green-500"> Design</span> </p>
-    //       <p className="text-base sm:text-lg mt-2 font-bold text-white pb-3 sm:pb-5">UI/UX<span className="text-green-500"> Design</span> </p>
-    //       <Link href="/industrial-design"><Button className="font-bold text-lg sm:text-28 py-3 sm:py-5">Solutions</Button></Link>
-    //     </div>
-    //   )
-    // },
+    {
+      id: 2,
+      backgroundImage: '/images/cover_2.jpg',
+      alt: 'ESG Driven Sustainable Business Growth',
+      header: renderHeader({
+        eyebrow: currentLanguage.home_slider_2_eyebrow,
+        titleTop: currentLanguage.home_slider_2_title_top,
+        titleHighlight: currentLanguage.home_slider_2_title_highlight,
+        description: currentLanguage.home_slider_2_description,
+      }),
+    },
     {
       id: 3,
-      backgroundImage: '/images/cover_2.jpg',
-      header: (
-        <div className="text-white text-right pr-4 sm:pr-10 px-4">
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-wide text-white leading-tight">ESG Driven <span className="text-primary">Digital & Sustainable<br />Business Growth Into Society 5.0</span></h1>
-          <p className="mt-1 text-sm sm:text-base">Built with cutting edge technology to assist enterprises across industries to achieve <strong>Society 5.0</strong></p>
-        </div>
-      )
-    },
-    {
-      id: 4,
       backgroundImage: '/images/location-background.jpg',
-      header: (
-        <div className="text-white text-center px-4 sm:px-6">
-          <h1 className="text-3xl sm:text-5xl font-bold uppercase">Our Locations</h1>
-          <Link href={"/contact"}><Button className="mt-4 sm:mt-5">Visit Us</Button></Link>
-        </div>
-      )
-    }
+      alt: 'Global Presence – Our Locations',
+      header: renderHeader({
+        eyebrow: currentLanguage.home_slider_3_eyebrow,
+        titleTop: currentLanguage.home_slider_3_title_top,
+        titleHighlight: currentLanguage.home_slider_3_title_highlight,
+        description: currentLanguage.home_slider_3_description,
+        showButton: true,
+        buttonText: currentLanguage.home_slider_3_button,
+        langRoute,
+      }),
+    },
   ]
 
   return <HeroSlider slides={slides} />
+  // return <HeroSlider slides={slides} autoPlay={false} />
 }
