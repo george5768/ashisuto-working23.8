@@ -161,7 +161,7 @@ export default function Navbar() {
             tabIndex={mobileOpen ? -1 : 0}
             className={`flex-shrink-0 transition-opacity hover:opacity-80 ${
               mobileOpen
-                ? 'pointer-events-none select-none opacity-40 md:pointer-events-auto md:select-auto md:opacity-100'
+                ? 'pointer-events-none select-none opacity-40 lg:pointer-events-auto lg:select-auto lg:opacity-100'
                 : ''
             }`}
           >
@@ -220,7 +220,7 @@ export default function Navbar() {
                                   key={sub.href}
                                   href={sub.href}
                                   onClick={() => setOpenDropdown(null)}
-                                  className={`flex items-center pl-10 pr-6 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors cursor-pointer border-l-4 ${
+                                  className={`flex items-center pl-10 pr-6 py-3 text-sm font-bold uppercase tracking-wider transition-colors cursor-pointer border-l-4 ${
                                     pathname === sub.href
                                       ? 'border-orange-500 text-orange-600 bg-orange-50'
                                       : 'border-gray-300 text-slate-500 hover:text-orange-600 hover:border-orange-300 hover:bg-gray-50'
@@ -356,7 +356,7 @@ export default function Navbar() {
                                         setOpenDropdown(null);
                                         setMobileOpen(false);
                                       }}
-                                      className={`flex items-center pl-10 pr-6 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors cursor-pointer border-l-4 ml-4 ${
+                                      className={`flex items-center pl-10 pr-6 py-3 text-sm font-bold uppercase tracking-wider transition-colors cursor-pointer border-l-4 ml-4 ${
                                         pathname === sub.href
                                           ? 'border-orange-600 bg-orange-50 text-orange-700'
                                           : 'border-gray-200 text-slate-500 hover:text-orange-600 hover:border-orange-300 hover:bg-white'

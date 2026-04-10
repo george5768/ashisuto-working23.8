@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { MessageCircle, SendHorizontal, X } from 'lucide-react'
 import { useLanguageContext } from '@/app/context/LanguageContext'
 import { Languages } from '../enum/global'
+import Lenis from 'lenis'
 
 interface ChatMessage {
   id: number
@@ -29,6 +30,8 @@ export default function ChatbotWidget() {
   const [botMsgCount, setBotMsgCount] = useState(0)
   const isOpenRef = useRef(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+  const messagesContentRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const nextId = useRef(1)
 
@@ -50,6 +53,43 @@ export default function ChatbotWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isTyping, isOpen])
 
+  // Container-scoped Lenis smooth scroll for the messages box
+  useEffect(() => {
+    if (!isOpen) return
+    const wrapper = messagesContainerRef.current
+    const content = messagesContentRef.current
+    if (!wrapper || !content) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const lenis = new Lenis({
+      wrapper,
+      content,
+      duration: 0.9,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.2,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+    })
+
+    let rafId: number
+    let running = true
+
+    function raf(time: number) {
+      if (!running) return
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
+    }
+    rafId = requestAnimationFrame(raf)
+
+    return () => {
+      running = false
+      cancelAnimationFrame(rafId)
+      lenis.destroy()
+    }
+  }, [isOpen])
+
   // Update welcome message text when language changes
   useEffect(() => {
     setMessages((prev) => {
@@ -64,20 +104,33 @@ export default function ChatbotWidget() {
   const playBotSound = () => {
     if (typeof window === 'undefined') return
     try {
-      const audioCtx = new (window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
-      const oscillator = audioCtx.createOscillator()
-      const gainNode = audioCtx.createGain()
-      oscillator.type = 'sine'
-      oscillator.frequency.value = 740
-      gainNode.gain.value = 0.05
-      oscillator.connect(gainNode)
-      gainNode.connect(audioCtx.destination)
-      oscillator.start()
-      oscillator.stop(audioCtx.currentTime + 0.08)
-    } catch {
-      // ignore
-    }
-  }
+      const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      const ctx = new AudioContextClass()
+      const now = ctx.currentTime
+
+      for (let i = 0; i < 3; i++) {
+        const osc = ctx.createOscillator()
+        const gain = ctx.createGain()
+
+        osc.type = 'square'
+        osc.frequency.value = 600 + i * 100
+
+        const start = now + i * 0.08
+
+        gain.gain.setValueAtTime(0, start)
+        gain.gain.linearRampToValueAtTime(0.15, start + 0.01)
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.07)
+
+        osc.connect(gain)
+        gain.connect(ctx.destination)
+
+        osc.start(start)
+        osc.stop(start + 0.07)
+      }
+
+      setTimeout(() => ctx.close(), 400)
+    } catch {}
+  };
 
   const sendMessage = async (text: string) => {
     const trimmed = text.trim()
@@ -242,10 +295,12 @@ export default function ChatbotWidget() {
 
             {/* Messages */}
             <div
-              className="flex-1 p-4 overflow-y-auto scroll-smooth bg-white space-y-4"
+              ref={messagesContainerRef}
+              className="flex-1 overflow-y-auto bg-white"
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
             >
+              <div ref={messagesContentRef} className="p-4 space-y-4">
               {messages.map((msg) =>
                 msg.role === 'bot' ? (
                   <motion.div
@@ -326,6 +381,7 @@ export default function ChatbotWidget() {
               )}
 
               <div ref={messagesEndRef} />
+              </div>
             </div>
 
             {/* Input */}

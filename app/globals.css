@@ -207,3 +207,49 @@
 }
 .animate-ping-soft { animation: ping-soft 1.6s ease-out infinite; }
 .animate-bounce-soft { animation: bounce-soft 1.4s ease-in-out infinite; }
+
+/* ─── Global Orange Scrollbar ─────────────────────────────────────── */
+
+/* Firefox */
+* {
+  scrollbar-width: auto; 
+  scrollbar-color: #ea580c #ffedd5; /* orange-600 thumb | orange-100 track */
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 14px; /* Slightly wider for that "Bold" feel */
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffedd5; /* Match the light orange background in your image */
+  border-radius: 0px;  /* Sharp square edges for flat design */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ea580c; /* Solid orange-600 */
+  border-radius: 4px;  /* Slight rounding to match the thumb in your image */
+  border: 2px solid #ffedd5; /* Creates the padding effect around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2410c; /* orange-700 */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #9a3412; /* orange-800 */
+}
+
+/* Scrollbar Buttons (Arrows) - matching your image */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23ea580c'><polygon points='50,20 80,80 20,80'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23ea580c'><polygon points='50,80 80,20 20,20'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}

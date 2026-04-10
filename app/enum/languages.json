@@ -97,7 +97,18 @@
         "chatbot_reply_demo": "🎯 We'd love to set up a demo for you! Please contact our team at cefinny@ashisuto-tech.com and mention the product you're interested in. A sales representative will arrange a personalized walkthrough.",
         "chatbot_fallback_1": "That's a great question! For detailed information, I'd recommend reaching out to our team at cefinny@ashisuto-tech.com. Is there anything else I can help with?",
         "chatbot_fallback_2": "I'm not sure I have the exact answer for that, but our sales team would be happy to help. Would you like their contact details?",
-        "chatbot_fallback_3": "Interesting question! Could you tell me more about what you're looking for? I want to make sure I point you in the right direction."
+        "chatbot_fallback_3": "Interesting question! Could you tell me more about what you're looking for? I want to make sure I point you in the right direction.",
+        "page_tab_title_about": "About Us",
+        "page_tab_title_partners": "Our Partners",
+        "page_tab_title_gallery": "Gallery",
+        "page_tab_title_contact": "Contact Us",
+        "page_tab_title_ai_prediction_optimization": "AI Data Prediction & Optimization",
+        "page_tab_title_doc_kita": "AI Workflow Management System",
+        "page_tab_title_ai_application_customize": "AI Application Customize",
+        "page_tab_title_cyber_security": "Cybersecurity",
+        "page_tab_title_robotics": "AI Cobots & AGV Robots",
+        "page_tab_title_digitize_records": "AI Digitize Past Records & Documents",
+        "page_tab_title_manufacturing_operation": "Manufacturing Operation"
     },
     "JP": {
         "header_home": "ホーム",
@@ -197,7 +208,18 @@
         "chatbot_reply_demo": "🎯 ぜひデモをご用意します！cefinny@ashisuto-tech.com まで、興味のある製品を記載してご連絡ください。営業担当者がパーソナライズされたウォークスルーを手配します。",
         "chatbot_fallback_1": "良い質問ですね！詳細については、cefinny@ashisuto-tech.com のチームにお問い合わせいただくことをお勧めします。他に何かお手伝いできることはありますか？",
         "chatbot_fallback_2": "正確な答えがわかりませんが、営業チームが喜んでお手伝いします。連絡先をご希望ですか？",
-        "chatbot_fallback_3": "興味深い質問ですね！お探しのものについて詳しく教えていただけますか？適切な方向にご案内したいと思います。"
+        "chatbot_fallback_3": "興味深い質問ですね！お探しのものについて詳しく教えていただけますか？適切な方向にご案内したいと思います。",
+        "page_tab_title_about": "会社概要",
+        "page_tab_title_partners": "パートナー",
+        "page_tab_title_gallery": "ギャラリー",
+        "page_tab_title_contact": "お問い合わせ",
+        "page_tab_title_ai_prediction_optimization": "AIデータ予測・最適化",
+        "page_tab_title_doc_kita": "AIワークフロー管理システム",
+        "page_tab_title_ai_application_customize": "AIアプリケーションカスタマイズ",
+        "page_tab_title_cyber_security": "サイバーセキュリティ",
+        "page_tab_title_robotics": "AIコボット・AGVロボット",
+        "page_tab_title_digitize_records": "AI過去記録のデジタル化",
+        "page_tab_title_manufacturing_operation": "製造オペレーション"
     },
     "TH": {
         "header_home": "หน้าแรก",
@@ -297,7 +319,18 @@
         "chatbot_reply_demo": "🎯 เราอยากจัดทำเดโมให้คุณ! กรุณาติดต่อทีมของเราที่ cefinny@ashisuto-tech.com และระบุผลิตภัณฑ์ที่คุณสนใจ ตัวแทนฝ่ายขายจะจัดเตรียมการสาธิตส่วนตัวให้คุณ",
         "chatbot_fallback_1": "เป็นคำถามที่ดีมาก! สำหรับข้อมูลโดยละเอียด ฉันแนะนำให้ติดต่อทีมของเราที่ cefinny@ashisuto-tech.com มีอะไรอื่นที่ฉันช่วยได้อีกไหม?",
         "chatbot_fallback_2": "ฉันไม่แน่ใจว่ามีคำตอบที่ถูกต้อง แต่ทีมขายของเรายินดีช่วยเหลือ ต้องการรายละเอียดการติดต่อหรือไม่?",
-        "chatbot_fallback_3": "คำถามที่น่าสนใจ! คุณช่วยบอกเพิ่มเติมเกี่ยวกับสิ่งที่คุณกำลังมองหาได้ไหม? ฉันต้องการให้แน่ใจว่าจะชี้ทิศทางที่ถูกต้องให้คุณ"
+        "chatbot_fallback_3": "คำถามที่น่าสนใจ! คุณช่วยบอกเพิ่มเติมเกี่ยวกับสิ่งที่คุณกำลังมองหาได้ไหม? ฉันต้องการให้แน่ใจว่าจะชี้ทิศทางที่ถูกต้องให้คุณ",
+        "page_tab_title_about": "เกี่ยวกับเรา",
+        "page_tab_title_partners": "พันธมิตร",
+        "page_tab_title_gallery": "แกลเลอรี",
+        "page_tab_title_contact": "ติดต่อเรา",
+        "page_tab_title_ai_prediction_optimization": "การทำนายและเพิ่มประสิทธิภาพข้อมูล AI",
+        "page_tab_title_doc_kita": "ระบบจัดการเวิร์กโฟลว์ AI",
+        "page_tab_title_ai_application_customize": "AI แอปพลิเคชันที่กำหนดเอง",
+        "page_tab_title_cyber_security": "ความปลอดภัยทางไซเบอร์",
+        "page_tab_title_robotics": "หุ่นยนต์ AI Cobot & AGV",
+        "page_tab_title_digitize_records": "แปลงบันทึกเป็นดิจิทัลด้วย AI",
+        "page_tab_title_manufacturing_operation": "การดำเนินงานด้านการผลิต"
     },
     "CN": {
         "header_home": "首页",
@@ -397,7 +430,18 @@
         "chatbot_reply_demo": "🎯 我们很乐意为您安排演示！请发送电子邮件至 cefinny@ashisuto-tech.com 并注明您感兴趣的产品。销售代表将为您安排个性化演示。",
         "chatbot_fallback_1": "这是个好问题！如需详细信息，建议联系我们的团队 cefinny@ashisuto-tech.com。还有其他我可以帮助的吗？",
         "chatbot_fallback_2": "我不确定有确切的答案，但我们的销售团队很乐意帮助。需要他们的联系方式吗？",
-        "chatbot_fallback_3": "有趣的问题！能告诉我您在找什么吗？我想确保为您指出正确的方向。"
+        "chatbot_fallback_3": "有趣的问题！能告诉我您在找什么吗？我想确保为您指出正确的方向。",
+        "page_tab_title_about": "关于我们",
+        "page_tab_title_partners": "合作伙伴",
+        "page_tab_title_gallery": "图库",
+        "page_tab_title_contact": "联系我们",
+        "page_tab_title_ai_prediction_optimization": "AI数据预测与优化",
+        "page_tab_title_doc_kita": "AI工作流管理系统",
+        "page_tab_title_ai_application_customize": "AI应用定制",
+        "page_tab_title_cyber_security": "网络安全",
+        "page_tab_title_robotics": "AI协作机器人与AGV",
+        "page_tab_title_digitize_records": "AI历史档案数字化",
+        "page_tab_title_manufacturing_operation": "制造运营"
     },
     "TW": {
         "header_home": "首頁",
@@ -497,7 +541,18 @@
         "chatbot_reply_demo": "🎯 我們很樂意為您安排演示！請發送電子郵件至 cefinny@ashisuto-tech.com 並註明您感興趣的產品。銷售代表將為您安排個性化演示。",
         "chatbot_fallback_1": "這是個好問題！如需詳細資訊，建議聯絡我們的團隊 cefinny@ashisuto-tech.com。還有其他我可以幫助的嗎？",
         "chatbot_fallback_2": "我不確定有確切的答案，但我們的銷售團隊很樂意幫助。需要他們的聯絡方式嗎？",
-        "chatbot_fallback_3": "有趣的問題！能告訴我您在找什麼嗎？我想確保為您指出正確的方向。"
+        "chatbot_fallback_3": "有趣的問題！能告訴我您在找什麼嗎？我想確保為您指出正確的方向。",
+        "page_tab_title_about": "關於我們",
+        "page_tab_title_partners": "合作夥伴",
+        "page_tab_title_gallery": "圖庫",
+        "page_tab_title_contact": "聯絡我們",
+        "page_tab_title_ai_prediction_optimization": "AI資料預測與優化",
+        "page_tab_title_doc_kita": "AI工作流程管理系統",
+        "page_tab_title_ai_application_customize": "AI應用程式客製化",
+        "page_tab_title_cyber_security": "網路安全",
+        "page_tab_title_robotics": "AI協作機器人與AGV",
+        "page_tab_title_digitize_records": "AI歷史檔案數位化",
+        "page_tab_title_manufacturing_operation": "製造營運"
     },
     "BM": {
         "header_home": "Laman Utama",
@@ -597,6 +652,17 @@
         "chatbot_reply_demo": "🎯 Kami ingin menyediakan demo untuk anda! Sila hubungi pasukan kami di cefinny@ashisuto-tech.com dan nyatakan produk yang anda minati. Wakil jualan akan mengatur penerokaan yang diperibadikan.",
         "chatbot_fallback_1": "Soalan yang bagus! Untuk maklumat terperinci, saya cadangkan menghubungi pasukan kami di cefinny@ashisuto-tech.com. Adakah ada lagi yang boleh saya bantu?",
         "chatbot_fallback_2": "Saya tidak pasti ada jawapan yang tepat untuk itu, tetapi pasukan jualan kami dengan senang hati akan membantu. Adakah anda ingin butiran hubungan mereka?",
-        "chatbot_fallback_3": "Soalan yang menarik! Bolehkah anda ceritakan lebih lanjut tentang apa yang anda cari? Saya ingin memastikan saya menunjukkan arah yang betul kepada anda."
+        "chatbot_fallback_3": "Soalan yang menarik! Bolehkah anda ceritakan lebih lanjut tentang apa yang anda cari? Saya ingin memastikan saya menunjukkan arah yang betul kepada anda.",
+        "page_tab_title_about": "Tentang Kami",
+        "page_tab_title_partners": "Rakan Kongsi Kami",
+        "page_tab_title_gallery": "Galeri",
+        "page_tab_title_contact": "Hubungi Kami",
+        "page_tab_title_ai_prediction_optimization": "Ramalan & Pengoptimuman Data AI",
+        "page_tab_title_doc_kita": "Sistem Pengurusan Aliran Kerja AI",
+        "page_tab_title_ai_application_customize": "Penyesuaian Aplikasi AI",
+        "page_tab_title_cyber_security": "Keselamatan Siber",
+        "page_tab_title_robotics": "Robot AI Cobot & AGV",
+        "page_tab_title_digitize_records": "Pendigitalan Rekod Lama dengan AI",
+        "page_tab_title_manufacturing_operation": "Operasi Pembuatan"
     }
 }

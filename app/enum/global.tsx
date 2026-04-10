@@ -24,7 +24,6 @@ enum Routes {
     ROBOTICS = "/robotics",
     DIGITIZE_RECORDS = "/digitize-records",
     MANUFACTURING_OPERATION = "/manufacturing-operation",
-    // INDUSTRIAL_DESIGN = "/industrial-design",
 }
 
 /**
