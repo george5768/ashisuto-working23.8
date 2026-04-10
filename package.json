@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next build && next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "rag:migrate": "node scripts/rag/migrate.mjs",
+    "rag:reindex": "node scripts/rag/reindex.mjs --input scripts/rag/input.json",
+    "rag:reindex:dry-run": "node scripts/rag/reindex.mjs --input scripts/rag/input.json --dry-run",
+    "rag:all": "npm run rag:migrate && npm run rag:reindex"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -26,6 +30,8 @@
     "motion": "^12.23.12",
     "next": "15.5.9",
     "next-sanity": "^10.0.13",
+    "openai": "^6.33.0",
+    "pg": "^8.16.3",
     "react": "18.3.1",
     "react-country-flag": "^3.1.0",
     "react-dom": "18.3.1",
@@ -41,6 +47,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^9",
