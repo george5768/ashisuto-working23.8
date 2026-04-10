@@ -1,8 +1,9 @@
 ﻿import { NextResponse } from 'next/server'
 import languagesData from '@/app/enum/languages.json'
+import { Languages } from '@/app/enum/global'
 
 type LangKey = keyof typeof languagesData
-type TransKey = keyof (typeof languagesData)['EN']
+type TransKey = keyof (typeof languagesData)[Languages.ENGLISH]
 
 // dockita_features must come BEFORE the general dockita rule
 const RULES: { patterns: RegExp[]; key: TransKey }[] = [
@@ -29,11 +30,11 @@ const FALLBACK_KEYS: TransKey[] = ['chatbot_fallback_1', 'chatbot_fallback_2', '
 
 export async function POST(req: Request) {
   try {
-    const { message, lang = 'EN' } = await req.json()
+    const { message, lang = Languages.ENGLISH } = await req.json()
     if (!message || typeof message !== 'string') {
       return NextResponse.json({ error: 'Invalid message' }, { status: 400 })
     }
-    const validLang: LangKey = lang in languagesData ? (lang as LangKey) : 'EN'
+    const validLang: LangKey = lang in languagesData ? (lang as LangKey) : Languages.ENGLISH
     const t = languagesData[validLang] as Record<string, string>
     const lower = message.trim().slice(0, 500).toLowerCase()
     await new Promise((r) => setTimeout(r, 600 + Math.random() * 600))

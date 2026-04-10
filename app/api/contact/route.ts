@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   try {
     const data = await resend.emails.send({
       from: 'updates <contact@updates.ashisuto-tech.com>', // must match your verified domain
-      to: ['cefinny@ashisuto-tech.com'],
+      to: ['ashisutoglobal@ashisuto-global.com'],
       subject: 'New Contact Form Submission',
       html: `
         <h2>New Contact Form Submission</h2>

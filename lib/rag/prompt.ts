@@ -1,13 +1,11 @@
 import { RetrievedChunk } from "@/lib/rag/retrieve";
+import { LANG_OPTIONS } from "@/app/enum/global";
 
-const LANGUAGE_NAME_BY_CODE: Record<string, string> = {
-  EN: "English",
-  JP: "Japanese",
-  TH: "Thai",
-  CN: "Simplified Chinese",
-  TW: "Traditional Chinese",
-  BM: "Malay",
-};
+// Derived from LANG_OPTIONS — single source of truth
+const LANGUAGE_NAME_BY_CODE: Record<string, string> = LANG_OPTIONS.reduce(
+  (acc, l) => ({ ...acc, [l.code]: l.langInEng }),
+  {} as Record<string, string>
+);
 
 function languageNameFromCode(code: string): string {
   return LANGUAGE_NAME_BY_CODE[code] || LANGUAGE_NAME_BY_CODE.EN;

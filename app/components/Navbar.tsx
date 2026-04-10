@@ -24,10 +24,23 @@ export default function Navbar() {
   const duration = 0.5;
   const navFontSize = "13px";
 
+  /* Lock body scroll when mobile menu is open */
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   /* Auto-close mobile menu when viewport widens to desktop (≥1024px) */
   useEffect(() => {
     const handler = () => {
-      if (window.innerWidth >= 1024) setMobileOpen(false);
+      if (window.innerWidth >= 1024) {
+        setMobileOpen(false);
+        setOpenDropdown(null);
+      }
     };
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
@@ -147,8 +160,8 @@ export default function Navbar() {
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm py-4">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <header ref={headerRef} className="sticky top-0 left-0 right-0 z-[55] bg-white border-b border-gray-100 shadow-sm py-4">
+      <div className="relative z-[2] max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
 
           {/* Logo — dimmed + non-clickable when mobile menu is open */}
@@ -279,7 +292,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ─── Mobile Menu ─── */}
+      {/* ─── Mobile Menu ─── full-page overlay, z-[1] within header stacking context (above chatbot z-50 outside) */}
       <AnimatePresence initial={false}>
         {mobileOpen && (
           <motion.div
@@ -287,11 +300,18 @@ export default function Navbar() {
             animate="open"
             exit="exit"
             variants={menuVariants}
-            className="absolute top-full left-0 right-0 bg-white overflow-hidden z-40 border-t border-gray-100 shadow-2xl"
+            className="fixed inset-0 z-[1] bg-white flex flex-col h-screen overflow-hidden"
           >
-            {/* Cap height at 50 vh, scroll if it overflows */}
-            <div className="max-h-[50vh] overflow-y-auto">
-              <nav className="py-2">
+            {/* Spacer so content clears the visible header bar (~64px) — does NOT scroll */}
+            <div className="flex-shrink-0 pt-[65px]" />
+
+            {/* Scrollable nav area */}
+            <div
+              className="flex-1 overflow-y-auto overscroll-contain scrollbar-bold touch-pan-y"
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              <nav className="py-2 border-t border-gray-200 shadow-[0_-2px_6px_rgba(0,0,0,0.05)]">
                 {navItems.map((item) => {
                   const isTabActive =
                     item.href === pathname ||

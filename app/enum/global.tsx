@@ -41,12 +41,48 @@ function langSlug(lang: Languages): string {
  * To rename a URL slug, change the Languages enum value; everything updates automatically.
  */
 const LANG_OPTIONS = [
-    { code: Languages.ENGLISH,            label: "English",             slug: langSlug(Languages.ENGLISH),                        route: `/${langSlug(Languages.ENGLISH)}` },
-    { code: Languages.JAPANESE,           label: "日本語",               slug: langSlug(Languages.JAPANESE),                       route: `/${langSlug(Languages.JAPANESE)}` },
-    { code: Languages.THAI,               label: "ภาษาไทย",             slug: langSlug(Languages.THAI),                           route: `/${langSlug(Languages.THAI)}` },
-    { code: Languages.SIMPLIFIED_CHINESE, label: "简体中文",             slug: langSlug(Languages.SIMPLIFIED_CHINESE),             route: `/${langSlug(Languages.SIMPLIFIED_CHINESE)}` },
-    { code: Languages.TRADITIONAL_CHINESE,label: "繁體中文",             slug: langSlug(Languages.TRADITIONAL_CHINESE),            route: `/${langSlug(Languages.TRADITIONAL_CHINESE)}` },
-    { code: Languages.MALAY,              label: "Bahasa Melayu",       slug: langSlug(Languages.MALAY),                          route: `/${langSlug(Languages.MALAY)}` },
+    { 
+        code: Languages.ENGLISH,            
+        label: "English",             
+        slug: langSlug(Languages.ENGLISH),                        
+        route: `/${langSlug(Languages.ENGLISH)}`,
+        langInEng: "English",
+    },
+    { 
+        code: Languages.JAPANESE,           
+        label: "日本語",               
+        slug: langSlug(Languages.JAPANESE),                       
+        route: `/${langSlug(Languages.JAPANESE)}`,
+        langInEng: "Japanese",
+    },
+    { 
+        code: Languages.THAI,               
+        label: "ภาษาไทย",             
+        slug: langSlug(Languages.THAI),                           
+        route: `/${langSlug(Languages.THAI)}`,
+        langInEng: "Thai",
+    },
+    { 
+        code: Languages.SIMPLIFIED_CHINESE, 
+        label: "简体中文",             
+        slug: langSlug(Languages.SIMPLIFIED_CHINESE),             
+        route: `/${langSlug(Languages.SIMPLIFIED_CHINESE)}`,
+        langInEng: "Simplified Chinese",
+    },
+    { 
+        code: Languages.TRADITIONAL_CHINESE,
+        label: "繁體中文",             
+        slug: langSlug(Languages.TRADITIONAL_CHINESE),            
+        route: `/${langSlug(Languages.TRADITIONAL_CHINESE)}`,
+        langInEng: "Traditional Chinese",
+    },
+    { 
+        code: Languages.MALAY,              
+        label: "Bahasa Melayu",       
+        slug: langSlug(Languages.MALAY),                          
+        route: `/${langSlug(Languages.MALAY)}`,
+        langInEng: "Malay", 
+    },
 ] as const;
 
 /** Tuple of all valid language URL slugs, derived from LANG_OPTIONS. */

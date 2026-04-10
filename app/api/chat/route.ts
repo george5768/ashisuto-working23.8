@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+﻿import OpenAI from "openai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -9,6 +9,8 @@ import {
 } from "@/lib/rag/prompt";
 import { retrieveRelevantChunks } from "@/lib/rag/retrieve";
 import { translateToEnglishForRetrieval } from "@/lib/rag/translate";
+import { LANG_OPTIONS, Languages } from "@/app/enum/global";
+import languagesData from "@/app/enum/languages.json";
 
 const REQUEST_SCHEMA = z.object({
   message: z.string().trim().min(1).max(1000),
@@ -34,20 +36,21 @@ const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 12;
 const rateLimitStore = new Map<string, RateLimitEntry>();
 
-const SUPPORTED_SITE_LANGS = new Set(["EN", "JP", "TH", "CN", "TW", "BM"]);
+// Derived from LANG_OPTIONS — stays in sync when languages are added/removed
+const SUPPORTED_SITE_LANGS = new Set(LANG_OPTIONS.map((l) => l.code));
 
-const NO_CONTEXT_BY_LANG: Record<string, string> = {
-  EN: "I do not have enough information from the current website content to answer that yet. Could you rephrase or ask about Ashisuto services, solutions, or contact details?",
-  JP: "現在のウェブサイト内容だけでは十分な情報がなく、まだ回答できません。言い換えるか、Ashisuto のサービス・ソリューション・連絡先についてご質問ください。",
-  TH: "ขณะนี้ฉันยังมีข้อมูลจากเนื้อหาเว็บไซต์ไม่เพียงพอที่จะตอบคำถามนี้ โปรดลองพิมพ์ใหม่ หรือสอบถามเกี่ยวกับบริการ โซลูชัน หรือข้อมูลติดต่อของ Ashisuto",
-  CN: "根据当前网站内容，我暂时没有足够信息来回答这个问题。您可以换个问法，或咨询 Ashisuto 的服务、解决方案或联系方式。",
-  TW: "根據目前網站內容，我暫時沒有足夠資訊回答這個問題。您可以換個問法，或詢問 Ashisuto 的服務、解決方案或聯絡方式。",
-  BM: "Saya belum mempunyai maklumat yang mencukupi daripada kandungan laman web semasa untuk menjawab soalan itu. Boleh anda parafrasa, atau tanya tentang perkhidmatan, penyelesaian, atau maklumat hubungan Ashisuto?",
-};
+// Derived from languages.json via LANG_OPTIONS codes — single source of truth
+const NO_CONTEXT_BY_LANG: Record<string, string> = Object.fromEntries(
+  LANG_OPTIONS.map((l) => [
+    l.code,
+    (languagesData[l.code] as Record<string, string>)?.chatbot_no_context ??
+      (languagesData[Languages.ENGLISH] as Record<string, string>).chatbot_no_context,
+  ])
+);
 
 function normalizeSiteLanguage(lang?: string): string {
-  const normalized = (lang || "EN").trim().toUpperCase();
-  return SUPPORTED_SITE_LANGS.has(normalized) ? normalized : "EN";
+  const normalized = (lang || Languages.ENGLISH).trim().toUpperCase();
+  return SUPPORTED_SITE_LANGS.has(normalized as Languages) ? normalized : Languages.ENGLISH;
 }
 
 function getClientIp(req: Request): string {
