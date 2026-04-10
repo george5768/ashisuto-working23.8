@@ -1,0 +1,16 @@
+[
+  {
+    "source_key": "route:/app/dockita/page.tsx",
+    "title": "DocKITA Overview",
+    "url": "/dockita",
+    "section": "overview",
+    "content": "DocKITA helps teams digitize and manage documents with secure, searchable access. Use it to streamline approvals, reduce manual data entry, and centralize knowledge so teams can find what they need quickly."
+  },
+  {
+    "source_key": "route:/app/dockita/features/page.tsx",
+    "title": "AI Customization Service",
+    "url": "/ai-application-customize",
+    "section": "service",
+    "content": "We tailor AI models to your business workflows, integrating with your existing systems and data. This includes discovery, solution design, implementation, and ongoing optimization."
+  }
+]

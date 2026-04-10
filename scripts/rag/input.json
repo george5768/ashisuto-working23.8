@@ -1,0 +1,142 @@
+[
+  { 
+    "source_key": "route:/app/page.tsx",
+    "title": "Homepage",
+    "url": "/",
+    "section": "Home", 
+    "content": "DocKITA® Assist Your Business Achieve Real Revenue Growth With AI Transform your operations with our intelligent AI solutions. We deliver measurable results through innovative technology designed for your business growth. 3 Main Pillars include AI Workflow Management System, AI Data Prediction & Optimization, and AI Application Customize"
+  },
+  { 
+    "source_key": "route:/app/page.tsx",
+    "title": "Homepage",
+    "url": "/",
+    "section": "Home", 
+    "content": "Transform Efficiency Into Revenue Growth With AI Collaborative Innovation Work together with us to co-create transformative solutions that deliver real-world impact and measurable results. End-to-End AI Solutions From concept to implementation, we guide you through every stage with our cutting-edge AI capabilities and expertise."
+  },
+  { 
+    "source_key": "route:/app/page.tsx",
+    "title": "Homepage",
+    "url": "/",
+    "section": "Home", 
+    "content": "Industries we serve include: Finance, Construction, Manufacturing, Semiconductor, Healthcare, Public Sector"
+  },
+  { 
+    "source_key": "route:/app/page.tsx",
+    "title": "Homepage",
+    "url": "/",
+    "section": "Home", 
+    "content": "Data Traceability To ensure data integrity and compliance by tracking the source of each data point. Vital for maintaining transparency and reliability, especially in highly regulated industries. Data Visualization We empower businesses to make confident, data-driven decisions and enhance operational efficiency, helping your business to gain a competitive edge in your respective industry."
+  },
+  {
+    "source_key": "route:/app/components/AboutUs.tsx",
+    "title": "about",
+    "url": "/about",
+    "section": "about us",
+    "content": "About Us Assisting Digital Transformation: Ashisuto Global Technologies empowers industries in their digital transformation journey through AI driven innovation, helping organizations unlock business value using cutting edge technologies particularly Artificial Intelligence, Machine Learning, and Agentic AI. Our solutions are designed to be scalable, cost-efficient, and rapidly deployable, enabling faster adoption and measurable outcomes."
+  },
+  {
+    "source_key": "route:/app/components/AboutUs.tsx",
+    "title": "about",
+    "url": "/about",
+    "section": "mission and vision",
+    "content": "Vision: To lead the future of digital innovation by transforming businesses through intelligent technology. Mission: To create impactful, future-ready solutions powered by AI and emerging technologies, enabling sustainable growth and operational excellence for our customers."
+  },
+  {
+    "source_key": "route:/app/components/AboutUs.tsx",
+    "title": "about",
+    "url": "/about",
+    "section": "Achievement and Recognition",
+    "content": "Achievement and Recognition: 1. MD Status Company Awarded Malaysia Digital Status by MDEC (Malaysia Digital Economy Corporation) as a recognized enabler in AI, Blockchain, and Big Data. 2. R & D Status Company Innovasi Penyelidikan AG Sdn. Bhd., under Ashisuto Group, is MIDA (Malaysian Investment Development Authority) R&D Status certified company, offering clients double tax exemptions and innovative digital transformation solutions. 3. Ministry of Finance (Malaysia) Registered Company We are a trusted provider for public sector and Government Links Companies, delivering secure solutions that drives digital transformation and innovation."
+  },
+  {
+    "source_key": "route:/app/components/AboutUs.tsx",
+    "title": "about",
+    "url": "/about",
+    "section": "Achievement and Recognition",
+    "content": "Achievement and Recognition: 4. HRD Corp. Registered Training Provider We are certified by HRD (Human Resource Development) Corporation as a training provider, with accredited Train-the-Trainer (TTT) certification. 5. Productivity Champion in LEADER Category We are recognized as Productivity Champion in LEADER category by MPC (Malaysia Productivity Corporation). 6. Amazon Web Services (AWS) Partners We are an AWS Partner, demonstrating our commitment to delivering reliable, secure, and scalable cloud solutions built on Amazon Web Services (AWS)."
+  },
+  {
+    "source_key": "route:/app/components/AboutUs.tsx",
+    "title": "about",
+    "url": "/about",
+    "section": "Journey and Milestones",
+    "content": "Journey and Milestones: 1. Nov 2025: Partnership with Amazon Web System to delivering reliable, secure, and scalable cloud solutions 2. Jun 2025: Partnership with Ziontech Communication, Inc. for Philippines market penetration 3. Feb 2025 HRD Corp. Registered Training Provider Certified Trainer status 4. Jun 2024 Obtained Malaysia Digital Company Status from MDEC (Malaysian Digital Economy Corporation) 5. April 2024 Obtained Market Access Grant for Women Owned Venture from Digital Penang 6. Mar 2024 Partnership with 3drens Inc.,Taiwan for Taiwan market penetration 7. Dec 2023 Partnership with RICOH (Thailand) Limited for Thai market penetration"
+  },
+    {
+    "source_key": "route:/app/components/AboutUs.tsx",
+    "title": "about",
+    "url": "/about",
+    "section": "Journey and Milestones",
+    "content": "8. Nov 2023 Obtained CIP SPARK grant from Cradle Fund for outstanding venture 9. Aug 2023 Awarded R&D Status Company by MIDA (Malaysian Investment Development Authority) 10. Oct 2022 The Global Market-Fit Programme (GMP) to Japan by MRANTI (Malaysian Research Accelerator for Technology and Innovation) 11. Sep 2022 Recognition by MPC Productivity Champion in the LEADER category 12. Aug 2022 Top 20 Startup in 5th Cohort Selangor Accelerator Program by SIDEC (Selangor Information Technology & Digital Economy Corporation) 13. Jan 2020 Ministry of Finance license Able to serve Public Sector and Government Linked Companies in Malaysia 14. Dec 2018 Launch Established ASEAN market access"
+ },
+  {
+    "source_key": "route:/app/partners/page.tsx",
+    "title": "Our Partners",
+    "url": "/partners",
+    "section": "partners",
+    "content": "Our Partners: Ricoh, 3drens, ZionTech Communications. 1. Ricoh has been at the forefront of helping businesses adopt innovative technologies. Together we are digitalizing entire workflows with our integrated solution 2. 3drens is a global and trusted IT solutions provider to the logistics and mobility industry. They help us distribute our solutions to the Taiwanese market. 3. ZionTech Communications is a Philippines based software company that is collaborating with us to enable digital transformation within the Philippines market."
+  },
+  {
+    "source_key": "route:/app/ai-prediction-optimization/page.tsx",
+    "title": "AI Data Prediction & Optimization",
+    "url": "/ai-prediction-optimization",
+    "section": "ai data prediction and optimization",
+    "content": "Solutions 1: AI Data Prediction and Optimization. Versatile for Multi-Purpose AI Applications. Problem Statement Faced by Customer: Traditional or manual data analysis is time consuming and prone to human errors resulting in inaccuracies and presents challenges to leverage on real-time data analysis. Cost saving: 16 times of cost savings achieved. Leverage on AI to predict the future: Automated AI is a scientific method to analyze, optimize and predict data in short time frames with accuracy and cost effectiveness. With the following use cases: 1. Raw material price prediction 2. Warehouse / Store optimization 3. Sales funnel close rate prediction 4. Turnover prediction 5. Unique problem statements"
+  },
+  {
+    "source_key": "route:/app/docKITA/page.tsx",
+    "title": "docKITA",
+    "url": "/dockita",
+    "section": "AI Workflow Management System",
+    "content": "Solutions 2: DocKITA® is a next-generation Workflow Management System that upgrades your existing Microsoft 365 or Excel-based processes into a smart, integrated digital platform. With full data traceability, powerful visualization, and complete customization to match your organization's unique needs and workflows. Problem statement faced by customers: Standard ERP and MES systems struggle to digitize shopfloor processes and workflows that rely heavily on Excel, hardcopy forms, and checklists, offering only limited flexibility for achieving extended data traceability and delivering powerful, customized visualizations. DocKITA® AI Workflow Management System: DocKITA® helps organizations eliminate reliance on Excel and hardcopy-based workflows by seamlessly connecting shopfloor processes to ERP or MES systems, delivering system-based data traceability and powerful visualization capabilities. Data Traceability: Help organizations maintain and improve data quality and integrity. Data Visualization: Custom dashboards that meaningfully interpret data."
+  },
+  {
+    "source_key": "route:/app/ai-application-customize/page.tsx",
+    "title": "AI Application Customize",
+    "url": "/ai-application-customize",
+    "section": "ai application customize",
+    "content": "Solutions 3: AI Application Customize. Turn Your Vision into an Intelligent Reality. We design and build custom AI agents that work seamlessly within your business ecosystem — from answering customer inquiries to streamlining operations, generating content, and making intelligent decisions in real time. Problem Statement Faced by Customer: Achieving an efficient operation is difficult when current systems are not designed to cater to a diversified economy of businesses. From Concept to Deployment: Whether you need a customer service chatbot, human resource services, a property listing assistant, an insurance advisor, or a multi-platform social media responder and other, we create AI agents designed to match your unique needs and industry standards. The Future Works for You.: Let our AI agents handle the work so your people can focus on innovation and growth. Automate. Personalize. Scale. Benefit you will gain from our AI Agent Development Services : Automate Complex Tasks – Free your team from repetitive processes and let AI handle them with precision. Boost Productivity & Reduce Costs – Work smarter with an always-on digital assistant that never sleeps. Deliver Personalized Experiences – Engage customers with tailored responses across chat, email, and social media. Integrate Seamlessly – Connect AI agents to your CRM, ERP, social media, and workflow systems. Gain Actionable Insights – Leverage AI's predictive analytics to make data-driven decisions faster. Scale Without Limits – Expand capabilities instantly without hiring additional manpower"
+  },
+  {
+    "source_key": "route:/app/cyber-security/page.tsx",
+    "title": "Cyber Security Secure Port Access",
+    "url": "/cyber-security",
+    "section": "cyber security",
+    "content": "Solutions 4: Cyber Security Secure Port Access. Astonishing Convenience. Unmatched Security. Step into the future of remote connectivity with our proprietary Secure Port Access technology — delivering the perfect combination of impenetrable security and effortless convenience. Once you experience it, you'll never want to connect any other way. Problem Statement Faced by Customer: Traditional remote access requires opening ports on the target server — a direct invitation for cyberattacks. Every open port increases your exposure, making your systems visible and vulnerable to malicious actors. Secure Port Access: Our advanced Secure Port Access solution eliminates this risk entirely. By enabling remote connections without opening any ports, your infrastructure remains invisible to potential attackers — securing your systems by design. Uncompromising Security - No open ports, no exposure. Our technology ensures remote access without public port disclosure, removing one of the most exploited vulnerabilities in cybersecurity. Exceptional Convenience - No global IP address required. Centrally manage multiple remote destinations with ease. Whether it's one site or an entire network, setup is simple, streamlined, and fast. Key Benefits Include: Zero exposed ports = zero attack surface. Centralized management of multiple remote endpoints. No dependency on global IP addresses. Simple, fast setup for immediate productivity. Secure. Simple. Smart. Our Secure Port Access solution isn't just secure — it's secure by design. Experience worry-free remote access without compromising on speed, convenience, or control."
+  },
+  {
+    "source_key": "route:/app/robotics/page.tsx",
+    "title": "Robotics System Development",
+    "url": "/robotics",
+    "section": "robotics", 
+    "content": "Services 1: Robotic System Development. Building Intelligent, Connected Solutions for the Future We design and deliver cutting-edge Robotics and IoT (Internet of Things) systems that bring automation, intelligence, and connectivity to your operations. Our solutions integrate advanced robotics with smart IoT sensors and AI-driven analytics to help businesses achieve higher efficiency, precision, and productivity. Problem Statement Faced by Customer: Robotic systems and co-bots work best when they are integrated onto the same network and capturing real-time data consolidated into a single platform. Co-created Solution: From concept to deployment, we provide end-to-end development services, ensuring your robotics and IoT systems are tailored to your specific industry needs — whether it's manufacturing, logistics, healthcare, agriculture, or smart cities. Cost Saving: Lower operation costs, experience higher productivity and a fully connected ecosystem that adapts and grows with your business. Innovate. Automate. Connect. Partner with us to turn your robotics and IoT vision into a reality that transforms the way you work. Major Solutions Include Custom Robotics Development: Autonomous machines, robotic arms, and mobile robots designed for your workflows. IoT System Integration: Smart devices and sensors that connect your physical assets to powerful digital insights. AI-Driven Analytics: Turn real-time data into actionable decisions with predictive and prescriptive analytics. Seamless Connectivity: Ensure your devices, robots, and systems communicate securely and efficiently. End-to-End Solutions: From hardware design and prototyping to software development and cloud integration. Secure & Scalable Architecture: Future-proof systems built with security and scalability in mind."
+  },
+  {
+    "source_key": "route:/app/digitize-records/page.tsx",
+    "title": "Digitize Records",
+    "url": "/digitize-records",
+    "section": "digitize records", 
+    "content": "Services 2: AI Digitize Past Records & Documents - High-Speed AI Scanning & Character Recognition. Quickly convert hardcopy documents into a searchable digital archive. Centralize your document repository, reduce storage costs, and enable efficient data access with our digitization solution. Problem Statement Faced by Customer: Large volumes of paper-based records were consuming physical storage and required manual retrieval. High rental costs for archive storage. Delayed access to time-sensitive documents. Risk of physical degradation over time. End-to-End Document Management: We implemented a complete digitization pipeline with OCR and metadata tagging. Batch scanning and indexing. Cloud-based search and retrieval. Secure document lifecycle policies. Cost Saving: By going digital, the customer reduced ongoing paper form expenses and manual admin hours. Risk Mitigation: Digital records are encrypted, backed up, and access-controlled to meet regulatory standards. Steps include: Step 1 - Convert tonnes of hardcopy past records. Step 2 - High speed scanning to create digital copies. Step 3 - Cloud and on premise depositories to store digital data."
+  },
+  {
+    "source_key": "route:/app/manufacturing-operation/page.tsx",
+    "title": "Manufacturing Operation",
+    "url": "/manufacturing-operation",
+    "section": "manufacturing operation", 
+    "content": "Services 3: Manufacturing Operation Leverage on Japanese Monotsukuri (物作り) know-hows Operational efficiency is vital, but when success means embracing economic diversification. Our solutions are aligned with Industry 4.0 and ESG pillars, empowering businesses to thrive across diverse sectors while promoting sustainable growth Problem Statement Faced by Customer Balancing operational efficiency with economic diversification poses a significant challenge for businesses. The need to optimize processes while adapting to diverse demands complicates strategic planning and resource allocation. Harnessing Japanese Monotsukuri (物作り) Innovative expertise in manufacturing to address manufacturing challenges. Improve Operational Efficiency By leveraging traditional Monotsukuri principles in modern processes. Cost Effective Solution Achieved through improving operational efficiency. Manufacturing Operation illustration Major Solutions Include Advance Planning & Scheduling (APS) APS is an integrated supply planning solution that covers the entire production planning area by unifying the capabilities of conventional production planning systems. Consists of 4 key modules: Master Production Schedule (MPS): Plan the production schedule and quantity. Capacity Requirements Planning (CRP): Plan equipment and human capacity required for manufacturing. Finite Capacity Scheduling (FCS): Plan the production sequence of products and parts. Material Requirements Planning (MRP): Plan the quantity of necessary materials and parts. Computerized Maintenance Management System (CMMS) CMMS flexibly adapts to a wide range of asset maintenance tasks — from scheduling to tracking equipment performance and ensuring uptime across operations. PLC IoT Devices and More Expand system capabilities with real-time data collection from IoT-connected PLC devices — enabling predictive maintenance, smarter insights, and process automation."
+  },
+  {
+    "source_key": "route:/app/gallery/page.tsx",
+    "title": "Gallery Events and News",
+    "url": "/gallery",
+    "section": "gallery: events and news", 
+    "content": "Events: 2025-07-18 Ashisuto Appreciation Dinner 2025-07-25 Partnership with Ziontech Communication, Inc. 2025-01-24 Chinese New Year Lunch 2024-12-19 Cradle Visit 2024-08-27 ASHISUTO in the Spotlight by MDEC 2024-08-18 NCER NEST Program Signing Ceremony 2024-05-06 MDEC DEX Connex Thailand 2024 2024-07-24 NEST NCER Audit 2024-06-28 MDEC & Minister of Digital Session 2024-05-29 SEMICON SEA 2024 MITEC 2024-05-06 Akademi of Sains Malaysia Visit 2024-03-10 MOA Signing with 3drens, Taiwan 2024-03-05 MDEC DEX Connect Program 2024-02-20 Cradle CIP SPARK Program 2024-01-04 Annual Lunch 2023-12-11 MOU Signing with 3drens, Taiwan 2023-11-23 Penjana Capital Exhibition 2023-11-22 MOA signing with Ricoh, Thailand 2023-11-21 MDEC DEX Connect Program Thailand 2023-10-30 SME CEO Forum 2023-10-20 INTI College Tech Ideation 2023-10-20 MRANTI Global Market Fit 2023-07-12 EMAX & PMAX EXHIBITION 2023-06-20 FMM & JETRO Seminar 2023-04-07 MDEC Soft-Landing Program 2022-09-06 MIGHT Blockchain - Connecting The Dots 2022-06-30 5th Cohort Selangor Accelerator Program 2022-06-15 Malaysia Rubber Council Seminar on Smart Manufacturing. Events and news"
+  },
+  {
+    "source_key": "route:/app/contact/page.tsx",
+    "title": "Contact",
+    "url": "/contact",
+    "section": "contact us",
+    "content": "Contact details: Whatsapp: +60 16-410 7126. BUSINESS OFFICE - Tun Razak Exchange (TRX) @ Exchange 106, Level 23 - Spaces, Jalan Tun Razak, 55188 Kuala Lumpur, Malaysia. OPERATION, R & D CENTER - Sains@USM, CREST Place Block A, No.10, Persiaran Bukit Jambul, 11900 Bayan Lepas, Penang, Malaysia. Office: +604 – 643 5561"
+  }
+]

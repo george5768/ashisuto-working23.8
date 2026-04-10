@@ -14,6 +14,11 @@ interface ChatMessage {
   time: string
 }
 
+type ApiHistoryItem = {
+  role: 'user' | 'assistant'
+  content: string
+}
+
 function getTime() {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 }
@@ -132,9 +137,25 @@ export default function ChatbotWidget() {
     } catch {}
   };
 
+  const buildApiHistory = (existingMessages: ChatMessage[]): ApiHistoryItem[] => {
+    // Skip the static welcome message and send only recent conversational turns.
+    return existingMessages
+      .filter((msg) => msg.id !== 0)
+      .map((msg): ApiHistoryItem => {
+        const role: ApiHistoryItem['role'] = msg.role === 'user' ? 'user' : 'assistant'
+        return {
+          role,
+          content: msg.text,
+        }
+      })
+      .slice(-12)
+  }
+
   const sendMessage = async (text: string) => {
     const trimmed = text.trim()
     if (!trimmed || isTyping) return
+
+    const history = buildApiHistory(messages)
 
     const userMsg: ChatMessage = { id: nextId.current++, role: 'user', text: trimmed, time: getTime() }
     setMessages((prev) => [...prev, userMsg])
@@ -145,11 +166,13 @@ export default function ChatbotWidget() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed, lang: getCurrentLang() }),
+        body: JSON.stringify({ message: trimmed, lang: getCurrentLang(), history }),
       })
       if (!res.ok) throw new Error('API error')
       const data = await res.json()
-      const botMsg: ChatMessage = { id: nextId.current++, role: 'bot', text: data.reply, time: getTime() }
+      const answer = typeof data.answer === 'string' ? data.answer.trim() : ''
+      if (!answer) throw new Error('Missing answer')
+      const botMsg: ChatMessage = { id: nextId.current++, role: 'bot', text: answer, time: getTime() }
       setMessages((prev) => [...prev, botMsg])
       playBotSound()
       if (!isOpenRef.current) {
