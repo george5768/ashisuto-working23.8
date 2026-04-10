@@ -89,7 +89,7 @@ const LanguageBtn: React.FC<LanguageBtnProps> = ({
           >
             <div className="py-1">
               {/* Enabled Language */}
-              {LANG_OPTIONS.map((lang, i) => {
+              {/* {LANG_OPTIONS.map((lang, i) => {
                 const isSelected = currentLang === lang.code;
                 return (
                   <motion.button
@@ -118,10 +118,10 @@ const LanguageBtn: React.FC<LanguageBtnProps> = ({
                     </span>
                   </motion.button>
                 );
-              })}
+              })} */}
 
               {/* Disabled Languages */} {/* Temporary */}
-              {/* {LANG_OPTIONS.map((lang, i) => {
+              {LANG_OPTIONS.map((lang, i) => {
                 const isEnglish = lang.code === Languages.ENGLISH;
                 const isSelected = currentLang === lang.code;
                 const isDisabled = !isEnglish;
@@ -166,7 +166,7 @@ const LanguageBtn: React.FC<LanguageBtnProps> = ({
                     </span>
                   </motion.button>
                 );
-              })} */}
+              })}
             </div>
           </motion.div>
         )}
