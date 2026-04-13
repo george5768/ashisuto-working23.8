@@ -49,6 +49,13 @@ const LANG_OPTIONS = [
         langInEng: "English",
     },
     { 
+        code: Languages.MALAY,              
+        label: "Bahasa Melayu",       
+        slug: langSlug(Languages.MALAY),                          
+        route: `/${langSlug(Languages.MALAY)}`,
+        langInEng: "Malay", 
+    },
+    { 
         code: Languages.JAPANESE,           
         label: "日本語",               
         slug: langSlug(Languages.JAPANESE),                       
@@ -75,13 +82,6 @@ const LANG_OPTIONS = [
         slug: langSlug(Languages.TRADITIONAL_CHINESE),            
         route: `/${langSlug(Languages.TRADITIONAL_CHINESE)}`,
         langInEng: "Traditional Chinese",
-    },
-    { 
-        code: Languages.MALAY,              
-        label: "Bahasa Melayu",       
-        slug: langSlug(Languages.MALAY),                          
-        route: `/${langSlug(Languages.MALAY)}`,
-        langInEng: "Malay", 
     },
 ] as const;
 

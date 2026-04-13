@@ -1,5 +1,5 @@
 import HeroSection from "@/app/components/HeroSection";
-import TrustedPartners from "@/app/components/trustedpartners";
+// import TrustedPartners from "@/app/components/trustedpartners";
 import SolutionsSection from "@/app/components/SolutionSection";
 import FeatureSection from "@/app/components/FeatureSection";
 import SectorsSection from "@/app/components/SectorsSection";
@@ -13,7 +13,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <SolutionsSection />
-      <TrustedPartners />
+      {/* <TrustedPartners /> */}
 
       {/* Revamp below page - see leftover_To_Do_Page folder */}
       <FeatureSection />

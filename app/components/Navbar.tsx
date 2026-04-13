@@ -99,7 +99,7 @@ export default function Navbar() {
         { href: `${langRoute}${Routes.MANUFACTURING_OPERATION}`, label: currentLanguage.header_services_selection_3 },
       ],
     },
-    { href: `${langRoute}${Routes.PARTNERS}`, label: currentLanguage.header_partners },
+    // { href: `${langRoute}${Routes.PARTNERS}`, label: currentLanguage.header_partners },
     { href: `${langRoute}${Routes.GALLERY}`, label: currentLanguage.header_gallery },
     { href: `${langRoute}${Routes.CONTACT}`, label: currentLanguage.header_contact },
   ];
