@@ -124,7 +124,7 @@ export default function Navbar() {
       clipPath: "polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)",
       opacity: 0,
       transition: { 
-        duration: duration * 0.8, // Slightly faster for a snappier close
+        duration: duration * 1.5,
         ease: [0.4, 0, 0.2, 1] 
       },
     },

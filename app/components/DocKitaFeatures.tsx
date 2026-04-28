@@ -174,7 +174,7 @@ const ServiceCard: React.FC<{
       </div>
 
       {/* Title — typewriter */}
-      <h3 className={`text-xl font-bold mb-3 min-h-[3.5rem] leading-snug ${
+      <h3 className={`text-2xl font-bold mb-3 min-h-[3.5rem] leading-snug ${
         isFeatured ? 'text-white' : 'text-gray-900'
       }`}>
         {titleText}
@@ -186,7 +186,7 @@ const ServiceCard: React.FC<{
       </h3>
 
       {/* Description — typewriter */}
-      <p className={`text-sm mb-6 leading-relaxed min-h-[3.5rem] ${
+      <p className={`text-base mb-6 leading-relaxed min-h-[3.5rem] ${
         isFeatured ? 'text-white/90' : 'text-gray-600'
       }`}>
         {descText}
