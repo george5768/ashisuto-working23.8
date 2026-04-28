@@ -45,7 +45,7 @@ const features = [
   {
     Icon: Handshake,
     title: 'Collaborative Innovation',
-    body: 'Purpose-built solutions designed for real-world impact, delivering measurable outcomes and lasting business value across every industry.',
+    body: 'Co-creation of transformative solutions focused on delivering measurable outcomes and real-world business impact.',
     accent: 'from-orange-500 to-amber-500',
     cardBg: 'from-orange-50 to-amber-50',
     border: 'border-orange-200',
@@ -55,7 +55,7 @@ const features = [
   {
     Icon: Lightbulb,
     title: 'End-to-End AI Solutions',
-    body: 'From initial concept to full deployment, every stage is powered by cutting-edge AI technology and proven industry knowledge.',
+    body: 'Comprehensive guidance from concept to implementation, powered by advanced AI capabilities and deep technical expertise.',
     accent: 'from-amber-500 to-orange-500',
     cardBg: 'from-amber-50 to-orange-50',
     border: 'border-amber-200',
@@ -65,30 +65,17 @@ const features = [
 ];
 
 const gallery = [
-  { src: '/images/mfg.png',             alt: 'Manufacturing solution'  },
-  { src: '/images/cleanroom.jpg',       alt: 'Cleanroom technology'    },
-  { src: '/images/construction-3.png',  alt: 'Construction innovation' },
+  { src: '/images/mfg.png',            alt: 'Manufacturing solution'  },
+  { src: '/images/cleanroom.jpg',      alt: 'Cleanroom technology'    },
+  { src: '/images/construction-3.png', alt: 'Construction innovation' },
 ];
 
 /* ── Component ──────────────────────────────────────────────────── */
 export default function FeatureSection() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 px-4 sm:px-6 lg:px-8">
-
-      {/* Decorative blobs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-48 -left-48 h-[520px] w-[520px] rounded-full bg-orange-400/20 blur-3xl" />
-        <div className="absolute top-1/3 -right-40 h-[460px] w-[460px] rounded-full bg-amber-300/20 blur-3xl" />
-        <div className="absolute -bottom-40 left-1/4  h-[400px] w-[400px] rounded-full bg-rose-200/20 blur-3xl" />
-      </div>
-
+    <section className="relative overflow-hidden bg-gradient-to-br from-orange-100 py-20 px-4 sm:px-6 lg:px-8">
+      {/* Tablet and Desktop and higher */}
       <div className="relative max-w-7xl mx-auto">
-
-        {/* ══════════════════════════════════════════════
-            DESKTOP + TABLET  md+
-            Single whileInView parent — all children delay
-            in strict sequence: header → tabs → images
-        ══════════════════════════════════════════════ */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -102,11 +89,9 @@ export default function FeatureSection() {
               custom={0}
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-tight max-w-4xl mx-auto"
             >
-              AI-Powered Solutions for{' '}
-              <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
-                Operational Excellence
-              </span>{' '}
-              and Revenue Growth
+              Transform  <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
+                Efficiency
+              </span> Into Revenue Growth With AI
             </motion.h2>
 
             <motion.p
@@ -193,11 +178,7 @@ export default function FeatureSection() {
           </div>
         </motion.div>
 
-        {/* ══════════════════════════════════════════════
-            MOBILE  below md
-            Single whileInView parent — strict sequence:
-            title → desc → tab 1 → tab 2 → btn 1 → btn 2
-        ══════════════════════════════════════════════ */}
+        {/* Mobile */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -210,11 +191,9 @@ export default function FeatureSection() {
             custom={0}
             className="text-3xl font-black text-gray-900 leading-tight text-center"
           >
-            AI-Powered Solutions for{' '}
-            <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
-              Operational Excellence
-            </span>{' '}
-            and Revenue Growth
+            Transform  <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
+              Efficiency
+            </span> Into Revenue Growth With AI
           </motion.h2>
 
           <motion.p
@@ -259,7 +238,6 @@ export default function FeatureSection() {
             </motion.div>
           </div>
         </motion.div>
-
       </div>
     </section>
   );
