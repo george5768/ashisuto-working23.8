@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Handshake, Lightbulb } from 'lucide-react';
 import CustomButton from '@/components/ui/custom-button';
 import { motion } from 'framer-motion';
+import { useLanguageContext } from '@/app/context/LanguageContext';
 
 /* ── Easing ─────────────────────────────────────────────────────── */
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -41,11 +42,9 @@ const fromRight = {
 };
 
 /* ── Feature data ───────────────────────────────────────────────── */
-const features = [
+const featureStyles = [
   {
     Icon: Handshake,
-    title: 'Collaborative Innovation',
-    body: 'Co-creation of transformative solutions focused on delivering measurable outcomes and real-world business impact.',
     accent: 'from-orange-500 to-amber-500',
     cardBg: 'from-orange-50 to-amber-50',
     border: 'border-orange-200',
@@ -54,8 +53,6 @@ const features = [
   },
   {
     Icon: Lightbulb,
-    title: 'End-to-End AI Solutions',
-    body: 'Comprehensive guidance from concept to implementation, powered by advanced AI capabilities and deep technical expertise.',
     accent: 'from-amber-500 to-orange-500',
     cardBg: 'from-amber-50 to-orange-50',
     border: 'border-amber-200',
@@ -72,6 +69,13 @@ const gallery = [
 
 /* ── Component ──────────────────────────────────────────────────── */
 export default function FeatureSection() {
+  const { currentLanguage: t } = useLanguageContext();
+
+  const features = [
+    { ...featureStyles[0], title: t.feature_section_card1_title, body: t.feature_section_card1_body },
+    { ...featureStyles[1], title: t.feature_section_card2_title, body: t.feature_section_card2_body },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-orange-100 py-20 px-4 sm:px-6 lg:px-8">
       {/* Tablet and Desktop and higher */}
@@ -89,9 +93,9 @@ export default function FeatureSection() {
               custom={0}
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-tight max-w-4xl mx-auto"
             >
-              Transform  <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
-                Efficiency
-              </span> Into Revenue Growth With AI
+              {t.feature_section_title_prefix}<span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
+                {t.feature_section_title_highlight}
+              </span>{t.feature_section_title_suffix}
             </motion.h2>
 
             <motion.p
@@ -99,7 +103,7 @@ export default function FeatureSection() {
               custom={0.18}
               className="mt-5 text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
             >
-              Advanced AI expertise combined with precision engineering and intelligent design enables optimized operations, enhanced efficiency, and scalable long-term business growth.
+              {t.feature_section_description}
             </motion.p>
 
             <motion.div
@@ -108,13 +112,13 @@ export default function FeatureSection() {
               className="flex justify-center gap-4 mt-10"
             >
               <CustomButton href="/about" className="w-44 justify-center">
-                About Us
+                {t.feature_section_btn_about}
               </CustomButton>
               <CustomButton
                 href="/contact"
                 className="w-44 justify-center from-transparent to-transparent bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700 shadow-md"
               >
-                Get in Touch
+                {t.feature_section_btn_contact}
               </CustomButton>
             </motion.div>
           </div>
@@ -191,9 +195,9 @@ export default function FeatureSection() {
             custom={0}
             className="text-3xl font-black text-gray-900 leading-tight text-center"
           >
-            Transform  <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
-              Efficiency
-            </span> Into Revenue Growth With AI
+            {t.feature_section_title_prefix}<span className="bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
+              {t.feature_section_title_highlight}
+            </span>{t.feature_section_title_suffix}
           </motion.h2>
 
           <motion.p
@@ -201,7 +205,7 @@ export default function FeatureSection() {
             custom={0.18}
             className="text-base text-gray-500 leading-relaxed text-center"
           >
-            Advanced AI expertise combined with precision engineering and intelligent design enables optimized operations, enhanced efficiency, and scalable long-term business growth.
+            {t.feature_section_description}
           </motion.p>
 
           {/* Tabs */}
@@ -226,14 +230,14 @@ export default function FeatureSection() {
           {/* Buttons — 2 col */}
           <div className="grid grid-cols-2 gap-4">
             <motion.div variants={fadeUp} custom={0.9}>
-              <CustomButton href="/about" className="w-full justify-center">About Us</CustomButton>
+              <CustomButton href="/about" className="w-full justify-center">{t.feature_section_btn_about}</CustomButton>
             </motion.div>
             <motion.div variants={fadeUp} custom={1.06}>
               <CustomButton
                 href="/contact"
                 className="w-full justify-center from-transparent to-transparent bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700 shadow-md"
               >
-                Get in Touch
+                {t.feature_section_btn_contact}
               </CustomButton>
             </motion.div>
           </div>

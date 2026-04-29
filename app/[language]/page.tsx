@@ -14,9 +14,9 @@ export default function Home() {
       <HeroSection />
       <SolutionsSection />
       {/* <TrustedPartners /> */}
+      <FeatureSection />
 
       {/* Revamp below page - see leftover_To_Do_Page folder */}
-      <FeatureSection />
       <SectorsSection />
       <FeatureSection2 />
       {/* <FindSection /> */}
