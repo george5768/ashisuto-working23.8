@@ -313,7 +313,7 @@ const DocKITAServices: React.FC = () => {
   )
 
   return (
-    <section id="services" className="relative py-12 md:py-20 px-4 overflow-hidden bg-white rounded-lg shadow-lg">
+    <section id="services" className="relative py-10 md:py-16 px-4 overflow-hidden">
       {/* Background Blurs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-100/50 blur-[120px]" />

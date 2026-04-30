@@ -5,10 +5,18 @@ import DocKITAFeatures from "./DocKitaFeatures";
 
 export default function SolutionsSection() {
   return (
-    <section className="bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-16 px-4 md:px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <DocKITAFeatures />
-      </div>
+    <section className="relative bg-gradient-to-b from-slate-50/80 via-white to-white overflow-hidden">
+      {/* Subtle dot-grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.28]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
+          backgroundSize: '30px 30px',
+        }}
+      />
+      {/* Warm glow top-right */}
+      <div className="absolute -top-32 right-0 w-[520px] h-[520px] rounded-full bg-orange-100/40 blur-[100px] pointer-events-none" />
+      <DocKITAFeatures />
     </section>
   );
 }

@@ -41,9 +41,22 @@ export default function ChatbotWidget() {
   const nextId = useRef(1)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowTeaser(true), 1000)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => {
+      setShowTeaser(true);
+    }, 1000); // show after 1s
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (showTeaser) {
+      const timer = setTimeout(() => {
+        setShowTeaser(false);
+      }, 15000); // 15 seconds
+
+      return () => clearTimeout(timer); // cleanup
+    }
+  }, [showTeaser]);
 
   useEffect(() => {
     isOpenRef.current = isOpen

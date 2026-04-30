@@ -1,113 +1,123 @@
 'use client'
 
-import { motion, Variants } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
+import { useLanguageContext } from '@/app/context/LanguageContext'
 
-const sectors = [
-  {
-    name: 'Finance',
-    icon: '/images/financial.jpg',
-    description: 'Empowering digital transformation in financial services.'
-  },
-  {
-    name: 'Construction',
-    icon: '/images/construction.jpg',
-    description: 'Building smarter with connected tools and analytics.'
-  },
-  {
-    name: 'Manufacturing',
-    icon: '/images/manufacturing.jpg',
-    description: 'Streamlining production with smart automation.'
-  },
-  {
-    name: 'Semiconductor',
-    icon: '/images/semiconductor.jpg',
-    description: 'Optimizing precision and supply in chip design.'
-  },
-  {
-    name: 'Healthcare',
-    icon: '/images/healthcare.jpg',
-    description: 'Innovating patient care with secure data solutions.'
-  },
-  {
-    name: 'Public Sector',
-    icon: '/images/public-sector.jpg',
-    description: 'Modernizing services for greater citizen impact.'
-  }
-]
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.2, duration: 0.8, ease: 'easeOut' }
-  })
-}
+const easeStandard: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function SectorsSection() {
-  const [isClient, setIsClient] = useState(false)
+  const { currentLanguage: t } = useLanguageContext()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerReady = useInView(sectionRef, { once: true, amount: 0.25 })
+  const [cardsReady, setCardsReady] = useState(false)
 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
+  const sectors = [
+    {
+      name: t.sectors_finance_name,
+      icon: '/images/financial.jpg',
+      description: t.sectors_finance_desc,
+    },
+    {
+      name: t.sectors_construction_name,
+      icon: '/images/construction.jpg',
+      description: t.sectors_construction_desc,
+    },
+    {
+      name: t.sectors_manufacturing_name,
+      icon: '/images/manufacturing.jpg',
+      description: t.sectors_manufacturing_desc,
+    },
+    {
+      name: t.sectors_semiconductor_name,
+      icon: '/images/semiconductor.jpg',
+      description: t.sectors_semiconductor_desc,
+    },
+    {
+      name: t.sectors_healthcare_name,
+      icon: '/images/healthcare.jpg',
+      description: t.sectors_healthcare_desc,
+    },
+    {
+      name: t.sectors_public_name,
+      icon: '/images/public-sector.jpg',
+      description: t.sectors_public_desc,
+    },
+  ]
 
   return (
-    <section className="w-full bg-gray-50 py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto text-center mb-10 sm:mb-12 md:mb-16 max-w-4xl">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight mb-3 sm:mb-4">
-          Industries We Serve
-        </h2>
-        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-          Tailored digital solutions across key economic sectors.
-        </p>
-      </div>
+    <section ref={sectionRef} className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+      {/* Subtle dot-grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.22]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #94a3b8 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+      {/* Warm centre glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-orange-100/30 blur-[80px] pointer-events-none" />
 
- 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-6xl mx-auto">
-        {sectors.map((sector, idx) => (
-          isClient ? (
+      <div className="relative max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 36, filter: 'blur(4px)' }}
+            animate={headerReady ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+            transition={{ duration: 0.75, ease: easeStandard }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 mb-5"
+          >
+            {t.sectors_title_prefix}<span className="text-orange-500">{t.sectors_title_highlight}</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
+            animate={headerReady ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+            transition={{ duration: 0.75, ease: easeStandard, delay: 0.18 }}
+            onAnimationComplete={() => setCardsReady(true)}
+            className="text-gray-600 text-lg max-w-2xl mx-auto"
+          >
+            {t.sectors_description}
+          </motion.p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sectors.map((sector, idx) => (
             <motion.div
-              key={idx}
-              custom={idx}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={cardVariants}
-              className="bg-white rounded-xl sm:rounded-2xl px-4 sm:px-6 py-6 sm:py-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center group hover:scale-[1.02] min-h-[280px] sm:min-h-[320px] md:min-h-[360px]"
+              key={sector.name}
+              initial={{ opacity: 0, y: 40, filter: 'blur(4px)' }}
+              animate={cardsReady ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.6, ease: easeStandard, delay: idx * 0.08 }}
+              className="group relative rounded-2xl overflow-hidden bg-white/60 backdrop-blur-lg border border-white/40 shadow-lg hover:shadow-xl transition-all duration-500"
             >
-          
-              <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] h-32 sm:h-40 md:h-48 mb-5 sm:mb-7 rounded-lg sm:rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
+              {/* Image */}
+              <div className="relative h-55">
                 <Image
                   src={sector.icon}
                   alt={sector.name}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-fill group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              
-          
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">
-                {sector.name}
-              </h3>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2 sm:px-4">
-                {sector.description}
-              </p>
-            </motion.div>
-          ) : (
-            <div
-              key={idx}
-              className="bg-white rounded-xl sm:rounded-2xl px-4 sm:px-6 py-6 sm:py-8 shadow-lg flex flex-col items-center text-center min-h-[280px] sm:min-h-[320px] md:min-h-[360px] animate-pulse"
-            >
-              <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] h-32 sm:h-40 md:h-48 mb-5 sm:mb-7 rounded-lg sm:rounded-xl bg-gray-200" />
 
-              <div className="h-6 sm:h-7 md:h-8 w-24 sm:w-28 bg-gray-200 rounded mb-2 sm:mb-3" />
-              <div className="h-12 sm:h-14 w-full max-w-xs bg-gray-200 rounded px-2 sm:px-4" />
-            </div>
-          )
-        ))}
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                  {sector.name}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {sector.description}
+                </p>
+              </div>
+
+              {/* Accent line */}
+              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-gradient-to-r from-orange-500 to-amber-400 group-hover:w-full transition-all duration-500" />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -16,9 +17,13 @@ interface FormData {
   message: string
 }
 
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 export default function ContactCardForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [isClient, setIsClient] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const inView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   // Prevent hydration mismatch by ensuring client-side only behavior
   useEffect(() => {
@@ -65,15 +70,22 @@ export default function ContactCardForm() {
 
   return (
     <section
-      className="relative bg-cover bg-center bg-no-repeat py-16 md:py-20 px-4 md:px-6 lg:px-8 mt-16 md:mt-20"
+      ref={sectionRef}
+      className="relative bg-cover bg-center bg-no-repeat py-16 md:py-20 px-4 md:px-6 lg:px-8"
       style={{ backgroundImage: "url('/images/contact-bg.jpg')" }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-0" />
+      {/* Multi-layer overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-orange-950/50 z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-0" />
 
       {/* Card */}
-      <div className="relative z-10 max-w-2xl mx-auto">
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-6 md:p-8">
+      <motion.div
+        initial={{ opacity: 0, y: 48, filter: 'blur(6px)' }}
+        animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+        transition={{ duration: 0.8, ease }}
+        className="relative z-10 max-w-2xl mx-auto"
+      >
+        <div className="bg-white/97 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-10 border border-white/20">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Send Us a Message</h2>
             <p className="text-gray-600">We&apos;d love to hear from you</p>
@@ -204,7 +216,7 @@ export default function ContactCardForm() {
             </Form>
           )}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

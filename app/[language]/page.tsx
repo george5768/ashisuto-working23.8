@@ -15,10 +15,10 @@ export default function Home() {
       <SolutionsSection />
       {/* <TrustedPartners /> */}
       <FeatureSection />
-
-      {/* Revamp below page - see leftover_To_Do_Page folder */}
       <SectorsSection />
       <FeatureSection2 />
+
+      {/* Revamp below page - see leftover_To_Do_Page folder */}
       {/* <FindSection /> */}
       <GalleryServer />
       <ContactCardForm />
