@@ -17,13 +17,11 @@ export default function Home() {
       <FeatureSection />
       <SectorsSection />
       <FeatureSection2 />
+      <GalleryServer />
 
       {/* Revamp below page - see leftover_To_Do_Page folder */}
       {/* <FindSection /> */}
-      <GalleryServer />
       <ContactCardForm />
-      
-
     </main>
   );
 }
