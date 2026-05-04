@@ -1,70 +1,159 @@
 'use client'
 
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { ImageAlt, Routes, LANG_OPTIONS, Languages } from '@/app/enum/global';
+import { BsYoutube } from 'react-icons/bs';
+import { FaLinkedinIn, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { PiWhatsappLogoBold } from 'react-icons/pi';
+import { useLanguageContext } from '@/app/context/LanguageContext';
+
+const socials = [
+  { href: 'https://www.youtube.com/@ashisutoglobaltechnologies6942', icon: <BsYoutube className="w-4 h-4" />, label: 'YouTube' },
+  { href: 'https://www.linkedin.com/company/ashisuto-global-technologies/', icon: <FaLinkedinIn className="w-4 h-4" />, label: 'LinkedIn' },
+  { href: 'https://www.instagram.com/ashisutoglobal/', icon: <FaInstagram className="w-4 h-4" />, label: 'Instagram' },
+  { href: 'https://www.facebook.com/ashito.glo', icon: <FaFacebook className="w-4 h-4" />, label: 'Facebook' },
+  { href: 'https://wa.link/7ka5zr', icon: <PiWhatsappLogoBold className="w-4 h-4" />, label: 'WhatsApp' },
+];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const { currentLanguage } = useLanguageContext();
+  // Extract lang segment from URL: '/en/about' → '/en'; fall back to English slug via enum
+  const defaultSlug = LANG_OPTIONS.find(l => l.code === Languages.ENGLISH)!.slug;
+  const langRoute = '/' + (pathname.split('/')[1] || defaultSlug);
+
+  const solutions = [
+    { href: Routes.AI_PREDICTION_OPTIMIZATION, label: currentLanguage.header_solutions_selection_1 },
+    { href: Routes.DOC_KITA,                   label: currentLanguage.header_solutions_selection_2 },
+    { href: Routes.AI_APPLICATION_CUSTOMIZE,   label: currentLanguage.header_solutions_selection_3 },
+    { href: Routes.CYBER_SECURITY,             label: currentLanguage.header_solutions_selection_4 },
+  ];
+
+  const services = [
+    { href: Routes.ROBOTICS,               label: currentLanguage.header_services_selection_1 },
+    { href: Routes.DIGITIZE_RECORDS,       label: currentLanguage.header_services_selection_2 },
+    { href: Routes.MANUFACTURING_OPERATION,label: currentLanguage.header_services_selection_3 },
+  ];
+
+  const company = [
+    { href: Routes.ABOUT,   label: currentLanguage.header_about },
+    { href: Routes.PARTNERS,label: currentLanguage.header_partners },
+    { href: Routes.GALLERY, label: currentLanguage.header_gallery },
+    { href: Routes.CONTACT, label: currentLanguage.header_contact },
+  ];
+
   return (
-    <footer className="bg-orange-500 text-white py-12 px-6">
-      {/* Grid Columns */}
-      <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {/* Logo at bottom left */}
-          <div className="mb-4 md:mb-0">
-            <Link href="/" className="inline-block">
+    <footer className="bg-gray-950 text-white">
+      {/* Orange accent top line */}
+      <div className="h-1 bg-gradient-to-r from-orange-600 via-amber-400 to-orange-600" />
+
+      {/* Main grid */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+
+          {/* Brand column – 2 cols wide */}
+          <div className="sm:col-span-2 lg:col-span-2">
+            <Link href={langRoute} className="inline-block mb-5 group">
               <Image
-                src="/ashisuto-logo-white.png" // Place your logo file in
-                alt="Ashisuto Tech"
-                width={120}
-                height={40}
-                className="h-auto"
+                src="/ashisuto-logo-white.png"
+                alt={ImageAlt.logo}
+                width={150}
+                height={52}
+                className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+              {currentLanguage.footer_tagline}
+            </p>
+
+            {/* Social icons */}
+            <div className="flex items-center gap-2.5">
+              {socials.map(({ href, icon, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/8 hover:bg-orange-500 text-gray-400 hover:text-white border border-white/10 hover:border-orange-500 transition-all duration-300 hover:scale-110"
+                >
+                  {icon}
+                </Link>
+              ))}
+            </div>
           </div>
 
-        {/* Column 2 */}
-        <div>
-          <h4 className="text-lg font-semibold mb-4">Solutions</h4>
-          <ul className="space-y-2"><li><Link href="/ai-prediction-optimization" className="hover:underline">AI Data Prediction & Optimization</Link></li>
+          {/* Solutions */}
+          <div>
+            <h4 className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-5">{currentLanguage.header_solutions}</h4>
+            <ul className="space-y-3">
+              {solutions.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={langRoute + href}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-orange-400 transition-colors duration-200 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-orange-500/50 group-hover:bg-orange-400 transition-colors duration-200 flex-shrink-0" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <li><Link href="/docKITA" className="hover:underline">AI Workflow Management System</Link></li>
-            
-            <li><Link href="/ai-application-customize" className="hover:underline">AI Application Customize</Link></li>
-             <li><Link href="/cyber-security" className="hover:underline">Cyber Security - Secure Port Access</Link> </li>
-          </ul>
-        </div>
+          {/* Services */}
+          <div>
+            <h4 className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-5">{currentLanguage.header_services}</h4>
+            <ul className="space-y-3">
+              {services.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={langRoute + href}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-orange-400 transition-colors duration-200 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-orange-500/50 group-hover:bg-orange-400 transition-colors duration-200 flex-shrink-0" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Column 3 */}
-        <div>
-          <h4 className="text-lg font-semibold mb-4">Services</h4>
-          <ul className="space-y-2">
-            <li><Link href="/robotics" className="hover:underline">AI Cobot & AGV Robots</Link></li>
-            {/* <li><Link href="/industrial-design" className="hover:underline">Industrial Design</Link></li> */}
-            <li><Link href="/digitize-records" className="hover:underline">AI Digitize Past Records & Documents</Link></li>
-            <li><Link href="/manufacturing-operation" className="hover:underline">Manufacturing Operation</Link></li>
-           
-          </ul>
-        </div>
-
-        {/* Column 4 */}
-        <div>
-          <h4 className="text-lg font-semibold mb-4">Other</h4>
-          <ul className="space-y-2">
-            <li><Link href="/contact" className="hover:underline">Contact Us</Link></li>
-            <li><Link href="/gallery" className="hover:underline">News Gallery</Link></li>
-            <li><Link href="/partners" className="hover:underline">Partners</Link></li>
-          </ul>
+          {/* Company */}
+          <div>
+            <h4 className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-5">{currentLanguage.footer_company_heading}</h4>
+            <ul className="space-y-3">
+              {company.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={langRoute + href}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-orange-400 transition-colors duration-200 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-orange-500/50 group-hover:bg-orange-400 transition-colors duration-200 flex-shrink-0" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      {/* Divider + Bottom Bar */}
-      <div className="mt-10 border-t border-orange-300 pt-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-2">
-          {/* Copyright */}
-          <p className="text-sm text-orange-100 text-center md:text-right">
-            © {new Date().getFullYear()} Ashisuto Global Technologies Sdn Bhd (1308692U). All rights reserved.
+      {/* Bottom bar */}
+      <div className="border-t border-white/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-gray-500 text-sm text-center sm:text-left">
+            © {new Date().getFullYear()} Ashisuto Global Technologies Sdn Bhd (1308692U). {currentLanguage.footer_all_rights_reserved}
           </p>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-orange-600" />
+            <span className="w-2 h-2 rounded-full bg-orange-500" />
+            <span className="w-5 h-2 rounded-full bg-orange-400" />
+          </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

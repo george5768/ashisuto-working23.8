@@ -146,7 +146,10 @@
         "feature2_card1_title": "Data Traceability",
         "feature2_card1_body": "End to end visibility of every data point, capturing origin, transformation, and lineage to ensure integrity, audit readiness, and full regulatory compliance across the entire data lifecycle.",
         "feature2_card2_title": "Data Visualization",
-        "feature2_card2_body": "Complex datasets transformed into intuitive real time visual insights, enabling faster pattern recognition, improved operational efficiency, and stronger strategic decision making."
+        "feature2_card2_body": "Complex datasets transformed into intuitive real time visual insights, enabling faster pattern recognition, improved operational efficiency, and stronger strategic decision making.",
+        "footer_tagline": "Reimagine and co-create your workplace with AI. Delivering intelligent solutions across industries to unlock the future of business.",
+        "footer_company_heading": "Company",
+        "footer_all_rights_reserved": "All rights reserved."
     },
     "JP": {
         "header_home": "ホーム",
@@ -295,7 +298,10 @@
         "feature2_card1_title": "データのトレーサビリティ",
         "feature2_card1_body": "すべてのデータポイントのエンドツーエンドの可視性を確保し、起源・変換・系譜を把握することで、整合性・監査対応・完全な規制コンプライアンスをデータライフサイクル全体にわたって実現します。",
         "feature2_card2_title": "データの可視化",
-        "feature2_card2_body": "複雑なデータセットを直感的なリアルタイムの視覚的インサイトに変換し、パターン認識の高速化、業務効率の向上、戦略的意思決定の強化を実現します。"
+        "feature2_card2_body": "複雑なデータセットを直感的なリアルタイムの視覚的インサイトに変換し、パターン認識の高速化、業務効率の向上、戦略的意思決定の強化を実現します。",
+        "footer_tagline": "AIでワークプレイスを再構想し、共創する。未来のビジネスを切り拓く、インテリジェントなソリューションを業界横断で提供します。",
+        "footer_company_heading": "会社",
+        "footer_all_rights_reserved": "無断転載禁止。"
     },
     "TH": {
         "header_home": "หน้าแรก",
@@ -444,7 +450,10 @@
         "feature2_card1_title": "การตรวจสอบย้อนกลับข้อมูล",
         "feature2_card1_body": "การมองเห็นข้อมูลทุกจุดแบบครบวงจร ตั้งแต่ต้นทาง การแปลง และสายข้อมูล เพื่อรับประกันความสมบูรณ์ ความพร้อมในการตรวจสอบ และการปฏิบัติตามกฎระเบียบอย่างเต็มรูปแบบตลอดวงจรชีวิตข้อมูล",
         "feature2_card2_title": "การแสดงผลข้อมูล",
-        "feature2_card2_body": "ชุดข้อมูลที่ซับซ้อนถูกแปลงเป็นข้อมูลเชิงลึกทางภาพแบบเรียลไทม์ที่ใช้งานง่าย ช่วยให้การรับรู้รูปแบบเร็วขึ้น ปรับปรุงประสิทธิภาพการดำเนินงาน และเสริมการตัดสินใจเชิงกลยุทธ์ที่แข็งแกร่งยิ่งขึ้น"
+        "feature2_card2_body": "ชุดข้อมูลที่ซับซ้อนถูกแปลงเป็นข้อมูลเชิงลึกทางภาพแบบเรียลไทม์ที่ใช้งานง่าย ช่วยให้การรับรู้รูปแบบเร็วขึ้น ปรับปรุงประสิทธิภาพการดำเนินงาน และเสริมการตัดสินใจเชิงกลยุทธ์ที่แข็งแกร่งยิ่งขึ้น",
+        "footer_tagline": "จินตนาการและสร้างสรรค์ที่ทำงานของคุณใหม่ด้วย AI มอบโซลูชันอัจฉริยะในทุกอุตสาหกรรมเพื่อปลดล็อคอนาคตของธุรกิจ",
+        "footer_company_heading": "บริษัท",
+        "footer_all_rights_reserved": "สงวนลิขสิทธิ์ทั้งหมด"
     },
     "CN": {
         "header_home": "首页",
@@ -593,7 +602,10 @@
         "feature2_card1_title": "数据可追溯性",
         "feature2_card1_body": "对每个数据点进行端到端的全程可见性管理，捕捉数据的来源、转换与系谱，确保整个数据生命周期中的完整性、审计就绪性与完全合规性。",
         "feature2_card2_title": "数据可视化",
-        "feature2_card2_body": "将复杂数据集转化为直观的实时视觉洞察，实现更快速的模式识别、更高效的运营效能与更有力的战略决策。"
+        "feature2_card2_body": "将复杂数据集转化为直观的实时视觉洞察，实现更快速的模式识别、更高效的运营效能与更有力的战略决策。",
+        "footer_tagline": "用 AI 重新想象并共同创造您的工作场所。跨行业提供智能解决方案，开创业务未来。",
+        "footer_company_heading": "公司",
+        "footer_all_rights_reserved": "保留所有权利。"
     },
     "TW": {
         "header_home": "首頁",
@@ -742,7 +754,10 @@
         "feature2_card1_title": "資料可追溯性",
         "feature2_card1_body": "對每個資料點進行端對端的全程可見性管理，捕捉資料的來源、轉換與系譜，確保整個資料生命週期中的完整性、稽核就緒性與完全合規性。",
         "feature2_card2_title": "資料視覺化",
-        "feature2_card2_body": "將複雜資料集轉化為直觀的即時視覺洞察，實現更快速的模式識別、更高效的營運效能與更有力的戰略決策。"
+        "feature2_card2_body": "將複雜資料集轉化為直觀的即時視覺洞察，實現更快速的模式識別、更高效的營運效能與更有力的戰略決策。",
+        "footer_tagline": "用 AI 重新想像並共同創造您的工作場所。跨產業提供智慧解決方案，開創業務未來。",
+        "footer_company_heading": "公司",
+        "footer_all_rights_reserved": "保留所有權利。"
     },
     "BM": {
         "header_home": "Laman Utama",
@@ -891,6 +906,9 @@
         "feature2_card1_title": "Kebolehjejakan Data",
         "feature2_card1_body": "Keterlihatan menyeluruh setiap titik data dari hujung ke hujung, merakam asal usul, transformasi, dan silsilah data bagi memastikan integriti, kesediaan audit, dan pematuhan peraturan penuh sepanjang kitaran hayat data.",
         "feature2_card2_title": "Visualisasi Data",
-        "feature2_card2_body": "Set data kompleks diubah menjadi wawasan visual masa nyata yang intuitif, membolehkan pengecaman corak yang lebih pantas, kecekapan operasi yang lebih baik, dan pembuatan keputusan strategik yang lebih kukuh."
+        "feature2_card2_body": "Set data kompleks diubah menjadi wawasan visual masa nyata yang intuitif, membolehkan pengecaman corak yang lebih pantas, kecekapan operasi yang lebih baik, dan pembuatan keputusan strategik yang lebih kukuh.",
+        "footer_tagline": "Bayangkan semula dan cipta bersama tempat kerja anda dengan AI. Menyampaikan penyelesaian pintar merentasi industri untuk membuka masa depan perniagaan.",
+        "footer_company_heading": "Syarikat",
+        "footer_all_rights_reserved": "Hak cipta terpelihara."
     }
 }
