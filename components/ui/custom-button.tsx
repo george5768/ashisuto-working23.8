@@ -33,6 +33,7 @@ interface CustomButtonProps {
   className?: string
   size?: "default" | "sm" | "lg" | "icon"
   disabled?: boolean
+  hoverShadow?: boolean
 }
 
 export default function CustomButton({
@@ -42,6 +43,7 @@ export default function CustomButton({
   className = "",
   size = "lg",
   disabled = false,
+  hoverShadow = true,
 }: CustomButtonProps) {
 
   const baseClass = `
@@ -56,7 +58,10 @@ export default function CustomButton({
 
   // Motion props (used for both link and normal button)
   const motionProps = {
-    whileHover: { scale: 1.05, boxShadow: "0 10px 25px rgba(251,146,60,0.4)" },
+    whileHover: {
+      scale: 1.05,
+      boxShadow: hoverShadow ? "0 10px 25px rgba(251,146,60,0.4)" : "0 0 0 rgba(0,0,0,0)",
+    },
     whileTap: { scale: 1, boxShadow: "0 0 0 rgba(0,0,0,0)" },
     initial: { scale: 1, boxShadow: "0 0 0 rgba(0,0,0,0)" },
     animate: { scale: 1, boxShadow: "0 0 0 rgba(0,0,0,0)" },
