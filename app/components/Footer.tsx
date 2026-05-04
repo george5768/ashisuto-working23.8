@@ -147,11 +147,6 @@ export default function Footer() {
           <p className="text-gray-500 text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Ashisuto Global Technologies Sdn Bhd (1308692U). {currentLanguage.footer_all_rights_reserved}
           </p>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-orange-600" />
-            <span className="w-2 h-2 rounded-full bg-orange-500" />
-            <span className="w-5 h-2 rounded-full bg-orange-400" />
-          </div>
         </div>
       </div>
     </footer>
