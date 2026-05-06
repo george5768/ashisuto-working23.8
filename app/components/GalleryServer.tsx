@@ -12,7 +12,7 @@ async function getData() {
     "currentSlug": slug.current
 }`;
 
-  const data = await client.fetch(query);
+  const data = await client.fetch(query, {}, { next: { revalidate: 60, tags: ['gallery'] } });
   return data;
 }
 

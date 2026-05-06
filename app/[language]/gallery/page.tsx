@@ -3,18 +3,19 @@ import { client, urlFor } from "@/app/lib/sanity";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
+export const revalidate = 60;
+
 async function getData() {
   const query = `
-  *[_type == 'gallery'] | order(_createdAt desc) {
+  *[_type == 'gallery' && defined(date)] | order(date desc, _createdAt desc) {
   title,
     shortDescription,
     date,
     "currentSlug": slug.current,
-    titleImage,
-    date,
+    titleImage
 }`;
 
-  const data = await client.fetch(query);
+  const data = await client.fetch(query, {}, { next: { revalidate: 60, tags: ['gallery'] } });
   return data;
 }
 
