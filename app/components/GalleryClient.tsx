@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import { useLanguageContext } from '@/app/context/LanguageContext';
 import { simpleGalleryCard } from '../lib/interface';
 import { urlFor } from '../lib/sanity';
@@ -21,7 +22,9 @@ interface GalleryClientProps {
 
 export default function GalleryClient({ data }: GalleryClientProps) {
   const { currentLanguage: t } = useLanguageContext();
+  const params = useParams<{ language?: string }>();
   const tt = t as Record<string, string>;
+  const langPrefix = params?.language ? `/${params.language}` : '';
 
   const displayDate = (date: string | number | Date) => {
     return date ? DateFormatUtil(new Date(date), 15) : '';
@@ -90,13 +93,13 @@ export default function GalleryClient({ data }: GalleryClientProps) {
                   <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-orange-100/95">
                     {displayDate(post.date)}
                   </div>
-                  <div className="overflow-hidden max-h-0 opacity-0 translate-y-2 transition-all duration-400 ease-out group-hover:max-h-40 group-hover:opacity-100 group-hover:translate-y-0">
+                  <div className="overflow-hidden max-h-40 opacity-100 translate-y-0 transition-all duration-400 ease-out sm:max-h-0 sm:opacity-0 sm:translate-y-2 sm:group-hover:max-h-40 sm:group-hover:opacity-100 sm:group-hover:translate-y-0">
                     <p className="mt-3 text-sm text-slate-100/90 leading-6 line-clamp-2">
                       {post.shortDescription}
                     </p>
                     <div className="mt-3 p-2">
                       <CustomButton 
-                        href={`/gallery/${post.currentSlug}`} 
+                        href={`${langPrefix}/gallery/${post.currentSlug}`} 
                         hoverShadow={false}
                         className="px-5 py-2.5 rounded-xl w-full sm:w-auto"
                       >
@@ -118,7 +121,7 @@ export default function GalleryClient({ data }: GalleryClientProps) {
           transition={{ duration: 0.7, ease, delay: 0.18 }}
           className="flex justify-center mt-10"
         >
-          <CustomButton href="/gallery">
+          <CustomButton href={`${langPrefix}/gallery`}>
             {tt.gallery_explore_all}
           </CustomButton>
         </motion.div>

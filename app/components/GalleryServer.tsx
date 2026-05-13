@@ -4,7 +4,7 @@ import GalleryClient from "./GalleryClient";
 
 async function getData() {
   const query = `
-  *[_type == 'gallery' && defined(date)] | order(date desc, _createdAt desc) [0...3] {
+  *[_type == 'gallery' && defined(date) && defined(slug.current)] | order(date desc, _createdAt desc) [0...3] {
   title,
     shortDescription,
     date,

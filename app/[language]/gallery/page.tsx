@@ -2,12 +2,13 @@ import { simpleGalleryCard } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 export const revalidate = 60;
 
 async function getData() {
   const query = `
-  *[_type == 'gallery' && defined(date)] | order(date desc, _createdAt desc) {
+  *[_type == 'gallery' && defined(date) && defined(slug.current)] | order(date desc, _createdAt desc) {
   title,
     shortDescription,
     date,
@@ -19,7 +20,12 @@ async function getData() {
   return data;
 }
 
-export default async function Gallery() {
+export default async function Gallery({
+  params,
+}: {
+  params: Promise<{ language: string }>;
+}) {
+  const { language } = await params;
   const data: simpleGalleryCard[] = await getData();
 
   return (
@@ -28,22 +34,32 @@ export default async function Gallery() {
       <span className="font-bold text-2xl text-primary lg:max-w-7xl lg:ml-80">Events & News</span>
       <div className="grid sm:grid-cols-2 mt-15 gap-5 lg:grid-cols-3 lg:max-w-7xl lg:ml-80 auto-rows-fr">
         {data.map((post, idx) => (
-          <Card key={idx} className="gap-5 h-full flex flex-col">
-            <div className="w-full h-48 overflow-hidden">
-              <Image
-                src={urlFor(post.titleImage).url()}
-                alt="image"
-                width={500}
-                height={300}
-                className="object-cover w-full h-full"
-              />
-            </div>
+          <Card key={idx} className="gap-5 h-full flex flex-col transition hover:shadow-lg hover:-translate-y-0.5">
+            <Link href={`/${language}/gallery/${post.currentSlug}`} className="block w-full h-48 overflow-hidden">
+              <div className="w-full h-48 overflow-hidden">
+                <Image
+                  src={urlFor(post.titleImage).url()}
+                  alt="image"
+                  width={500}
+                  height={300}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </Link>
             <CardContent className="mt-5 flex-grow flex flex-col">
-              <h2 className="font-medium text-24 text-primary">{post.date}</h2>
-              <h3 className="font-medium text-28">{post.title}</h3>
-              <p className="pt-5">{post.shortDescription}</p>
-            </CardContent>
-          </Card>
+              <Link href={`/${language}/gallery/${post.currentSlug}`}>
+                <h2 className="font-medium text-24 text-primary">{post.date}</h2>
+                <h3 className="font-medium text-28">{post.title}</h3>
+              </Link>
+                <p className="pt-5 line-clamp-6">{post.shortDescription}</p>
+                <Link
+                  href={`/${language}/gallery/${post.currentSlug}`}
+                  className="mt-auto inline-flex w-fit items-center rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
+                >
+                  View More
+                </Link>
+              </CardContent>
+            </Card>
         ))}
       </div>
     </section>
