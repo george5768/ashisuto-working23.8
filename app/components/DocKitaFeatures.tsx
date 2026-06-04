@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, Variants, useInView } from 'framer-motion';
+import { motion, Variants, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowRight, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, Pause, Play } from 'lucide-react';
 import CustomButton from '@/components/ui/custom-button';
 import { Routes } from '../enum/global';
 import { useLanguageContext } from '../context/LanguageContext';
@@ -82,14 +82,12 @@ const ServiceCard: React.FC<{
   service: ServiceItem;
   isLg: boolean;
   gridInView: boolean;
-  entryDelay: number;  // seconds
+  entryDelay: number;
 }> = ({ service, isLg, gridInView, entryDelay }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const selfInView = useInView(cardRef, { once: true, amount: 0.5 });
 
-  // Desktop: triggered by parent grid entering view; mobile: triggered per-card
   const isTriggered = isLg ? gridInView : selfInView;
-  // Typewriter starts after card entrance settles (entrance ~0.55s + stagger offset)
   const twBaseDelay = isLg ? entryDelay * 1000 + 560 : 80;
 
   const { displayed: titleText, done: titleDone } = useTypewriter(service.title, isTriggered, 38, twBaseDelay);
@@ -115,16 +113,13 @@ const ServiceCard: React.FC<{
             return next;
           });
 
-          // When last item appears → show button
           if (i === service.features.length - 1) {
             setTimeout(() => {
               setBtnVisible(true);
-            }, 250); // slight delay after last item
+            }, 250);
           }
-
         }, 150 + i * 200);
       });
-
     }, 120);
 
     return () => clearTimeout(t);
@@ -145,7 +140,6 @@ const ServiceCard: React.FC<{
           : 'bg-gradient-to-br from-amber-50 to-orange-50 border border-orange-100 hover:shadow-orange-100/60'
       }`}
     >
-      {/* Stats badge */}
       <div className={`inline-block self-start px-3 py-1.5 rounded-full text-xs font-bold mb-6 ${
         isFeatured
           ? 'bg-white/25 backdrop-blur-sm text-white'
@@ -154,7 +148,6 @@ const ServiceCard: React.FC<{
         {service.stats}
       </div>
 
-      {/* Icon circle */}
       <div
         className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
           isFeatured
@@ -173,7 +166,6 @@ const ServiceCard: React.FC<{
         />
       </div>
 
-      {/* Title — typewriter */}
       <h3 className={`text-2xl font-bold mb-3 min-h-[3.5rem] leading-snug ${
         isFeatured ? 'text-white' : 'text-gray-900'
       }`}>
@@ -185,7 +177,6 @@ const ServiceCard: React.FC<{
         )}
       </h3>
 
-      {/* Description — typewriter */}
       <p className={`text-base mb-6 leading-relaxed min-h-[3.5rem] ${
         isFeatured ? 'text-white/90' : 'text-gray-600'
       }`}>
@@ -197,19 +188,16 @@ const ServiceCard: React.FC<{
         )}
       </p>
 
-      {/* Divider */}
       <div className={`h-px mb-6 transition-opacity duration-300 ${
         descDone ? 'opacity-100' : 'opacity-0'
       } ${isFeatured ? 'bg-white/20' : 'bg-orange-200'}`} />
 
-      {/* What’s Included label */}
       <p className={`text-xs font-bold uppercase tracking-widest mb-4 transition-opacity duration-300 ${
         labelVisible ? 'opacity-100' : 'opacity-0'
       } ${isFeatured ? 'text-white/80' : 'text-orange-600'}`}>
         {t.dockita_whats_included}
       </p>
 
-      {/* Feature items — staggered pop */}
       <div className="space-y-3 flex-1">
         {service.features.map((feat, i) => (
           <motion.div
@@ -234,7 +222,6 @@ const ServiceCard: React.FC<{
         ))}
       </div>
 
-      {/* CTA */}
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.96 }}
         animate={btnVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 10, scale: 0.96 }}
@@ -260,9 +247,21 @@ const ServiceCard: React.FC<{
 const DocKITAServices: React.FC = () => {
   const { currentLanguage: t, getCurrentLang } = useLanguageContext();
   const langSlugStr = getCurrentLang().toLowerCase();
+  const featureSlides = ['/feature/1.png', '/feature/2.png', '/feature/4.png'];
+  const [activeFeatureSlide, setActiveFeatureSlide] = useState(0);
+  const [isFeaturePaused, setIsFeaturePaused] = useState(false);
+  const [isFeatureHovered, setIsFeatureHovered] = useState(false);
   const isLg = useIsLg();
   const gridRef = useRef<HTMLDivElement>(null);
   const gridInView = useInView(gridRef, { once: true, amount: 0.35 });
+
+  useEffect(() => {
+    if (isFeaturePaused || isFeatureHovered) return;
+    const timer = setInterval(() => {
+      setActiveFeatureSlide((prev) => (prev + 1) % featureSlides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [featureSlides.length, isFeaturePaused, isFeatureHovered]);
 
   const services: ServiceItem[] = [
     {
@@ -292,39 +291,35 @@ const DocKITAServices: React.FC = () => {
     },
   ];
 
-  const HERO_BENTO_CARD = {
-    badge: t.dockita_hero_badge,
-    title: <>DocKITA<span className="text-amber-300 text-2xl md:text-4xl align-top ml-1">®</span></>,
-    subtitle: t.dockita_hero_subtitle,
-    description: t.dockita_hero_description,
-    cta: t.dockita_hero_cta,
-    productLabel: t.dockita_hero_product_label,
-    image: "/icons/dockita_logo.png",
-  };
+//   const HERO_BENTO_CARD = {
+//     badge: t.dockita_hero_badge,
+//     title: <>DocKITA<span className="text-amber-300 text-2xl md:text-4xl align-top ml-1">R</span></>,
+//     subtitle: t.dockita_hero_subtitle,
+//     description: t.dockita_hero_description,
+//     cta: t.dockita_hero_cta,
+//     productLabel: t.dockita_hero_product_label,
+//     image: '/icons/dockita_logo.png',
+//   };
 
-  const BOOK_CONSULTATION_BTN = (buttonText: string) => (
-    <CustomButton
-      href={`/${langSlugStr}${Routes.CONTACT}`}
-      className="px-8 py-3.5 bg-white text-orange-600 rounded-2xl font-bold hover:bg-orange-50 transition-all shadow-lg flex items-center gap-2 group"
-    >
-      {buttonText}
-      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-    </CustomButton>
-  )
+//   const BOOK_CONSULTATION_BTN = (buttonText: string) => (
+//     <CustomButton
+//       href={`/${langSlugStr}${Routes.CONTACT}`}
+//       className="px-8 py-3.5 bg-white text-orange-600 rounded-2xl font-bold hover:bg-orange-50 transition-all shadow-lg flex items-center gap-2 group"
+//     >
+//       {buttonText}
+//       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+//     </CustomButton>
+//   );
 
   return (
     <section id="services" className="relative py-10 md:py-16 px-4 overflow-hidden">
-      {/* Background Blurs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-100/50 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-amber-50/50 blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* --- HERO BENTO CARD --- */}
-        {/* Tablet and below */}
-        <motion.div 
+        {/* <motion.div
           variants={sectionReveal}
           initial="hidden"
           whileInView="visible"
@@ -333,25 +328,24 @@ const DocKITAServices: React.FC = () => {
         >
           <div className="relative bg-gradient-to-br from-orange-500 via-[#FF6600] to-amber-400 p-8 md:p-12">
             <div className="flex flex-col items-center gap-8">
-              {/* Logo Side */}
               <motion.div variants={itemReveal} className="relative shrink-0">
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-white flex items-center justify-center p-3 shadow-2xl border border-gray-100 transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
                   <Image
                     src={HERO_BENTO_CARD.image}
                     alt="DocKITA logo"
-                    width={140} 
+                    width={140}
                     height={140}
                     className="object-contain drop-shadow-sm"
                     priority
                   />
                 </div>
-                <motion.div 
-                  animate={{ scale: [1, 1.1, 1] }} 
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
                   transition={{ repeat: Infinity, duration: 3 }}
                   className="
                     absolute -top-3 left-1/2 -translate-x-1/2
                     md:left-auto md:translate-x-0 md:-right-3
-                    bg-amber-300 text-orange-900 text-[10px] font-black 
+                    bg-amber-300 text-orange-900 text-[10px] font-black
                     px-3 py-1 rounded-lg uppercase tracking-tighter shadow-xl z-20
                     whitespace-nowrap
                   "
@@ -359,7 +353,6 @@ const DocKITAServices: React.FC = () => {
                   {HERO_BENTO_CARD.productLabel}
                 </motion.div>
               </motion.div>
-              {/* Text Side */}
               <motion.div variants={itemReveal} className="text-center flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/20 text-white text-xs font-bold mb-4 tracking-widest uppercase">
                   <Zap size={12} className="fill-current" /> {HERO_BENTO_CARD.badge}
@@ -379,10 +372,9 @@ const DocKITAServices: React.FC = () => {
               </motion.div>
             </div>
           </div>
-        </motion.div>
-
-        {/* Desktop only */}
-        <motion.div 
+        </motion.div> */}
+{/* 
+        <motion.div
           variants={sectionReveal}
           initial="hidden"
           whileInView="visible"
@@ -391,25 +383,24 @@ const DocKITAServices: React.FC = () => {
         >
           <div className="relative bg-gradient-to-br from-orange-500 via-[#FF6600] to-amber-400 p-8 md:p-12 lg:p-16">
             <div className="flex flex-row-reverse items-center justify-between gap-8 lg:gap-12">
-              {/* Logo Side (right) */}
               <motion.div variants={itemReveal} className="relative shrink-0">
                 <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-[2rem] bg-white flex items-center justify-center p-6 shadow-2xl border border-white/20 transition-transform duration-300 hover:scale-105">
                   <Image
                     src={HERO_BENTO_CARD.image}
                     alt="DocKITA logo"
-                    width={160} 
+                    width={160}
                     height={160}
                     className="object-contain"
                     priority
                   />
                 </div>
-                <motion.div 
-                  animate={{ scale: [1, 1.05, 1] }} 
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
                   transition={{ repeat: Infinity, duration: 3 }}
                   className="
                     absolute -top-3 left-1/2 -translate-x-1/2
                     lg:left-auto lg:right-[-10px] lg:translate-x-0
-                    bg-amber-300 text-orange-900 text-[10px] lg:text-[11px] font-black 
+                    bg-amber-300 text-orange-900 text-[10px] lg:text-[11px] font-black
                     px-3 py-1 rounded-lg uppercase tracking-tight shadow-xl z-20
                     whitespace-nowrap
                   "
@@ -417,7 +408,6 @@ const DocKITAServices: React.FC = () => {
                   {HERO_BENTO_CARD.productLabel}
                 </motion.div>
               </motion.div>
-              {/* Text Side (left) */}
               <motion.div variants={itemReveal} className="text-left flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/20 text-white text-[10px] md:text-xs font-bold mb-6 tracking-widest uppercase">
                   <Zap size={14} className="fill-current" /> {HERO_BENTO_CARD.badge}
@@ -437,9 +427,71 @@ const DocKITAServices: React.FC = () => {
               </motion.div>
             </div>
           </div>
+        </motion.div> */}
+
+        <motion.div
+          variants={sectionReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          className="relative rounded-[2rem] overflow-hidden mb-12"
+        >
+          <div className="relative p-0">
+            <div
+              className="relative w-full aspect-[16/9] rounded-[1.5rem] overflow-hidden"
+              onMouseEnter={() => setIsFeatureHovered(true)}
+              onMouseLeave={() => setIsFeatureHovered(false)}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFeatureSlide}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, ease: 'easeInOut' }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={featureSlides[activeFeatureSlide]}
+                    alt={`DocKITA feature ${activeFeatureSlide + 1}`}
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              <button
+                type="button"
+                onClick={() => setIsFeaturePaused((prev) => !prev)}
+                aria-label={isFeaturePaused ? 'Resume feature slider' : 'Pause feature slider'}
+                className="absolute top-3 right-3 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/55 text-white text-xs font-semibold hover:bg-black/70 transition-colors"
+              >
+                {isFeaturePaused ? <Play size={14} /> : <Pause size={14} />}
+                {isFeaturePaused ? 'Play' : 'Pause'}
+              </button>
+            </div>
+
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {featureSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveFeatureSlide(idx)}
+                  aria-label={`Go to feature slide ${idx + 1}`}
+                  className="cursor-pointer"
+                >
+                  <span
+                    className={`block h-2.5 rounded-full transition-all duration-300 ${
+                      idx === activeFeatureSlide ? 'w-8 bg-orange-500' : 'w-2.5 bg-orange-200'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
-        {/* --- PILLARS HEADER --- */}
         <motion.div
           variants={sectionReveal}
           initial="hidden"
@@ -455,7 +507,6 @@ const DocKITAServices: React.FC = () => {
           </h2>
         </motion.div>
 
-        {/* --- CARDS GRID --- */}
         <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, idx) => (
             <ServiceCard
