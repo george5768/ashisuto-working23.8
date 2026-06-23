@@ -184,7 +184,7 @@ export default function FeatureSection() {
               custom={0.05}
               className="flex-[3] min-h-0 relative overflow-hidden rounded-2xl shadow-xl group"
             >
-              <Image src={gallery[0].src} alt={gallery[0].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+              <Image src={gallery[0].src} alt={gallery[0].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" quality={95} sizes="(max-width: 768px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
             </motion.div>
 
@@ -197,7 +197,7 @@ export default function FeatureSection() {
                 custom={0.26}
                 className="relative overflow-hidden rounded-2xl shadow-xl group h-full"
               >
-                <Image src={gallery[1].src} alt={gallery[1].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                <Image src={gallery[1].src} alt={gallery[1].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" quality={95} sizes="(max-width: 768px) 50vw, 25vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
               </motion.div>
               <motion.div
@@ -207,7 +207,7 @@ export default function FeatureSection() {
                 custom={0.46}
                 className="relative overflow-hidden rounded-2xl shadow-xl group h-full"
               >
-                <Image src={gallery[2].src} alt={gallery[2].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                <Image src={gallery[2].src} alt={gallery[2].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" quality={95} sizes="(max-width: 768px) 50vw, 25vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </div>
