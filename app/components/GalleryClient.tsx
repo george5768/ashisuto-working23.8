@@ -82,6 +82,8 @@ export default function GalleryClient({ data }: GalleryClientProps) {
                     alt={post.title}
                     fill
                     className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:grayscale-[35%] group-hover:brightness-75"
+                    quality={100}
+                    unoptimized={true}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/10 to-transparent transition-colors duration-400 group-hover:from-slate-950/80 group-hover:via-slate-950/45" />
                 </div>

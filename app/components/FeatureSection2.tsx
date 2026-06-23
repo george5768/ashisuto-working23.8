@@ -85,11 +85,11 @@ export default function FeatureSection2() {
               <Image
                 src="/images/Construction-2.png"
                 alt="Data-driven operations"
-                width={1240}
-                height={1000}
+                width={1000}
+                height={800}
                 className="w-full h-auto object-cover"
-                quality={95}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 620px"
+                quality={100}
+                unoptimized={true}
                 priority={false}
               />
               {/* Bottom vignette */}

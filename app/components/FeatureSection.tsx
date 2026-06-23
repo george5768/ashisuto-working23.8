@@ -182,9 +182,17 @@ export default function FeatureSection() {
               animate={imagesReady ? 'visible' : 'hidden'}
               variants={fromRight}
               custom={0.05}
-              className="flex-[3] min-h-0 relative overflow-hidden rounded-2xl shadow-xl group"
+              className="flex-[3] min-h-0 relative overflow-hidden rounded-2xl shadow-xl group bg-gray-100"
             >
-              <Image src={gallery[0].src} alt={gallery[0].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" quality={95} sizes="(max-width: 768px) 100vw, 50vw" />
+              <Image 
+                src={gallery[0].src} 
+                alt={gallery[0].alt} 
+                width={800}
+                height={600}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+                quality={100}
+                unoptimized={true}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
             </motion.div>
 
@@ -195,9 +203,17 @@ export default function FeatureSection() {
                 animate={imagesReady ? 'visible' : 'hidden'}
                 variants={fromRight}
                 custom={0.26}
-                className="relative overflow-hidden rounded-2xl shadow-xl group h-full"
+                className="relative overflow-hidden rounded-2xl shadow-xl group h-full bg-gray-100"
               >
-                <Image src={gallery[1].src} alt={gallery[1].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" quality={95} sizes="(max-width: 768px) 50vw, 25vw" />
+                <Image 
+                  src={gallery[1].src} 
+                  alt={gallery[1].alt} 
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+                  quality={100}
+                  unoptimized={true}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
               </motion.div>
               <motion.div
@@ -205,9 +221,17 @@ export default function FeatureSection() {
                 animate={imagesReady ? 'visible' : 'hidden'}
                 variants={fromRight}
                 custom={0.46}
-                className="relative overflow-hidden rounded-2xl shadow-xl group h-full"
+                className="relative overflow-hidden rounded-2xl shadow-xl group h-full bg-gray-100"
               >
-                <Image src={gallery[2].src} alt={gallery[2].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" quality={95} sizes="(max-width: 768px) 50vw, 25vw" />
+                <Image 
+                  src={gallery[2].src} 
+                  alt={gallery[2].alt} 
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+                  quality={100}
+                  unoptimized={true}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </div>
@@ -275,10 +299,17 @@ export default function FeatureSection() {
             animate={imagesReady ? 'visible' : 'hidden'}
             variants={fadeUp}
             custom={i * 0.28}
-            className="relative h-48 overflow-hidden rounded-2xl shadow-xl group"
-            hidden
+            className="relative h-48 overflow-hidden rounded-2xl shadow-xl group hidden"
           >
-            <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+            <Image 
+              src={img.src} 
+              alt={img.alt} 
+              width={400}
+              height={300}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" 
+              quality={100}
+              unoptimized={true}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
           </motion.div>
         ))}

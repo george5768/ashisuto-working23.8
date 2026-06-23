@@ -456,6 +456,8 @@ const DocKITAServices: React.FC = () => {
                     alt={`DocKITA feature ${activeFeatureSlide + 1}`}
                     fill
                     className="object-contain"
+                    quality={100}
+                    unoptimized={true}
                     priority
                   />
                 </motion.div>
