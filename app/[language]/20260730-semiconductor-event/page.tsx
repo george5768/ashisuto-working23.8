@@ -237,7 +237,7 @@ export default function SemiconEventPage() {
       {/* ════════════════════════════════════════════════════════
           SUCCESS MODAL
       ════════════════════════════════════════════════════════ */}
-      {status === 'success' && (
+      {status !== 'success' && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={() => setStatus('idle')}
@@ -246,87 +246,68 @@ export default function SemiconEventPage() {
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.35, ease }}
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg flex flex-col max-h-[88vh]"
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[88vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Flyer image — pinned, never scrolls */}
-            <div className="shrink-0 rounded-t-2xl overflow-hidden">
+            {/* Top: Poster — full width, natural height, no cropping */}
+            <div className="shrink-0">
               <Image
-                src="/images/semicon-event/MSIA-Dialogue-Networking-Session.jpeg"
-                alt="MSIA Dialogue & Networking Session"
-                width={640}
-                height={400}
-                className="w-full object-cover object-top"
+                src="/images/semicon-event/Event-Poster-Cropped.png"
+                alt="From Semiconductor Know-How to AI ROI"
+                width={3508}
+                height={1069}
+                className="w-full h-auto"
               />
             </div>
 
-            {/* Scrollable body */}
-            <div className="overflow-y-auto px-6 pt-5 pb-2 space-y-4">
-              <div>
-                <p className="font-bold text-gray-900 text-base leading-snug">
-                  📢 Event Update: Registration Now Open!
-                </p>
-                <p className="text-gray-600 text-sm mt-2 leading-relaxed">
-                  Following our Save the Date announcement, we are pleased to share more details of the upcoming MSIA Dialogue &amp; Networking Session with YAB Datuk Seri Utama Ab Rauf Bin Yusof, Chief Minister of Melaka.
-                </p>
+            {/* Bottom: scrollable content + pinned footer */}
+            <div className="flex flex-col min-h-0">
+
+              {/* Scrollable body */}
+              <div className="overflow-y-auto px-6 pt-5 pb-2 space-y-4 flex-1">
+                {/* Confirmation notice */}
+                <div className="bg-[#2E9E8E]/10 border border-[#2E9E8E]/25 rounded-xl px-4 py-4 text-sm text-gray-700 space-y-2">
+                  <p className="font-semibold text-[#2E9E8E]">✅ Registration Submitted!</p>
+                  <p className="leading-relaxed">
+                    Our Marketing team will review your registration. An official confirmation email will be sent after 25 July 2026, once your attendance has been confirmed.
+                  </p>
+                  <p>We look forward to welcoming you to the event!</p>
+                </div>
+
+                <div>
+                  <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+                    A practical session for semiconductor and advanced manufacturing leaders — from real-world AI use cases to measurable operational ROI.
+                  </p>
+                </div>
+
+                <div className="text-sm text-gray-700 space-y-1.5 bg-gray-50 rounded-xl px-4 py-4">
+                  <p>🗓️ <span className="font-semibold">Date:</span> Thursday, 30 July 2026</p>
+                  <p>
+                    🕘 <span className="font-semibold">Time:</span> 1:00 PM – 4:20 PM{' '}
+                  </p>
+                  <p>📍 <span className="font-semibold">Venue:</span> Amari SPICE Penang 4F, Jadeite</p>
+                  <p>👔 <span className="font-semibold">Attire:</span> Business Casual</p>
+                </div>
+
+                <p className="text-sm text-gray-600">We look forward to welcoming you!</p>
               </div>
 
-              <div className="text-sm text-gray-700 space-y-1.5 bg-gray-50 rounded-xl px-4 py-4">
-                <p>🗓️ <span className="font-semibold">Date:</span> Thursday, 16 July 2026</p>
-                <p>
-                  🕘 <span className="font-semibold">Time:</span> 9:10 AM – 12:30 PM{' '}
-                  <span className="text-gray-500">(Registration starts at 8:30 AM)</span>
-                </p>
-                <p>📍 <span className="font-semibold">Venue:</span> Hatten Hotel Melaka</p>
-                <p>👔 <span className="font-semibold">Attire:</span> Business Casual</p>
-              </div>
-
-              <div className="text-sm text-gray-700">
-                <p className="font-semibold mb-1.5">Registration Fees:</p>
-                <ul className="list-disc list-inside space-y-1 text-gray-600">
-                  <li>MSIA Member – 2 Complimentary Passes (additional at RM150 per pass)</li>
-                  <li>Standard Pass (Non-Members) – RM300</li>
-                </ul>
-              </div>
-
-              <div className="text-sm text-gray-700">
-                <p className="mb-1">🎟️ <span className="font-semibold">Register now via the link below:</span></p>
-                <a
-                  href="https://www.msia.org.my/events/CM_Melaka_Dialogue"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#2E9E8E] hover:underline break-all"
+              {/* Footer — pinned, never scrolls */}
+              <div className="shrink-0 px-6 py-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="flex-1 border border-gray-300 text-gray-700 font-medium text-sm py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  https://www.msia.org.my/events/CM_Melaka_Dialogue
-                </a>
+                  Register another person
+                </button>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="flex-1 bg-[#F04E23] hover:bg-[#d4431e] text-white font-semibold text-sm py-2.5 rounded-lg transition-colors"
+                >
+                  Close
+                </button>
               </div>
 
-              <p className="text-sm text-gray-600">We look forward to welcoming you!</p>
-
-              {/* Confirmation notice */}
-              <div className="bg-[#2E9E8E]/10 border border-[#2E9E8E]/25 rounded-xl px-4 py-4 text-sm text-gray-700 space-y-2">
-                <p className="font-semibold text-[#2E9E8E]">✅ Registration Submitted!</p>
-                <p className="leading-relaxed">
-                  Our Marketing team will review your registration. An official confirmation email will be sent after 25 July 2026, once your attendance has been confirmed.
-                </p>
-                <p>We look forward to welcoming you to the event!</p>
-              </div>
-            </div>
-
-            {/* Footer — pinned, never scrolls */}
-            <div className="shrink-0 px-6 py-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => setStatus('idle')}
-                className="flex-1 border border-gray-300 text-gray-700 font-medium text-sm py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                Register another person
-              </button>
-              <button
-                onClick={() => setStatus('idle')}
-                className="flex-1 bg-[#F04E23] hover:bg-[#d4431e] text-white font-semibold text-sm py-2.5 rounded-lg transition-colors"
-              >
-                Close
-              </button>
             </div>
           </motion.div>
         </div>
