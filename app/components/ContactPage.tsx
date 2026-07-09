@@ -15,7 +15,7 @@ export default function ContactPage() {
       </div>
 
       {/* Location Cards */}
-      <div className="grid md:grid-cols-2 gap-12 mb-24">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-24">
         {/* Location 1 */}
         <div className="bg-muted p-6 rounded-xl shadow-sm hover:shadow-md transition">
           <h2 className="text-xl font-semibold mb-2">BUSINESS OFFICE</h2>
@@ -58,6 +58,31 @@ export default function ContactPage() {
             <Image
               src="/images/Crest.jpg"
               alt="Penang location"
+              width={600}
+              height={300}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </div>
+
+        {/* Location 3 */}
+        <div className="bg-muted p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <h2 className="text-xl font-semibold mb-2">JAPAN OFFICE</h2>
+          <p className="text-muted-foreground mb-4">
+            TKS Iwamotocho Building, 3-3-2,
+            <br />
+            Iwamoto-cho, Chiyoda-ku,
+            <br />
+            Tokyo 101-0032
+            <br />
+            Japan
+            <br />
+            <br />
+          </p>
+          <div className="aspect-[4/2] rounded-md overflow-hidden bg-slate-200">
+            <Image
+              src="/images/TKS.jpg"
+              alt="Japan Office - TKS Iwamotocho Building"
               width={600}
               height={300}
               className="object-cover w-full h-full"
