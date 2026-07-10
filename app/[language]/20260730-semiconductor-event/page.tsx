@@ -572,6 +572,8 @@ export default function SemiconEventPage() {
                 <p className="text-gray-500 text-base md:text-lg leading-relaxed">
                   Submit your details directly here. Seats are limited, and registration
                   is subject to organizer approval.
+                  <br /><br />
+                  <strong className="text-gray-700">Registration closes on 24 July 2026.</strong>
                 </p>
               </div>
             </div>
