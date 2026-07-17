@@ -549,6 +549,9 @@ const DocKITAServices: React.FC = () => {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">
             {t.dockita_pillars_title_pre}{t.dockita_pillars_title_pre ? ' ' : ''}<span className="text-orange-500">{t.dockita_pillars_title_highlight}</span>{t.dockita_pillars_title_post ? ' ' : ''}{t.dockita_pillars_title_post}
           </h2>
+          <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-gray-600 leading-relaxed">
+            {t.dockita_hero_description}
+          </p>
         </motion.div>
 
         <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">

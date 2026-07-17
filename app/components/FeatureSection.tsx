@@ -6,6 +6,8 @@ import CustomButton from '@/components/ui/custom-button';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useLanguageContext } from '@/app/context/LanguageContext';
+import { usePathname } from 'next/navigation';
+import { LANG_OPTIONS, Languages, Routes } from '@/app/enum/global';
 
 /* ── Easing ─────────────────────────────────────────────────────── */
 // Smooth expo-out curve — feels natural and never abrupt
@@ -70,6 +72,9 @@ const gallery = [
 /* ── Component ──────────────────────────────────────────────────── */
 export default function FeatureSection() {
   const { currentLanguage: t } = useLanguageContext();
+  const pathname = usePathname();
+  const defaultSlug = LANG_OPTIONS.find((l) => l.code === Languages.ENGLISH)!.slug;
+  const langRoute = '/' + (pathname.split('/')[1] || defaultSlug);
 
   const features = [
     { ...featureStyles[0], title: t.feature_section_card1_title, body: t.feature_section_card1_body },
@@ -132,11 +137,11 @@ export default function FeatureSection() {
             custom={0.44}
             className="flex justify-center gap-4 mt-10"
           >
-            <CustomButton href="/about" className="w-44 justify-center">
+            <CustomButton href={`${langRoute}${Routes.ABOUT}`} className="w-44 justify-center">
               {t.feature_section_btn_about}
             </CustomButton>
             <CustomButton
-              href="/contact"
+              href={`${langRoute}${Routes.CONTACT}`}
               className="w-44 justify-center from-transparent to-transparent bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700 shadow-md"
             >
               {t.feature_section_btn_contact}
@@ -322,11 +327,11 @@ export default function FeatureSection() {
           custom={0.72}
           className="grid grid-cols-2 gap-4"
         >
-          <CustomButton href="/about" className="w-full justify-center">
+          <CustomButton href={`${langRoute}${Routes.ABOUT}`} className="w-full justify-center">
             {t.feature_section_btn_about}
           </CustomButton>
           <CustomButton
-            href="/contact"
+            href={`${langRoute}${Routes.CONTACT}`}
             className="w-full justify-center from-transparent to-transparent bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700 shadow-md"
           >
             {t.feature_section_btn_contact}
