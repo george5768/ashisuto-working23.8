@@ -24,6 +24,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current)
@@ -79,10 +80,10 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
       <AnimatePresence>
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: reducedMotion ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.0, ease: 'easeInOut' }}
+          exit={{ opacity: reducedMotion ? 1 : 0 }}
+          transition={{ duration: reducedMotion ? 0 : 0.6, ease: 'easeInOut' }}
           className="absolute inset-0"
         >
           {/* Ken Burns background */}
@@ -90,9 +91,9 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
             key={`bg-${currentIndex}`}
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slides[currentIndex].backgroundImage})` }}
-            initial={{ scale: 1.12 }}
+            initial={{ scale: reducedMotion ? 1.0 : 1.06 }}
             animate={{ scale: 1.0 }}
-            transition={{ duration: (interval / 1000) + 1.5, ease: 'linear' }}
+            transition={{ duration: reducedMotion ? 0 : (interval / 1000) + 1, ease: 'linear' }}
             role="img"
             aria-label={slides[currentIndex].alt || `Slide ${currentIndex + 1}`}
           />
@@ -106,9 +107,9 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
           {/* Slide content – centred on mobile, left-aligned on desktop */}
           <div className="relative h-full flex items-center justify-center sm:justify-start px-20 sm:px-28 lg:px-36">
             <motion.div
-              initial={{ opacity: 0, y: 36 }}
+              initial={{ opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.8, ease: 'easeOut' }}
+              transition={{ delay: reducedMotion ? 0 : 0.25, duration: reducedMotion ? 0 : 0.6, ease: 'easeOut' }}
               className="w-full max-w-7xl"
             >
               {slides[currentIndex].header}

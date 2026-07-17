@@ -24,23 +24,30 @@ const renderHeader = ({
   langRoute?: string;
 }) => (
   <div className="max-w-3xl mx-auto sm:mx-0 text-center sm:text-left">
-    {/* Eyebrow */}
-    <div className="flex items-center justify-center sm:justify-start gap-3 mb-5">
-      <span className="hidden sm:block h-px w-10 bg-orange-400" />
-      <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.22em]">
-        {eyebrow}
-      </span>
+    {/* Eyebrow pill */}
+    <div className="flex items-center justify-center sm:justify-start gap-3 mb-6">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-orange-400/40 backdrop-blur-sm">
+        <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+        <span className="text-orange-300 text-[10px] font-bold uppercase tracking-[0.22em]">
+          {eyebrow}
+        </span>
+      </div>
     </div>
 
     {/* Title */}
-    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-5">
+    <h1 className="text-3xl sm:text-5xl lg:text-[3.6rem] font-extrabold text-white leading-[1.1] mb-5 drop-shadow-lg">
       {titleTop}
       <br />
       <span className="text-orange-400">{titleHighlight}</span>
     </h1>
 
+    {/* Separator */}
+    <div className="flex justify-center sm:justify-start mb-5">
+      <div className="h-px w-16 bg-gradient-to-r from-orange-400 to-transparent" />
+    </div>
+
     {/* Description */}
-    <p className="text-sm sm:text-base lg:text-lg text-white/70 mb-8 max-w-xl mx-auto sm:mx-0 leading-relaxed">
+    <p className="text-sm sm:text-base lg:text-lg text-white/75 mb-8 max-w-xl mx-auto sm:mx-0 leading-relaxed">
       {description}
     </p>
 
