@@ -171,10 +171,10 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
                   className="cursor-pointer focus:outline-none"
                 >
                   <div
-                    className={`h-1.5 rounded-full transition-all duration-400 ${
+                    className={`h-2.5 rounded-full transition-all duration-400 ${
                       index === currentIndex
                         ? 'w-8 bg-orange-400'
-                        : 'w-1.5 bg-white/40 hover:bg-white/70'
+                        : 'w-2.5 bg-white/40 hover:bg-white/70'
                     }`}
                   />
                 </button>

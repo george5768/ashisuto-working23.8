@@ -99,6 +99,7 @@ export default function SectorsSection() {
                   src={sector.icon}
                   alt={sector.name}
                   fill
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                   className="object-fill group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
