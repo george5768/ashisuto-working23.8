@@ -47,7 +47,7 @@ export default function SectorsSection() {
   ]
 
   return (
-    <section ref={sectionRef} className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+    <section ref={sectionRef} className="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
       {/* Subtle dot-grid texture */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.15]"

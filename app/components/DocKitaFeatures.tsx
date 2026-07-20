@@ -129,10 +129,11 @@ const ServiceCard: React.FC<{
       initial={{ opacity: 0, y: 44 }}
       animate={isTriggered ? { opacity: 1, y: 0 } : { opacity: 0, y: 44 }}
       transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: entryDelay }}
-      className={`group relative flex flex-col p-8 rounded-3xl transition-all duration-300 shadow-md hover:shadow-xl ${
+      whileHover={{ y: -6 }}
+      className={`group relative flex flex-col p-8 rounded-3xl transition-all duration-300 shadow-md hover:shadow-2xl ${
         isFeatured
-          ? 'bg-gradient-to-br from-orange-500 via-orange-400 to-amber-500 hover:shadow-orange-300/40'
-          : 'bg-gradient-to-br from-amber-50 to-orange-50 border border-orange-100 hover:shadow-orange-100/60'
+          ? 'bg-gradient-to-br from-orange-500 via-orange-400 to-amber-500 hover:shadow-orange-300/50 ring-1 ring-orange-300/60'
+          : 'bg-gradient-to-br from-amber-50 to-orange-50 border border-orange-100 hover:shadow-orange-100/70 hover:border-orange-200'
       }`}
     >
       <div className={`inline-block self-start px-3 py-1.5 rounded-full text-xs font-bold mb-6 ${
@@ -225,14 +226,14 @@ const ServiceCard: React.FC<{
       >
         <CustomButton
           href={service.link}
-          className={`group/btn flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+          compactPadding
+          className={`group/btn flex items-center justify-center gap-2 w-full rounded-xl font-bold text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
             isFeatured
               ? 'bg-white text-orange-600 hover:bg-orange-50 shadow-md'
               : `bg-gradient-to-r ${BTN_COLOR} text-white shadow-md hover:shadow-orange-200`
           }`}
         >
           {t.dockita_explore_btn}
-          <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
         </CustomButton>
       </motion.div>
     </motion.div>
@@ -354,10 +355,11 @@ const DocKITAServices: React.FC = () => {
 //   );
 
   return (
-    <section id="services" className="relative py-10 md:py-16 px-4 overflow-hidden">
+    <section id="services" className="relative py-10 px-4 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-100/50 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-amber-50/50 blur-[120px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] rounded-full bg-orange-100/60 blur-[130px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] rounded-full bg-amber-50/60 blur-[130px]" />
+        <div className="absolute top-[30%] right-[10%] w-[25%] h-[25%] rounded-full bg-orange-50/50 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -476,11 +478,11 @@ const DocKITAServices: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
-          className="relative rounded-[2rem] overflow-hidden mb-12"
+          className="relative rounded-[2rem] overflow-hidden mb-14"
         >
-          <div className="relative p-0">
+          <div className="relative p-4 rounded-[2rem] bg-gradient-to-br from-orange-200 via-white to-amber-100 shadow-xl">
             <div
-              className="relative w-full aspect-[16/9] rounded-[1.5rem] overflow-hidden"
+              className="relative w-full aspect-[16/9] rounded-[1.4rem] overflow-hidden bg-white ring-1 ring-orange-100"
               onMouseEnter={() => setIsFeatureHovered(true)}
               onMouseLeave={() => setIsFeatureHovered(false)}
             >
@@ -543,13 +545,14 @@ const DocKITAServices: React.FC = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-sm font-black uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-sm font-black uppercase tracking-widest mb-5">
             {t.dockita_pillars_badge}
           </div>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">
             {t.dockita_pillars_title_pre}{t.dockita_pillars_title_pre ? ' ' : ''}<span className="text-orange-500">{t.dockita_pillars_title_highlight}</span>{t.dockita_pillars_title_post ? ' ' : ''}{t.dockita_pillars_title_post}
           </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-gray-600 leading-relaxed">
+          <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-gradient-to-r from-orange-400 to-amber-500" />
+          <p className="mt-5 max-w-3xl mx-auto text-sm md:text-base text-gray-600 leading-relaxed">
             {t.dockita_hero_description}
           </p>
         </motion.div>

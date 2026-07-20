@@ -92,7 +92,7 @@ export default function FeatureSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8 bg-white"
+      className="relative overflow-hidden py-6 px-4 sm:px-6 lg:px-8 bg-white"
     >
       {/* Subtle left-side warm accent */}
       <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-[360px] h-[360px] rounded-full bg-amber-50/50 blur-[60px] pointer-events-none" />
