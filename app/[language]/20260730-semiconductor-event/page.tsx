@@ -9,54 +9,76 @@ import Image from 'next/image'
 const agendaItems = [
   {
     time: '13:00–13:20',
+    duration: '20 mins',
     agenda: 'Registration, Demo Booths & Networking',
     speaker: '',
   },
   {
     time: '13:20–13:35',
+    duration: '15 mins',
     agenda: 'Opening Speech',
     speaker:
       'YB Tuan Jagdeep Singh Deo, The Deputy Chief Minister II of Penang, Malaysia Science & Technology, Human Talent Development',
   },
   {
+    time: 'GROUP PHOTO',
+    duration: '',
+    agenda: '',
+    speaker: '',
+    isGroupPhoto: true,
+  },
+  {
     time: '13:35–13:50',
+    duration: '15 mins',
     agenda: 'Malaysia AI Adoption Insights',
     speaker: 'Mr. Duncan Lee, Director of Technology, MSIA',
   },
   {
     time: '13:50–14:10',
+    duration: '20 mins',
     agenda: 'AI Adoption Success Cases',
     speaker: 'Mr Tham Kok Tong, Specialist, Ashisuto',
   },
   {
     time: '14:10–14:40',
-    agenda: 'AI Strategy in Semicon Industry (based in Taiwan Experience)',
+    duration: '30 mins',
+    agenda: 'AI Strategy in Semicon Industry',
     speaker: 'Mr James Yang, Special Assistant to CEO, Profet AI',
   },
   {
-    time: '14:40–14:55',
+    time: '14:40–15:00',
+    duration: '20 mins',
+    agenda: 'Tea Break, Demo Booths & Networking',
+    speaker: '',
+  },
+  {
+    time: '15:00–15:15',
+    duration: '15 mins',
     agenda:
       'Building Cloud-Ready AI Foundations For Semiconductor: A Practical Path with AWS',
     speaker:
       'Ms Wong Mei Yin, Senior Partner Sales Manager, AWS (Amazon Web Services)',
   },
   {
-    time: '14:55–15:25',
-    agenda: 'Tea Break, Demo Booths & Networking',
-    speaker: '',
-  },
-  {
-    time: '15:25–15:50',
+    time: '15:15–15:40',
+    duration: '25 mins',
     agenda:
-      'Beyond Automation: How AI is Reshaping the Industry and Decision-Making in OSAT',
+      'Beyond Automation: How AI is Resharping the Industry and Decision-making in OSAT',
     speaker:
       'Dr Howard Hsieh, Consultant, Taiwan Artificial Intelligence Association',
   },
   {
-    time: '15:50–16:00',
+    time: '15:40–15:50',
+    duration: '10 mins',
     agenda: 'Closing Remarks',
     speaker:
       'Log. Cefinny JP Teh, Director of Business Development & Finance, Ashisuto',
+  },
+  {
+    time: '',
+    duration: '',
+    agenda: 'Networking',
+    speaker: '',
   },
 ]
 
@@ -506,29 +528,44 @@ export default function SemiconEventPage() {
                 <thead>
                   <tr className="bg-[#2E9E8E] text-white">
                     <th className="text-left px-6 py-4 font-semibold w-36">Time</th>
+                    <th className="text-left px-6 py-4 font-semibold w-28">Duration</th>
                     <th className="text-left px-6 py-4 font-semibold">Agenda</th>
-                    <th className="text-left px-6 py-4 font-semibold w-72">Speaker</th>
+                    <th className="text-left px-6 py-4 font-semibold w-72">PIC / Speaker</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {agendaItems.map((item, i) => (
-                    <tr
-                      key={item.time}
-                      className={
-                        i % 2 === 0
-                          ? 'bg-white border-t border-gray-100'
-                          : 'bg-gray-50/60 border-t border-gray-100'
-                      }
-                    >
-                      <td className="px-6 py-4 font-semibold text-gray-700 whitespace-nowrap align-top">
-                        {item.time}
-                      </td>
-                      <td className="px-6 py-4 text-gray-700 align-top">{item.agenda}</td>
-                      <td className="px-6 py-4 text-gray-500 align-top text-sm leading-relaxed">
-                        {item.speaker}
-                      </td>
-                    </tr>
-                  ))}
+                  {agendaItems.map((item, i) =>
+                    item.isGroupPhoto ? (
+                      <tr key="group-photo" className="bg-gray-100 border-t border-gray-200">
+                        <td
+                          colSpan={4}
+                          className="px-6 py-3 text-center font-bold text-gray-700 tracking-widest uppercase text-sm"
+                        >
+                          GROUP PHOTO
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr
+                        key={item.time + item.agenda}
+                        className={
+                          i % 2 === 0
+                            ? 'bg-white border-t border-gray-100'
+                            : 'bg-gray-50/60 border-t border-gray-100'
+                        }
+                      >
+                        <td className="px-6 py-4 font-semibold text-gray-700 whitespace-nowrap align-top">
+                          {item.time}
+                        </td>
+                        <td className="px-6 py-4 text-gray-500 whitespace-nowrap align-top text-sm">
+                          {item.duration}
+                        </td>
+                        <td className="px-6 py-4 text-gray-700 align-top">{item.agenda}</td>
+                        <td className="px-6 py-4 text-gray-500 align-top text-sm leading-relaxed">
+                          {item.speaker}
+                        </td>
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </div>
@@ -536,19 +573,37 @@ export default function SemiconEventPage() {
 
           {/* Mobile cards */}
           <div className="md:hidden space-y-3">
-            {agendaItems.map((item, i) => (
-              <FadeIn key={item.time} delay={i * 0.05}>
-                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-                  <span className="inline-block bg-[#2E9E8E] text-white text-sm font-semibold px-3 py-1 rounded-full mb-2">
-                    {item.time}
-                  </span>
-                  <p className="font-semibold text-gray-800 text-base mb-1">{item.agenda}</p>
-                  {item.speaker && (
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.speaker}</p>
-                  )}
+            {agendaItems.map((item, i) =>
+              item.isGroupPhoto ? (
+                <div
+                  key="group-photo"
+                  className="bg-gray-100 rounded-xl border border-gray-200 px-4 py-3 text-center font-bold text-gray-700 tracking-widest uppercase text-sm"
+                >
+                  GROUP PHOTO
                 </div>
-              </FadeIn>
-            ))}
+              ) : (
+                <FadeIn key={item.time + item.agenda} delay={i * 0.05}>
+                  <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      {item.time && (
+                        <span className="inline-block bg-[#2E9E8E] text-white text-sm font-semibold px-3 py-1 rounded-full">
+                          {item.time}
+                        </span>
+                      )}
+                      {item.duration && (
+                        <span className="inline-block bg-gray-100 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-full">
+                          {item.duration}
+                        </span>
+                      )}
+                    </div>
+                    <p className="font-semibold text-gray-800 text-base mb-1">{item.agenda}</p>
+                    {item.speaker && (
+                      <p className="text-gray-500 text-sm leading-relaxed">{item.speaker}</p>
+                    )}
+                  </div>
+                </FadeIn>
+              )
+            )}
           </div>
         </div>
       </section>
