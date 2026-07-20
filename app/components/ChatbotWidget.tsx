@@ -145,10 +145,6 @@ export default function ChatbotWidget() {
     }
   }, [isOpen])
 
-
-
-  
-
   // On mobile the chat panel covers the whole viewport, so lock the page's
   // own scroll while it's open — only the messages list should scroll.
   useEffect(() => {
@@ -161,10 +157,6 @@ export default function ChatbotWidget() {
       document.body.style.overflow = original
     }
   }, [isOpen])
-
-
-
-
 
   useEffect(() => {
     if (!isOpen) return
@@ -312,7 +304,7 @@ export default function ChatbotWidget() {
   return (
     <>
       <motion.div
-        className="fixed bottom-2 right-2 z-50"
+        className={`fixed bottom-2 right-2 ${isOpen ? 'z-[60]' : 'z-50'}`}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, duration: 0.5, type: 'spring', stiffness: 200 }}
