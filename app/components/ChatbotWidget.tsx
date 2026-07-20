@@ -98,7 +98,7 @@ type ApiHistoryItem = {
 }
 
 function getTime() {
-  return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })
 }
 
 export default function ChatbotWidget() {
@@ -141,7 +141,12 @@ export default function ChatbotWidget() {
     isOpenRef.current = isOpen
     if (isOpen) {
       setBotMsgCount(0)
-      setTimeout(() => inputRef.current?.focus(), 300)
+      // Skip auto-focusing the input on mobile so opening the chat doesn't
+      // immediately pop up the on-screen keyboard.
+      const isMobile = window.matchMedia('(max-width: 639px)').matches
+      if (!isMobile) {
+        setTimeout(() => inputRef.current?.focus(), 300)
+      }
     }
   }, [isOpen])
 
@@ -409,10 +414,10 @@ export default function ChatbotWidget() {
                     <button
                       type="button"
                       onClick={() => setIsOpen(false)}
-                      className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white/20 text-white transition hover:bg-white/30 cursor-pointer"
+                      className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white text-orange-600 shadow-md ring-1 ring-black/5 transition hover:bg-orange-50 hover:scale-105 active:scale-95 cursor-pointer"
                       aria-label="Close chat"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="h-5 w-5" strokeWidth={2.5} />
                     </button>
                   </div>
                 </div>
