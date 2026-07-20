@@ -145,6 +145,27 @@ export default function ChatbotWidget() {
     }
   }, [isOpen])
 
+
+
+  
+
+  // On mobile the chat panel covers the whole viewport, so lock the page's
+  // own scroll while it's open — only the messages list should scroll.
+  useEffect(() => {
+    if (!isOpen) return
+    const mq = window.matchMedia('(max-width: 639px)')
+    if (!mq.matches) return
+    const original = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = original
+    }
+  }, [isOpen])
+
+
+
+
+
   useEffect(() => {
     if (!isOpen) return
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -373,7 +394,7 @@ export default function ChatbotWidget() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.25, transition: { duration: 0.22, ease: 'easeIn' } }}
               transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute bottom-0 right-0 w-[calc(100vw-2rem)] sm:w-[400px] lg:w-[420px] h-[min(78vh,600px)] sm:h-[560px] lg:h-[620px] max-h-[calc(100vh-6.5rem)] bg-white rounded-3xl shadow-2xl border border-orange-100 overflow-hidden flex flex-col"
+              className="fixed inset-0 sm:absolute sm:inset-auto sm:bottom-0 sm:right-0 w-full h-full sm:w-[400px] lg:w-[420px] sm:h-[560px] lg:h-[620px] sm:max-h-[calc(100vh-6.5rem)] bg-white rounded-none sm:rounded-3xl shadow-2xl border-0 sm:border sm:border-orange-100 overflow-hidden flex flex-col"
             >
               <motion.div
                 initial={{ opacity: 0 }}
