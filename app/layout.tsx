@@ -13,7 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  description: "Co-create your workplace",
+  // description: "Co-create your workplace",
+  description: "Ashisuto Global Technologies delivers AI workflow management, prediction, and automation solutions for manufacturing, finance, healthcare, and the public sector in Malaysia and beyond.",
 };
 
 export default function RootLayout({

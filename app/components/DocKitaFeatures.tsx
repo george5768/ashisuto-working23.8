@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, Variants, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowRight, CheckCircle2, Zap, Pause, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import CustomButton from '@/components/ui/custom-button';
 import { Routes } from '../enum/global';
 import { useLanguageContext } from '../context/LanguageContext';
@@ -29,11 +29,6 @@ const sectionReveal: Variants = {
     y: 0,
     transition: { duration: 0.65, ease: easeStandard, staggerChildren: 0.12 },
   },
-};
-
-const itemReveal: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeStandard } },
 };
 
 // ── Responsive breakpoint hook ─────────────────────────────────────
@@ -247,21 +242,68 @@ const ServiceCard: React.FC<{
 const DocKITAServices: React.FC = () => {
   const { currentLanguage: t, getCurrentLang } = useLanguageContext();
   const langSlugStr = getCurrentLang().toLowerCase();
-  const featureSlides = ['/feature/1.png', '/feature/2.png', '/feature/4.png'];
+  const featureSlides = ['/images/feature_1.png', '/images/feature_2.png', '/images/feature_3.png'];
   const [activeFeatureSlide, setActiveFeatureSlide] = useState(0);
-  const [isFeaturePaused, setIsFeaturePaused] = useState(false);
   const [isFeatureHovered, setIsFeatureHovered] = useState(false);
+  const [featureProgress, setFeatureProgress] = useState(0);
+  const slideRafRef = useRef<number | null>(null);
+  const slideStartAtRef = useRef<number | null>(null);
+  const pausedElapsedRef = useRef(0);
   const isLg = useIsLg();
   const gridRef = useRef<HTMLDivElement>(null);
   const gridInView = useInView(gridRef, { once: true, amount: 0.35 });
 
   useEffect(() => {
-    if (isFeaturePaused || isFeatureHovered) return;
-    const timer = setInterval(() => {
-      setActiveFeatureSlide((prev) => (prev + 1) % featureSlides.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [featureSlides.length, isFeaturePaused, isFeatureHovered]);
+    const SLIDE_DURATION_MS = 6500;
+
+    if (isFeatureHovered) {
+      if (slideStartAtRef.current !== null) {
+        pausedElapsedRef.current += performance.now() - slideStartAtRef.current;
+      }
+      slideStartAtRef.current = null;
+
+      if (slideRafRef.current !== null) {
+        cancelAnimationFrame(slideRafRef.current);
+        slideRafRef.current = null;
+      }
+      return;
+    }
+
+    const animate = (timestamp: number) => {
+      if (slideStartAtRef.current === null) {
+        slideStartAtRef.current = timestamp;
+      }
+
+      const elapsedMs = pausedElapsedRef.current + (timestamp - slideStartAtRef.current);
+      const nextProgress = Math.min((elapsedMs / SLIDE_DURATION_MS) * 100, 100);
+
+      setFeatureProgress(nextProgress);
+
+      if (nextProgress >= 100) {
+        setActiveFeatureSlide((slide) => (slide + 1) % featureSlides.length);
+        pausedElapsedRef.current = 0;
+        slideStartAtRef.current = timestamp;
+        setFeatureProgress(0);
+      }
+
+      slideRafRef.current = requestAnimationFrame(animate);
+    };
+
+    slideRafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (slideRafRef.current !== null) {
+        cancelAnimationFrame(slideRafRef.current);
+        slideRafRef.current = null;
+      }
+    };
+  }, [featureSlides.length, isFeatureHovered]);
+
+  useEffect(() => {
+    setFeatureProgress(0);
+    pausedElapsedRef.current = 0;
+    slideStartAtRef.current = null;
+  }, [activeFeatureSlide]);
 
   const services: ServiceItem[] = [
     {
@@ -448,7 +490,7 @@ const DocKITAServices: React.FC = () => {
                   initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.7, ease: 'easeInOut' }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
                   className="absolute inset-0"
                 >
                   <Image
@@ -463,15 +505,13 @@ const DocKITAServices: React.FC = () => {
                 </motion.div>
               </AnimatePresence>
 
-              <button
-                type="button"
-                onClick={() => setIsFeaturePaused((prev) => !prev)}
-                aria-label={isFeaturePaused ? 'Resume feature slider' : 'Pause feature slider'}
-                className="absolute top-3 right-3 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/55 text-white text-xs font-semibold hover:bg-black/70 transition-colors"
-              >
-                {isFeaturePaused ? <Play size={14} /> : <Pause size={14} />}
-                {isFeaturePaused ? 'Play' : 'Pause'}
-              </button>
+              <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/20">
+                <motion.div
+                  className="h-full bg-orange-500"
+                  animate={{ width: `${featureProgress}%` }}
+                  transition={{ duration: 0.05, ease: 'linear' }}
+                />
+              </div>
             </div>
 
             <div className="mt-4 flex items-center justify-center gap-2">
@@ -481,11 +521,13 @@ const DocKITAServices: React.FC = () => {
                   type="button"
                   onClick={() => setActiveFeatureSlide(idx)}
                   aria-label={`Go to feature slide ${idx + 1}`}
-                  className="cursor-pointer"
+                  className="group cursor-pointer focus:outline-none"
                 >
                   <span
                     className={`block h-2.5 rounded-full transition-all duration-300 ${
-                      idx === activeFeatureSlide ? 'w-8 bg-orange-500' : 'w-2.5 bg-orange-200'
+                      idx === activeFeatureSlide
+                        ? 'w-8 bg-orange-500'
+                        : 'w-2.5 bg-orange-200 group-hover:bg-orange-400'
                     }`}
                   />
                 </button>
@@ -507,6 +549,9 @@ const DocKITAServices: React.FC = () => {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">
             {t.dockita_pillars_title_pre}{t.dockita_pillars_title_pre ? ' ' : ''}<span className="text-orange-500">{t.dockita_pillars_title_highlight}</span>{t.dockita_pillars_title_post ? ' ' : ''}{t.dockita_pillars_title_post}
           </h2>
+          <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-gray-600 leading-relaxed">
+            {t.dockita_hero_description}
+          </p>
         </motion.div>
 
         <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">

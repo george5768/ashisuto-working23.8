@@ -71,7 +71,7 @@ export default function CustomButton({
     },
   };
 
-  const MotionButton = motion(Button);
+  const MotionButton = motion.create(Button);
 
   return (
     <motion.div>

@@ -28,7 +28,7 @@ const categories: ServiceCategory[] = [
     mobilePosition: 'mb-8', // spacing on mobile
   },
   {
-    title: 'AI Application Customize',
+    title: 'AI Application Customization',
     items: ['Accelerated Agentic AI', 'AI Chatbot', 'Edge LLM'],
     position: 'md:top-48 md:right-0 md:absolute', // bottom right on desktop
     mobilePosition: 'mb-8', // spacing on mobile

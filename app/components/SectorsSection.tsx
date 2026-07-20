@@ -47,35 +47,35 @@ export default function SectorsSection() {
   ]
 
   return (
-    <section ref={sectionRef} className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+    <section ref={sectionRef} className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
       {/* Subtle dot-grid texture */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.22]"
+        className="absolute inset-0 pointer-events-none opacity-[0.15]"
         style={{
           backgroundImage: 'radial-gradient(circle, #94a3b8 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       />
       {/* Warm centre glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-orange-100/30 blur-[80px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-orange-100/25 blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-14">
           <motion.h2
-            initial={{ opacity: 0, y: 36, filter: 'blur(4px)' }}
-            animate={headerReady ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.75, ease: easeStandard }}
+            initial={{ opacity: 0, y: 28 }}
+            animate={headerReady ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, ease: easeStandard }}
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 mb-5"
           >
             {t.sectors_title_prefix}<span className="text-orange-500">{t.sectors_title_highlight}</span>
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
-            animate={headerReady ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.75, ease: easeStandard, delay: 0.18 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={headerReady ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, ease: easeStandard, delay: 0.15 }}
             onAnimationComplete={() => setCardsReady(true)}
             className="text-gray-600 text-lg max-w-2xl mx-auto"
           >
@@ -88,33 +88,37 @@ export default function SectorsSection() {
           {sectors.map((sector, idx) => (
             <motion.div
               key={sector.name}
-              initial={{ opacity: 0, y: 40, filter: 'blur(4px)' }}
-              animate={cardsReady ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-              transition={{ duration: 0.6, ease: easeStandard, delay: idx * 0.08 }}
-              className="group relative rounded-2xl overflow-hidden bg-white/60 backdrop-blur-lg border border-white/40 shadow-lg hover:shadow-xl transition-all duration-500"
+              initial={{ opacity: 0, y: 32 }}
+              animate={cardsReady ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, ease: easeStandard, delay: idx * 0.07 }}
+              className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
             >
               {/* Image */}
-              <div className="relative h-55">
+              <div className="relative h-48">
                 <Image
                   src={sector.icon}
                   alt={sector.name}
                   fill
-                  className="object-fill group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                {/* Dark gradient over image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                {/* Sector name badge over image */}
+                <div className="absolute bottom-3 left-4">
+                  <span className="text-white font-bold text-base drop-shadow-md">{sector.name}</span>
+                </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
-                  {sector.name}
-                </h3>
+              <div className="p-5">
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {sector.description}
                 </p>
               </div>
 
               {/* Accent line */}
-              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-gradient-to-r from-orange-500 to-amber-400 group-hover:w-full transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-gradient-to-r from-orange-500 to-amber-400 group-hover:w-full transition-all duration-400" />
             </motion.div>
           ))}
         </div>

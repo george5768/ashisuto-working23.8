@@ -15,7 +15,7 @@ export default function SolutionsSection() {
         }}
       />
       {/* Warm glow top-right */}
-      <div className="absolute -top-32 right-0 w-[520px] h-[520px] rounded-full bg-orange-100/40 blur-[100px] pointer-events-none" />
+      <div className="absolute -top-32 right-0 w-[400px] h-[400px] rounded-full bg-orange-100/30 blur-[70px] pointer-events-none" />
       <DocKITAFeatures />
     </section>
   );

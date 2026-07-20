@@ -6,38 +6,37 @@ import CustomButton from '@/components/ui/custom-button';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useLanguageContext } from '@/app/context/LanguageContext';
+import { usePathname } from 'next/navigation';
+import { LANG_OPTIONS, Languages, Routes } from '@/app/enum/global';
 
 /* ── Easing ─────────────────────────────────────────────────────── */
 // Smooth expo-out curve — feels natural and never abrupt
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 48, filter: 'blur(4px)' },
+  hidden: { opacity: 0, y: 30 },
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.85, ease, delay },
+    transition: { duration: 0.55, ease, delay },
   }),
 };
 
 const fromLeft = {
-  hidden: { opacity: 0, x: -72, filter: 'blur(3px)' },
+  hidden: { opacity: 0, x: -48 },
   visible: (delay: number) => ({
     opacity: 1,
     x: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.75, ease, delay },
+    transition: { duration: 0.55, ease, delay },
   }),
 };
 
 const fromRight = {
-  hidden: { opacity: 0, x: 72, filter: 'blur(3px)' },
+  hidden: { opacity: 0, x: 48 },
   visible: (delay: number) => ({
     opacity: 1,
     x: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.75, ease, delay },
+    transition: { duration: 0.55, ease, delay },
   }),
 };
 
@@ -70,6 +69,9 @@ const gallery = [
 /* ── Component ──────────────────────────────────────────────────── */
 export default function FeatureSection() {
   const { currentLanguage: t } = useLanguageContext();
+  const pathname = usePathname();
+  const defaultSlug = LANG_OPTIONS.find((l) => l.code === Languages.ENGLISH)!.slug;
+  const langRoute = '/' + (pathname.split('/')[1] || defaultSlug);
 
   const features = [
     { ...featureStyles[0], title: t.feature_section_card1_title, body: t.feature_section_card1_body },
@@ -83,8 +85,8 @@ export default function FeatureSection() {
    *   tabs done   → images slide in from the right (via onAnimationComplete)
    */
   const sectionRef  = useRef<HTMLElement>(null);
-  const headerReady = useInView(sectionRef, { once: true, amount: 0.40 });
-  const tabsReady   = useInView(sectionRef, { once: true, amount: 0.50 });
+  const headerReady = useInView(sectionRef, { once: true, amount: 0.25 });
+  const tabsReady   = useInView(sectionRef, { once: true, amount: 0.35 });
   const [imagesReady, setImagesReady] = useState(false);
 
   return (
@@ -93,9 +95,9 @@ export default function FeatureSection() {
       className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8 bg-white"
     >
       {/* Subtle left-side warm accent */}
-      <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-amber-50/60 blur-[90px] pointer-events-none" />
+      <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-[360px] h-[360px] rounded-full bg-amber-50/50 blur-[60px] pointer-events-none" />
       {/* Subtle bottom-right glow */}
-      <div className="absolute -bottom-24 -right-24 w-[360px] h-[360px] rounded-full bg-orange-50/50 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-orange-50/40 blur-[60px] pointer-events-none" />
       {/* ── Desktop / Tablet ─────────────────────────────────── */}
       <div className="relative max-w-7xl mx-auto hidden lg:block">
 
@@ -132,11 +134,11 @@ export default function FeatureSection() {
             custom={0.44}
             className="flex justify-center gap-4 mt-10"
           >
-            <CustomButton href="/about" className="w-44 justify-center">
+            <CustomButton href={`${langRoute}${Routes.ABOUT}`} className="w-44 justify-center">
               {t.feature_section_btn_about}
             </CustomButton>
             <CustomButton
-              href="/contact"
+              href={`${langRoute}${Routes.CONTACT}`}
               className="w-44 justify-center from-transparent to-transparent bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700 shadow-md"
             >
               {t.feature_section_btn_contact}
@@ -322,11 +324,11 @@ export default function FeatureSection() {
           custom={0.72}
           className="grid grid-cols-2 gap-4"
         >
-          <CustomButton href="/about" className="w-full justify-center">
+          <CustomButton href={`${langRoute}${Routes.ABOUT}`} className="w-full justify-center">
             {t.feature_section_btn_about}
           </CustomButton>
           <CustomButton
-            href="/contact"
+            href={`${langRoute}${Routes.CONTACT}`}
             className="w-full justify-center from-transparent to-transparent bg-white border-2 border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700 shadow-md"
           >
             {t.feature_section_btn_contact}

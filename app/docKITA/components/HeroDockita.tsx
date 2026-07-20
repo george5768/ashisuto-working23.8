@@ -4,6 +4,8 @@ import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { LANG_OPTIONS, Languages, Routes } from '@/app/enum/global';
 
 interface Feature {
   icon: ReactNode;
@@ -32,6 +34,10 @@ export default function HeroDockita ({
   imageSrc,
   features,
 }: LandingSectionProps) {
+  const pathname = usePathname();
+  const defaultSlug = LANG_OPTIONS.find((l) => l.code === Languages.ENGLISH)!.slug;
+  const langRoute = '/' + (pathname.split('/')[1] || defaultSlug);
+
   return (
     <section className="bg-background text-foreground px-4 sm:px-6 lg:px-20 xl:px-60 mx-auto max-w-screen-4xl">
 
@@ -53,7 +59,7 @@ export default function HeroDockita ({
           <p className="text-base sm:text-lg text-muted-foreground font-medium">{tagline}</p>
           <p className="text-sm sm:text-base text-muted-foreground">{description}</p>
           <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-4 w-full sm:w-auto">
-            <Link href="/contact">
+            <Link href={`${langRoute}${Routes.CONTACT}`}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
