@@ -24,13 +24,14 @@ const renderHeader = ({
   langRoute?: string;
 }) => (
   <div className="max-w-3xl mx-auto sm:mx-0 text-center sm:text-left">
-    {/* Eyebrow pill */}
-    <div className="flex items-center justify-center sm:justify-start gap-3 mb-6">
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-orange-400/40 backdrop-blur-sm">
-        <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-        <span className="text-orange-300 text-[10px] font-bold uppercase tracking-[0.22em]">
+    {/* Eyebrow */}
+    <div className="flex items-center justify-center sm:justify-start mb-5">
+      <div className="inline-flex items-center gap-2.5">
+        <span className="block w-7 h-px bg-orange-400" />
+        <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.28em]">
           {eyebrow}
         </span>
+        <span className="block w-2 h-2 rotate-45 bg-orange-400" />
       </div>
     </div>
 
@@ -53,7 +54,7 @@ const renderHeader = ({
 
     {/* Optional Button */}
     {showButton && (
-      <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
+      <div className="flex flex-wrap gap-4 justify-center sm:justify-start cursor-pointer">
         <CustomButton href={langRoute + Routes.CONTACT}>
           {buttonText}
         </CustomButton>
