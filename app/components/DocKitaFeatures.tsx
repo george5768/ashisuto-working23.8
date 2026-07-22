@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, Variants, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import CustomButton from '@/components/ui/custom-button';
 import { Routes } from '../enum/global';
 import { useLanguageContext } from '../context/LanguageContext';

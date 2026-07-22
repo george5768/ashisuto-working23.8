@@ -31,7 +31,6 @@ export const countryCodes: CountryCode[] = [
   { name: 'India', iso2: 'IN', dialCode: '+91' },
   { name: 'Indonesia', iso2: 'ID', dialCode: '+62' },
   { name: 'Ireland', iso2: 'IE', dialCode: '+353' },
-  { name: 'Israel', iso2: 'IL', dialCode: '+972' },
   { name: 'Italy', iso2: 'IT', dialCode: '+39' },
   { name: 'Japan', iso2: 'JP', dialCode: '+81' },
   { name: 'Kenya', iso2: 'KE', dialCode: '+254' },
