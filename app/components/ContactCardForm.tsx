@@ -7,7 +7,9 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Form, FormItem, FormLabel, FormControl } from '@/components/ui/form'
 import CustomButton from '@/components/ui/custom-button'
+import PhoneNumberInput from '@/components/ui/phone-number-input'
 import { filterHydrationSensitiveProps } from '@/lib/hydration-utils'
+import { defaultCountryCode, detectCountryCode, type CountryCode } from '@/lib/country-codes'
 import { CheckCircle2, XCircle, Loader2, Send } from 'lucide-react'
 
 interface FormData {
@@ -55,6 +57,8 @@ export default function ContactCardForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [isClient, setIsClient] = useState(false)
   const [cooldownRemaining, setCooldownRemaining] = useState(0)
+  const [mobileCountry, setMobileCountry] = useState<CountryCode>(defaultCountryCode)
+  const [mobileNumber, setMobileNumber] = useState('')
   const submitStartRef = useRef(0) // guards against sub-second double submits (double click / double tap)
   const honeypotRef = useRef<HTMLInputElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -63,6 +67,7 @@ export default function ContactCardForm() {
   // Prevent hydration mismatch by ensuring client-side only behavior
   useEffect(() => {
     setIsClient(true)
+    setMobileCountry(detectCountryCode())
   }, [])
 
   // Restore any active cooldown from a previous successful submission (persists across reloads)
@@ -89,12 +94,11 @@ export default function ContactCardForm() {
     return () => clearTimeout(timer)
   }, [status])
 
-  const form = useForm<FormData>({
+  const form = useForm<Omit<FormData, 'mobile'>>({
     defaultValues: {
       name: '',
       email: '',
       company: '',
-      mobile: '',
       message: '',
     },
     mode: 'onBlur',
@@ -104,10 +108,11 @@ export default function ContactCardForm() {
     resolver: undefined,
   })
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: Omit<FormData, 'mobile'>) => {
     // Silently drop bot submissions that fill the hidden honeypot field.
     if (honeypotRef.current?.value) {
       form.reset()
+      setMobileNumber('')
       setStatus('success')
       return
     }
@@ -121,15 +126,19 @@ export default function ContactCardForm() {
 
     setStatus('loading')
 
+    // Combine the selected country's dial code with the entered national number.
+    const mobile = mobileNumber.trim() ? `${mobileCountry.dialCode} ${mobileNumber.trim()}` : ''
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, mobile }),
       });
 
       if (res.ok) {
         form.reset()
+        setMobileNumber('')
         setStatus('success');
         if (typeof window !== 'undefined') {
           window.localStorage.setItem(COOLDOWN_STORAGE_KEY, String(now))
@@ -168,7 +177,7 @@ export default function ContactCardForm() {
               Send Us a <span className="text-orange-500">Message</span>
             </h2>
             <p className="text-gray-600 text-sm md:text-base">
-              Fill in your details below and our team will get back to you shortly.
+              Ready to transform your business with AI? Let&apos;s talk.
             </p>
           </div>
           
@@ -223,12 +232,12 @@ export default function ContactCardForm() {
                   <FormItem>
                     <FieldLabel htmlFor="mobile" label="Mobile Number" required={false} />
                     <FormControl>
-                      <Input
-                        type="tel"
+                      <PhoneNumberInput
                         id="mobile"
-                        placeholder="+60 12-345 6789"
-                        className={fieldClass}
-                        {...filterHydrationSensitiveProps(form.register('mobile'))}
+                        value={mobileNumber}
+                        country={mobileCountry}
+                        onCountryChange={setMobileCountry}
+                        onValueChange={setMobileNumber}
                       />
                     </FormControl>
                   </FormItem>

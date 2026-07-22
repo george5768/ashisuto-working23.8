@@ -35,14 +35,14 @@ export default function SectorsSection() {
       description: t.sectors_semiconductor_desc,
     },
     {
-      name: t.sectors_healthcare_name,
-      icon: '/images/healthcare.jpg',
-      description: t.sectors_healthcare_desc,
-    },
-    {
       name: t.sectors_public_name,
       icon: '/images/public-sector.jpg',
       description: t.sectors_public_desc,
+    },
+    {
+      name: t.sectors_healthcare_name,
+      icon: '/images/healthcare.jpg',
+      description: t.sectors_healthcare_desc,
     },
   ]
 
