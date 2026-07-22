@@ -47,9 +47,16 @@ function FieldLabel({
   )
 }
 
+// Anti-spam: minimum time (ms) that must pass between successful submissions.
+const RESUBMIT_COOLDOWN_MS = 60_000
+const COOLDOWN_STORAGE_KEY = 'contactForm:lastSubmittedAt'
+
 export default function ContactCardForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [isClient, setIsClient] = useState(false)
+  const [cooldownRemaining, setCooldownRemaining] = useState(0)
+  const submitStartRef = useRef(0) // guards against sub-second double submits (double click / double tap)
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const inView = useInView(sectionRef, { once: true, amount: 0.2 })
 
@@ -57,6 +64,23 @@ export default function ContactCardForm() {
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // Restore any active cooldown from a previous successful submission (persists across reloads)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const lastSubmittedAt = Number(window.localStorage.getItem(COOLDOWN_STORAGE_KEY) || 0)
+    const remaining = lastSubmittedAt + RESUBMIT_COOLDOWN_MS - Date.now()
+    if (remaining > 0) setCooldownRemaining(remaining)
+  }, [])
+
+  // Tick down the cooldown timer every second
+  useEffect(() => {
+    if (cooldownRemaining <= 0) return
+    const interval = setInterval(() => {
+      setCooldownRemaining((prev) => Math.max(0, prev - 1000))
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [cooldownRemaining])
 
   // Auto-dismiss the success/error banner after 1 minute
   useEffect(() => {
@@ -81,6 +105,20 @@ export default function ContactCardForm() {
   })
 
   const onSubmit = async (data: FormData) => {
+    // Silently drop bot submissions that fill the hidden honeypot field.
+    if (honeypotRef.current?.value) {
+      form.reset()
+      setStatus('success')
+      return
+    }
+
+    // Block resubmission while a cooldown from a previous success is active,
+    // and guard against rapid double-clicks/taps triggering duplicate requests.
+    if (cooldownRemaining > 0 || status === 'loading') return
+    const now = Date.now()
+    if (now - submitStartRef.current < 2000) return
+    submitStartRef.current = now
+
     setStatus('loading')
 
     try {
@@ -93,6 +131,10 @@ export default function ContactCardForm() {
       if (res.ok) {
         form.reset()
         setStatus('success');
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(COOLDOWN_STORAGE_KEY, String(now))
+        }
+        setCooldownRemaining(RESUBMIT_COOLDOWN_MS)
       } else {
         setStatus('error');
       }
@@ -133,6 +175,16 @@ export default function ContactCardForm() {
           {isClient && (
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
+                {/* Honeypot field: hidden from real users, bots often auto-fill it */}
+                <input
+                  ref={honeypotRef}
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <FormItem>
                     <FieldLabel htmlFor="name" label="Name" error={form.formState.errors.name?.message} />
@@ -210,7 +262,7 @@ export default function ContactCardForm() {
 
               <CustomButton
                 onClick={form.handleSubmit(onSubmit)}
-                disabled={status === 'loading'}
+                disabled={status === 'loading' || cooldownRemaining > 0}
                 hoverShadow
                 compactPadding
                 className="w-full justify-center normal-case tracking-normal text-base rounded-xl"
@@ -219,6 +271,10 @@ export default function ContactCardForm() {
                   <span className="flex items-center justify-center gap-2">
                     <Loader2 className="h-5 w-5 animate-spin" />
                     Sending...
+                  </span>
+                ) : cooldownRemaining > 0 ? (
+                  <span className="flex items-center justify-center gap-2">
+                    Please wait {Math.ceil(cooldownRemaining / 1000)}s before sending again
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-2">
