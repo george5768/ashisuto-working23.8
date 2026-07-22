@@ -34,7 +34,7 @@ export default function FeatureSection2() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
+      className="relative py-6 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden"
     >
       {/* Ambient bg layers */}
       <div className="absolute inset-0 pointer-events-none">

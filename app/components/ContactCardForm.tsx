@@ -5,9 +5,12 @@ import { motion, useInView } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
-import { Form, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
+import { Form, FormItem, FormLabel, FormControl } from '@/components/ui/form'
+import CustomButton from '@/components/ui/custom-button'
+import PhoneNumberInput from '@/components/ui/phone-number-input'
 import { filterHydrationSensitiveProps } from '@/lib/hydration-utils'
+import { defaultCountryCode, detectCountryCode, type CountryCode } from '@/lib/country-codes'
+import { CheckCircle2, XCircle, Loader2, Send } from 'lucide-react'
 
 interface FormData {
   name: string
@@ -19,23 +22,83 @@ interface FormData {
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+// Shared field styling — orange accent, soft orange background, clearer focus state.
+const fieldClass =
+  'w-full bg-orange-50/60 border border-orange-200 placeholder:text-gray-400 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:border-orange-400 transition-colors'
+
+// Label row that shows the field name, a required asterisk, and — when the
+// field fails validation — a small red inline error message right beside it.
+function FieldLabel({
+  htmlFor,
+  label,
+  required = true,
+  error,
+}: {
+  htmlFor: string
+  label: string
+  required?: boolean
+  error?: string
+}) {
+  return (
+    <FormLabel htmlFor={htmlFor} className="flex flex-wrap items-baseline gap-x-2">
+      <span>
+        {label} {required ? <span className="text-orange-500">*</span> : <span className="text-gray-400 font-normal normal-case">(Optional)</span>}
+      </span>
+      {error && <span className="text-red-500 text-xs font-normal normal-case">{error}</span>}
+    </FormLabel>
+  )
+}
+
+// Anti-spam: minimum time (ms) that must pass between successful submissions.
+const RESUBMIT_COOLDOWN_MS = 60_000
+const COOLDOWN_STORAGE_KEY = 'contactForm:lastSubmittedAt'
+
 export default function ContactCardForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [isClient, setIsClient] = useState(false)
+  const [cooldownRemaining, setCooldownRemaining] = useState(0)
+  const [mobileCountry, setMobileCountry] = useState<CountryCode>(defaultCountryCode)
+  const [mobileNumber, setMobileNumber] = useState('')
+  const submitStartRef = useRef(0) // guards against sub-second double submits (double click / double tap)
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const inView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   // Prevent hydration mismatch by ensuring client-side only behavior
   useEffect(() => {
     setIsClient(true)
+    setMobileCountry(detectCountryCode())
   }, [])
 
-  const form = useForm<FormData>({
+  // Restore any active cooldown from a previous successful submission (persists across reloads)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const lastSubmittedAt = Number(window.localStorage.getItem(COOLDOWN_STORAGE_KEY) || 0)
+    const remaining = lastSubmittedAt + RESUBMIT_COOLDOWN_MS - Date.now()
+    if (remaining > 0) setCooldownRemaining(remaining)
+  }, [])
+
+  // Tick down the cooldown timer every second
+  useEffect(() => {
+    if (cooldownRemaining <= 0) return
+    const interval = setInterval(() => {
+      setCooldownRemaining((prev) => Math.max(0, prev - 1000))
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [cooldownRemaining])
+
+  // Auto-dismiss the success/error banner after 1 minute
+  useEffect(() => {
+    if (status !== 'success' && status !== 'error') return
+    const timer = setTimeout(() => setStatus('idle'), 60000)
+    return () => clearTimeout(timer)
+  }, [status])
+
+  const form = useForm<Omit<FormData, 'mobile'>>({
     defaultValues: {
       name: '',
       email: '',
       company: '',
-      mobile: '',
       message: '',
     },
     mode: 'onBlur',
@@ -45,19 +108,42 @@ export default function ContactCardForm() {
     resolver: undefined,
   })
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: Omit<FormData, 'mobile'>) => {
+    // Silently drop bot submissions that fill the hidden honeypot field.
+    if (honeypotRef.current?.value) {
+      form.reset()
+      setMobileNumber('')
+      setStatus('success')
+      return
+    }
+
+    // Block resubmission while a cooldown from a previous success is active,
+    // and guard against rapid double-clicks/taps triggering duplicate requests.
+    if (cooldownRemaining > 0 || status === 'loading') return
+    const now = Date.now()
+    if (now - submitStartRef.current < 2000) return
+    submitStartRef.current = now
+
     setStatus('loading')
+
+    // Combine the selected country's dial code with the entered national number.
+    const mobile = mobileNumber.trim() ? `${mobileCountry.dialCode} ${mobileNumber.trim()}` : ''
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, mobile }),
       });
 
       if (res.ok) {
         form.reset()
+        setMobileNumber('')
         setStatus('success');
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(COOLDOWN_STORAGE_KEY, String(now))
+        }
+        setCooldownRemaining(RESUBMIT_COOLDOWN_MS)
       } else {
         setStatus('error');
       }
@@ -85,129 +171,140 @@ export default function ContactCardForm() {
         transition={{ duration: 0.8, ease }}
         className="relative z-10 max-w-2xl mx-auto"
       >
-        <div className="bg-white/97 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-10 border border-white/20">
+        <div className="bg-white/97 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-10 border border-orange-100/70 ring-1 ring-orange-100/40">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Send Us a Message</h2>
-            <p className="text-gray-600">We&apos;d love to hear from you</p>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 tracking-tight">
+              Send Us a <span className="text-orange-500">Message</span>
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base">
+              Ready to transform your business with AI? Let&apos;s talk.
+            </p>
           </div>
           
           {isClient && (
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
+                {/* Honeypot field: hidden from real users, bots often auto-fill it */}
+                <input
+                  ref={honeypotRef}
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <FormItem>
-                    <FormLabel htmlFor="name">Name</FormLabel>
+                    <FieldLabel htmlFor="name" label="Name" error={form.formState.errors.name?.message} />
                     <FormControl>
                       <Input
                         type="text"
                         id="name"
-                        placeholder="Name"
-                        className="w-full"
-                        {...filterHydrationSensitiveProps(form.register('name', { required: 'Name is required' }))}
+                        placeholder="Your full name"
+                        className={fieldClass}
+                        {...filterHydrationSensitiveProps(form.register('name', { required: 'Require' }))}
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                   
                   <FormItem>
-                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FieldLabel htmlFor="email" label="Email" error={form.formState.errors.email?.message} />
                     <FormControl>
                       <Input
                         type="email"
                         id="email"
-                        placeholder="Email"
-                        className="w-full"
+                        placeholder="you@company.com"
+                        className={fieldClass}
                         {...filterHydrationSensitiveProps(form.register('email', {
-                          required: 'Email is required',
+                          required: 'Require',
                           pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: 'Invalid email address'
+                            message: 'Incorrect format: (name@example.com)'
                           }
                         }))}
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <FormItem>
-                    <FormLabel htmlFor="mobile">Mobile Number</FormLabel>
+                    <FieldLabel htmlFor="mobile" label="Mobile Number" required={false} />
                     <FormControl>
-                      <Input
-                        type="tel"
+                      <PhoneNumberInput
                         id="mobile"
-                        placeholder="Mobile Number"
-                        className="w-full"
-                        {...filterHydrationSensitiveProps(form.register('mobile'))}
+                        value={mobileNumber}
+                        country={mobileCountry}
+                        onCountryChange={setMobileCountry}
+                        onValueChange={setMobileNumber}
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                   
                   <FormItem>
-                    <FormLabel htmlFor="company">Company Name</FormLabel>
+                    <FieldLabel htmlFor="company" label="Company Name" required={false} />
                     <FormControl>
                       <Input
                         type="text"
                         id="company"
-                        placeholder="Company Name"
-                        className="w-full"
+                        placeholder="Your company"
+                        className={fieldClass}
                         {...filterHydrationSensitiveProps(form.register('company'))}
                       />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 </div>
 
                 <FormItem>
-                  <FormLabel htmlFor="message">Your message</FormLabel>
+                  <FieldLabel htmlFor="message" label="Your Message" error={form.formState.errors.message?.message} />
                   <FormControl>
                     <Textarea
                       id="message"
-                      placeholder="Your message"
+                      placeholder="Tell us how we can help..."
                       rows={4}
-                      className="w-full"
-                      {...filterHydrationSensitiveProps(form.register('message', { required: 'Message is required' }))}
+                      className={fieldClass}
+                      {...filterHydrationSensitiveProps(form.register('message', { required: 'Require' }))}
                     />
                   </FormControl>
-                  <FormMessage />
                 </FormItem>
 
-              <Button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 md:py-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+              <CustomButton
+                onClick={form.handleSubmit(onSubmit)}
+                disabled={status === 'loading' || cooldownRemaining > 0}
+                hoverShadow
+                compactPadding
+                className="w-full justify-center normal-case tracking-normal text-base rounded-xl"
               >
                 {status === 'loading' ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
+                  <span className="flex items-center justify-center gap-2">
+                    <Loader2 className="h-5 w-5 animate-spin" />
                     Sending...
                   </span>
+                ) : cooldownRemaining > 0 ? (
+                  <span className="flex items-center justify-center gap-2">
+                    Please wait {Math.ceil(cooldownRemaining / 1000)}s before sending again
+                  </span>
                 ) : (
-                  'Send Message'
+                  <span className="flex items-center justify-center gap-2">
+                    <Send className="h-4 w-4" />
+                    Send Message
+                  </span>
                 )}
-              </Button>
+              </CustomButton>
 
               {status === 'success' && (
-                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-green-700 text-sm md:text-base flex items-center justify-center">
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
-                    </svg>
+                <div className="mt-0 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-green-700 text-sm md:text-base flex items-center justify-center gap-2">
+                    <CheckCircle2 className="w-5 h-5" />
                     Message sent successfully! We&apos;ll get back to you soon.
                   </p>
                 </div>
               )}
               {status === 'error' && (
                 <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-700 text-sm md:text-base flex items-center justify-center">
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"></path>
-                    </svg>
+                  <p className="text-red-700 text-sm md:text-base flex items-center justify-center gap-2">
+                    <XCircle className="w-5 h-5" />
                     Something went wrong. Please try again.
                   </p>
                 </div>

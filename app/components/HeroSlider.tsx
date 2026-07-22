@@ -71,7 +71,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 
   return (
     <div
-      className="relative w-full h-[65vh] sm:h-[73vh] lg:h-[82vh] min-h-[380px] sm:min-h-[500px] lg:min-h-[580px] max-h-[960px] overflow-hidden bg-gray-900"
+      className="relative w-full h-[70vh] sm:h-[76vh] lg:h-[88vh] min-h-[420px] sm:min-h-[520px] lg:min-h-[620px] max-h-[1000px] overflow-hidden bg-gray-900"
       role="region"
       aria-roledescription="carousel"
       aria-label="Hero slider"
@@ -99,13 +99,13 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
           />
 
           {/* Mobile: full dark overlay so centered text is always readable */}
-          <div className="absolute inset-0 bg-black/55 sm:bg-transparent" />
+          <div className="absolute inset-0 bg-black/60 sm:bg-transparent" />
           {/* Desktop: dark left panel fade */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-900/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-950/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-950/92 via-gray-900/65 sm:via-gray-900/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-gray-900/20" />
 
           {/* Slide content – centred on mobile, left-aligned on desktop */}
-          <div className="relative h-full flex items-center justify-center sm:justify-start px-20 sm:px-28 lg:px-36">
+          <div className="relative h-full flex items-center justify-center sm:justify-start px-6 sm:px-16 lg:px-28 xl:px-36">
             <motion.div
               initial={{ opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -121,61 +121,61 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
       {/* Left arrow */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20
-                  w-11 h-11 lg:w-13 lg:h-13 flex items-center justify-center
-                  rounded-full bg-white/10 hover:bg-orange-500
-                  border border-orange-500 hover:border-orange-400
+        className="absolute left-3 sm:left-5 lg:left-8 top-1/2 -translate-y-1/2 z-20
+                  w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 flex items-center justify-center
+                  rounded-full bg-black/20 hover:bg-orange-500
+                  border border-orange-400/60 hover:border-orange-400
                   text-orange-400 hover:text-white transition-all duration-300 hover:scale-110
-                  backdrop-blur-sm cursor-pointer"
+                  backdrop-blur-md cursor-pointer shadow-lg"
         aria-label="Previous slide"
         disabled={slides.length <= 1}
       >
-        <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
       </button>
 
       {/* Right arrow */}
       <button
         onClick={goToNext}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20
-                  w-11 h-11 lg:w-13 lg:h-13 flex items-center justify-center
-                  rounded-full bg-white/10 hover:bg-orange-500
-                  border border-orange-500 hover:border-orange-400
+        className="absolute right-3 sm:right-5 lg:right-8 top-1/2 -translate-y-1/2 z-20
+                  w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 flex items-center justify-center
+                  rounded-full bg-black/20 hover:bg-orange-500
+                  border border-orange-400/60 hover:border-orange-400
                   text-orange-400 hover:text-white transition-all duration-300 hover:scale-110
-                  backdrop-blur-sm cursor-pointer"
+                  backdrop-blur-md cursor-pointer shadow-lg"
         aria-label="Next slide"
         disabled={slides.length <= 1}
       >
-        <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
       </button>
 
       {/* Bottom bar: counter + dots + progress */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 px-6 pb-7 pt-20 bg-gradient-to-t from-black/50 to-transparent">
-        <div className="max-w-7xl mx-auto flex items-end gap-5">
+      <div className="absolute bottom-0 left-0 right-0 z-20 px-4 sm:px-6 pb-5 sm:pb-7 pt-16 sm:pt-20 bg-gradient-to-t from-black/60 to-transparent">
+        <div className="max-w-7xl mx-auto flex items-end gap-3 sm:gap-5">
 
           {/* Slide counter */}
-          <div className="flex items-baseline gap-1.5 text-white/70 font-mono tracking-widest flex-shrink-0 pb-1">
-            <span className="text-orange-400 font-bold text-lg leading-none">{slideNumber}</span>
+          <div className="flex items-baseline gap-1 sm:gap-1.5 text-white/70 font-mono tracking-widest flex-shrink-0 pb-1">
+            <span className="text-orange-400 font-bold text-base sm:text-lg leading-none">{slideNumber}</span>
             <span className="text-white/30 text-xs">/</span>
-            <span className="text-sm">{totalNumber}</span>
+            <span className="text-xs sm:text-sm">{totalNumber}</span>
           </div>
 
           {/* Dots + progress */}
           <div className="flex-1 flex flex-col gap-2">
             {/* Dot indicators */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
                   aria-label={`Go to slide ${index + 1}`}
                   aria-current={index === currentIndex ? 'true' : 'false'}
-                  className="cursor-pointer focus:outline-none"
+                  className="cursor-pointer focus:outline-none group"
                 >
                   <div
-                    className={`h-2.5 rounded-full transition-all duration-400 ${
+                    className={`h-2 sm:h-2.5 rounded-full transition-all duration-400 ${
                       index === currentIndex
-                        ? 'w-8 bg-orange-400'
-                        : 'w-2.5 bg-white/40 hover:bg-white/70'
+                        ? 'w-6 sm:w-8 bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.6)]'
+                        : 'w-2 sm:w-2.5 bg-white/40 group-hover:bg-white/70'
                     }`}
                   />
                 </button>
@@ -184,7 +184,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 
             {/* Auto-play fill bar */}
             {autoPlay && (
-              <div className="h-0.5 bg-white/20 rounded-full overflow-hidden">
+              <div className="h-px bg-white/20 rounded-full overflow-hidden">
                 <motion.div
                   key={`progress-${currentIndex}`}
                   className="h-full bg-orange-400 rounded-full origin-left"

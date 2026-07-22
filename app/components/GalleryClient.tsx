@@ -103,7 +103,8 @@ export default function GalleryClient({ data }: GalleryClientProps) {
                       <CustomButton 
                         href={`${langPrefix}/gallery/${post.currentSlug}`} 
                         hoverShadow={false}
-                        className="px-5 py-2.5 rounded-xl w-full sm:w-auto"
+                        compactPadding
+                        className="px-5 rounded-xl w-full sm:w-auto"
                       >
                         {tt.gallery_view_more}
                       </CustomButton>
