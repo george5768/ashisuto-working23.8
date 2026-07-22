@@ -24,7 +24,7 @@ const socials = [
 // ─── Column heading with a small accent bar ──────────────────────────────────
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h4 className="flex items-center gap-2 text-xs font-semibold text-orange-400 mb-5 uppercase tracking-widest">
+    <h4 className="flex items-center gap-2 text-xs font-bold text-orange-400 mb-5 uppercase tracking-widest">
       {children}
     </h4>
   );
@@ -66,7 +66,7 @@ function MobileSection({
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="group w-full flex items-center justify-between py-4 text-xs font-semibold text-orange-400 hover:text-orange-300 text-start cursor-pointer tracking-widest transition-colors duration-200"
+        className="group w-full flex items-center justify-between py-4 text-xs font-bold text-orange-400 hover:text-orange-300 text-start cursor-pointer tracking-widest transition-colors duration-200"
       >
         <span className="flex items-center gap-2 uppercase text-start">
           {title}
@@ -127,7 +127,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-950 text-white">
       {/* Thin solid accent line along the top edge */}
-      <div className="h-[2px] bg-orange-500" />
+      <div className="h-1 bg-gradient-to-r from-orange-600 via-amber-400 to-orange-600" />
 
       {/* ── Main content ── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-14 pb-10">
