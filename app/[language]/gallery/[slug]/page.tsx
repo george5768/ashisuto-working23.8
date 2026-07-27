@@ -38,7 +38,10 @@ function toParagraphs(value: GalleryBlock[] | string | undefined): string[] {
   }
 
   if (typeof value === 'string') {
-    return value.trim() ? [value.trim()] : [];
+    return value
+      .split(/\r?\n\s*\r?\n|\r?\n/) // split on blank lines OR single newlines
+      .map((line) => line.trim())
+      .filter(Boolean);
   }
 
   return value
@@ -110,6 +113,7 @@ export default async function GalleryPostPage({
     );
   }
 
+  
   const bodyParagraphs = toParagraphs(post.body);
   const contentParagraphs = toParagraphs(post.content);
   let safeParagraphs: string[] = [];
@@ -158,14 +162,18 @@ export default async function GalleryPostPage({
       ) : null}
 
       <section className="space-y-5 text-base leading-8 text-slate-800 sm:text-lg">
-        {safeParagraphs.length > 0 ? (
-          safeParagraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
-        ) : post.shortDescription ? (
-          <p>{post.shortDescription}</p>
-        ) : (
-          <p>More details for this gallery post will be published soon.</p>
-        )}
-      </section>
+  {safeParagraphs.length > 0 ? (
+    safeParagraphs.map((paragraph, index) => (
+      <p key={index} className="whitespace-pre-line">
+        {paragraph}
+      </p>
+    ))
+  ) : post.shortDescription ? (
+    <p className="whitespace-pre-line">{post.shortDescription}</p>
+  ) : (
+    <p>More details for this gallery post will be published soon.</p>
+  )}
+</section>
     </article>
   );
 }
