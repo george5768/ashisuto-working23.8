@@ -72,7 +72,7 @@ const agendaItems = [
     duration: '10 mins',
     agenda: 'Closing Remarks',
     speaker:
-      'Log. Cefinny JP Teh, Director of Business Development & Finance, Ashisuto',
+      'His Excellency Mr Machida Shinya, Consul-General of Japan in Penang',
   },
   {
     time: '',

@@ -104,7 +104,7 @@ export default async function GalleryPostPage({
     return (
       <article className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="mb-6">
-          <CustomButton href={`/${language}/gallery`} className="px-5 py-2.5 rounded-xl text-xs">
+          <CustomButton href={`/${language}/gallery`} compactPadding className="px-5 rounded-xl text-xs">
             Back to Gallery
           </CustomButton>
         </div>
@@ -130,7 +130,7 @@ export default async function GalleryPostPage({
   return (
     <article className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-6">
-        <CustomButton href={`/${language}/gallery`} className="px-5 py-2.5 rounded-xl text-xs">
+        <CustomButton href={`/${language}/gallery`} compactPadding className="px-5 rounded-xl text-xs">
           Back to Gallery
         </CustomButton>
       </div>

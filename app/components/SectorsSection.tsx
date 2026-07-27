@@ -35,19 +35,19 @@ export default function SectorsSection() {
       description: t.sectors_semiconductor_desc,
     },
     {
-      name: t.sectors_healthcare_name,
-      icon: '/images/healthcare.jpg',
-      description: t.sectors_healthcare_desc,
-    },
-    {
       name: t.sectors_public_name,
       icon: '/images/public-sector.jpg',
       description: t.sectors_public_desc,
     },
+    {
+      name: t.sectors_healthcare_name,
+      icon: '/images/healthcare.jpg',
+      description: t.sectors_healthcare_desc,
+    },
   ]
 
   return (
-    <section ref={sectionRef} className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+    <section ref={sectionRef} className="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
       {/* Subtle dot-grid texture */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.15]"
