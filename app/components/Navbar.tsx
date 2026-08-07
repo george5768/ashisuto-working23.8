@@ -82,6 +82,7 @@ export default function Navbar() {
 
   const navItems = [
     { href: `${langRoute}${Routes.ABOUT}`, label: currentLanguage.header_about },
+    { href: 'https://www.ashisuto-tech.com/en/20260730-semiconductor-event', label: 'EVENT' },
     {
       label: currentLanguage.header_solutions,
       dropdown: [
