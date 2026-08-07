@@ -82,7 +82,7 @@ export default function Navbar() {
 
   const navItems = [
     { href: `${langRoute}${Routes.ABOUT}`, label: currentLanguage.header_about },
-    { href: 'https://www.ashisuto-tech.com/en/20260730-semiconductor-event', label: 'EVENT' },
+   
     {
       label: currentLanguage.header_solutions,
       dropdown: [
@@ -100,6 +100,8 @@ export default function Navbar() {
         { href: `${langRoute}${Routes.MANUFACTURING_OPERATION}`, label: currentLanguage.header_services_selection_3 },
       ],
     },
+
+     { href: 'https://www.ashisuto-tech.com/en/20260730-semiconductor-event', label: 'EVENT' },
     // { href: `${langRoute}${Routes.PARTNERS}`, label: currentLanguage.header_partners },
     { href: `${langRoute}${Routes.GALLERY}`, label: currentLanguage.header_gallery },
     { href: `${langRoute}${Routes.CONTACT}`, label: currentLanguage.header_contact },
