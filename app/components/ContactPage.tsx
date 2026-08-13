@@ -20,19 +20,19 @@ export default function ContactPage() {
         <div className="bg-muted p-6 rounded-xl shadow-sm hover:shadow-md transition">
           <h2 className="text-xl font-semibold mb-2">BUSINESS OFFICE</h2>
           <p className="text-muted-foreground mb-4">
-            Tun Razak Exchange (TRX) @ Exchange 106,
+            Block D, Platinum Sentra, 
             <br />
-            Level 23 - Spaces, 
+            Jalan Stesen Sentral 2,  
             <br />
-            Jalan Tun Razak, 55188
+            Level 3 - 5,
             <br />
-            Kuala Lumpur, Malaysia
+           Kuala Lumpur. Malaysia.
             <br />
             <br />
           </p>
           <div className="aspect-[4/2] rounded-md overflow-hidden bg-slate-200">
             <Image
-              src="/images/TRX.jpg"
+              src="/images/platinum-sentral.jpg"
               alt="KL location"
               width={600}
               height={300}
