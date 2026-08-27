@@ -71,7 +71,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({
 
   return (
     <div
-      className="relative w-full h-[70vh] sm:h-[76vh] lg:h-[88vh] min-h-[420px] sm:min-h-[520px] lg:min-h-[620px] max-h-[1000px] overflow-hidden bg-gray-900"
+      className="relative w-full h-[46vh] sm:h-[50vh] lg:h-[57vh] min-h-[280px] sm:min-h-[340px] lg:min-h-[400px] max-h-[700px] overflow-hidden bg-gray-900"
       role="region"
       aria-roledescription="carousel"
       aria-label="Hero slider"

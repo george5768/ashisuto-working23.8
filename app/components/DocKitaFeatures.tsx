@@ -478,62 +478,81 @@ const DocKITAServices: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
-          className="relative rounded-[2rem] overflow-hidden mb-14"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-14"
         >
-          <div className="relative p-4 rounded-[2rem] bg-gradient-to-br from-orange-200 via-white to-amber-100 shadow-xl">
-            <div
-              className="relative w-full aspect-[16/9] rounded-[1.4rem] overflow-hidden bg-white ring-1 ring-orange-100"
-              onMouseEnter={() => setIsFeatureHovered(true)}
-              onMouseLeave={() => setIsFeatureHovered(false)}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeFeatureSlide}
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35, ease: 'easeInOut' }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={featureSlides[activeFeatureSlide]}
-                    alt={`DocKITA feature ${activeFeatureSlide + 1}`}
-                    fill
-                    className="object-contain"
-                    quality={100}
-                    unoptimized={true}
-                    priority
-                  />
-                </motion.div>
-              </AnimatePresence>
+       
+          <div className="relative rounded-[2rem] overflow-hidden">
+            <div className="relative p-3 rounded-[2rem] bg-gradient-to-br from-orange-200 via-white to-amber-100 shadow-xl h-full">
+              <div
+                className="relative w-full aspect-[16/9] rounded-[1.4rem] overflow-hidden bg-white ring-1 ring-orange-100"
+                onMouseEnter={() => setIsFeatureHovered(true)}
+                onMouseLeave={() => setIsFeatureHovered(false)}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeFeatureSlide}
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={featureSlides[activeFeatureSlide]}
+                      alt={`DocKITA feature ${activeFeatureSlide + 1}`}
+                      fill
+                      className="object-contain"
+                      quality={100}
+                      unoptimized={true}
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
-              <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/20">
-                <motion.div
-                  className="h-full bg-orange-500"
-                  animate={{ width: `${featureProgress}%` }}
-                  transition={{ duration: 0.05, ease: 'linear' }}
-                />
+                <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/20">
+                  <motion.div
+                    className="h-full bg-orange-500"
+                    animate={{ width: `${featureProgress}%` }}
+                    transition={{ duration: 0.05, ease: 'linear' }}
+                  />
+                </div>
+              </div>
+
+              <div className="mt-3 flex items-center justify-center gap-2">
+                {featureSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveFeatureSlide(idx)}
+                    aria-label={`Go to feature slide ${idx + 1}`}
+                    className="group cursor-pointer focus:outline-none"
+                  >
+                    <span
+                      className={`block h-2 rounded-full transition-all duration-300 ${
+                        idx === activeFeatureSlide
+                          ? 'w-6 bg-orange-500'
+                          : 'w-2 bg-orange-200 group-hover:bg-orange-400'
+                      }`}
+                    />
+                  </button>
+                ))}
               </div>
             </div>
+          </div>
 
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {featureSlides.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setActiveFeatureSlide(idx)}
-                  aria-label={`Go to feature slide ${idx + 1}`}
-                  className="group cursor-pointer focus:outline-none"
-                >
-                  <span
-                    className={`block h-2.5 rounded-full transition-all duration-300 ${
-                      idx === activeFeatureSlide
-                        ? 'w-8 bg-orange-500'
-                        : 'w-2.5 bg-orange-200 group-hover:bg-orange-400'
-                    }`}
-                  />
-                </button>
-              ))}
+         
+          <div className="relative rounded-[2rem] overflow-hidden">
+            <div className="relative p-3 rounded-[2rem] bg-gradient-to-br from-slate-800 via-slate-900 to-black shadow-xl h-full flex flex-col">
+              <div className="relative w-full aspect-[16/9] rounded-[1.4rem] overflow-hidden bg-slate-900 ring-1 ring-white/10">
+                <video
+                  src="/videos/video.mp4"
+                  controls
+                  autoPlay
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </motion.div>

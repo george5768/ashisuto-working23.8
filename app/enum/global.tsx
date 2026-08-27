@@ -14,6 +14,7 @@ enum ImageAlt {
 enum Routes {
     HOME = "/",
     ABOUT = "/about",
+    AWS = "/aws",
     PARTNERS = "/partners",
     GALLERY = "/gallery",
     CONTACT = "/contact",

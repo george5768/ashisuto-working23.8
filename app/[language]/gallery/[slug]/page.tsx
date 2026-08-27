@@ -75,15 +75,20 @@ async function getPosts(): Promise<GalleryPost[]> {
 }
 
 export async function generateStaticParams() {
-  const query = `*[_type == 'gallery' && defined(slug.current)]{ "slug": slug.current }`;
-  const slugs = await client.fetch<{ slug: string }[]>(query, {}, { next: { revalidate: 60, tags: ['gallery'] } });
+  try {
+    const query = `*[_type == 'gallery' && defined(slug.current)]{ "slug": slug.current }`;
+    const slugs = await client.fetch<{ slug: string }[]>(query, {}, { next: { revalidate: 60, tags: ['gallery'] } });
 
-  return LANG_OPTIONS.flatMap((lang) =>
-    slugs.map((item) => ({
-      language: lang.slug,
-      slug: item.slug,
-    }))
-  );
+    return LANG_OPTIONS.flatMap((lang) =>
+      slugs.map((item) => ({
+        language: lang.slug,
+        slug: item.slug,
+      }))
+    );
+  } catch {
+  
+    return [];
+  }
 }
 
 export default async function GalleryPostPage({

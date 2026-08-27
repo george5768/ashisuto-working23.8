@@ -14,6 +14,22 @@ export default function SectorsSection() {
   const [cardsReady, setCardsReady] = useState(false)
 
   const sectors = [
+
+     {
+      name: t.sectors_semiconductor_name,
+      icon: '/images/semiconductor.jpg',
+      description: t.sectors_semiconductor_desc,
+    },
+     {
+      name: t.sectors_public_name,
+      icon: '/images/public-sector.jpg',
+      description: t.sectors_public_desc,
+    },
+     {
+      name: t.sectors_manufacturing_name,
+      icon: '/images/manufacturing.jpg',
+      description: t.sectors_manufacturing_desc,
+    },
     {
       name: t.sectors_finance_name,
       icon: '/images/financial.jpg',
@@ -25,25 +41,10 @@ export default function SectorsSection() {
       description: t.sectors_construction_desc,
     },
     {
-      name: t.sectors_manufacturing_name,
-      icon: '/images/manufacturing.jpg',
-      description: t.sectors_manufacturing_desc,
-    },
-    {
-      name: t.sectors_semiconductor_name,
-      icon: '/images/semiconductor.jpg',
-      description: t.sectors_semiconductor_desc,
-    },
-    {
-      name: t.sectors_public_name,
-      icon: '/images/public-sector.jpg',
-      description: t.sectors_public_desc,
-    },
-    {
       name: t.sectors_healthcare_name,
       icon: '/images/healthcare.jpg',
       description: t.sectors_healthcare_desc,
-    },
+    }
   ]
 
   return (

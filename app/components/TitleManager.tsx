@@ -33,6 +33,7 @@ export default function TitleManager() {
       [Routes.ROBOTICS]:                    currentLanguage.page_tab_title_robotics,
       [Routes.DIGITIZE_RECORDS]:            currentLanguage.page_tab_title_digitize_records,
       [Routes.MANUFACTURING_OPERATION]:     currentLanguage.page_tab_title_manufacturing_operation,
+      [Routes.AWS]:                         currentLanguage.page_tab_title_aws,
     };
 
     const name = PAGE_NAMES[pagePath];

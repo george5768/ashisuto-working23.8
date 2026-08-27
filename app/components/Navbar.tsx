@@ -82,7 +82,7 @@ export default function Navbar() {
 
   const navItems = [
     { href: `${langRoute}${Routes.ABOUT}`, label: currentLanguage.header_about },
-   
+    { href: `${langRoute}${Routes.AWS}`, label: 'AWS' },
     {
       label: currentLanguage.header_solutions,
       dropdown: [
@@ -378,7 +378,7 @@ export default function Navbar() {
                                       onClick={() => {
                                         setOpenDropdown(null);
                                         setMobileOpen(false);
-                                      }}
+                                      }} 
                                       className={`flex items-center pl-10 pr-6 py-3 text-sm font-bold uppercase tracking-wider transition-colors cursor-pointer border-l-4 ml-4 ${
                                         pathname === sub.href
                                           ? 'border-orange-600 bg-orange-50 text-orange-700'

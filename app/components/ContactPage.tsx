@@ -18,15 +18,15 @@ export default function ContactPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-24">
         {/* Location 1 */}
         <div className="bg-muted p-6 rounded-xl shadow-sm hover:shadow-md transition">
-          <h2 className="text-xl font-semibold mb-2">BUSINESS OFFICE</h2>
+          <h2 className="text-xl font-semibold mb-2">KUALA LUMPUR, SPACES PLATINUM SENTRAL</h2>
           <p className="text-muted-foreground mb-4">
-            Block D, Platinum Sentra, 
+            Block D, Platinum Sentral, 
             <br />
             Jalan Stesen Sentral 2,  
             <br />
             Level 3 - 5,
             <br />
-           Kuala Lumpur. Malaysia.
+           50470 Kuala Lumpur. Malaysia.
             <br />
             <br />
           </p>

@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
         port:"",
+      },
+      {
+        protocol: "https",
+        hostname: "d0.awsstatic.com",
+        port: "",
       }
     ],
     // Allow images from the public directory

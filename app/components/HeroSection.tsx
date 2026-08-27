@@ -25,30 +25,30 @@ const renderHeader = ({
 }) => (
   <div className="max-w-3xl mx-auto sm:mx-0 text-center sm:text-left">
     {/* Eyebrow */}
-    <div className="flex items-center justify-center sm:justify-start mb-5">
-      <div className="inline-flex items-center gap-2.5">
-        <span className="block w-7 h-px bg-orange-400" />
-        <span className="text-orange-400 text-[11px] font-bold uppercase tracking-[0.28em]">
+    <div className="flex items-center justify-center sm:justify-start mb-3">
+      <div className="inline-flex items-center gap-2">
+        <span className="block w-5 h-px bg-orange-400" />
+        <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.28em]">
           {eyebrow}
         </span>
-        <span className="block w-2 h-2 rotate-45 bg-orange-400" />
+        <span className="block w-1.5 h-1.5 rotate-45 bg-orange-400" />
       </div>
     </div>
 
     {/* Title */}
-    <h1 className="text-3xl sm:text-5xl lg:text-[3.6rem] font-extrabold text-white leading-[1.1] mb-5 drop-shadow-lg">
+    <h1 className="text-xl sm:text-3xl lg:text-[2.4rem] font-extrabold text-white leading-[1.15] mb-3 drop-shadow-lg">
       {titleTop}
       <br />
       <span className="text-orange-400">{titleHighlight}</span>
     </h1>
 
     {/* Separator */}
-    <div className="flex justify-center sm:justify-start mb-5">
-      <div className="h-px w-16 bg-gradient-to-r from-orange-400 to-transparent" />
+    <div className="flex justify-center sm:justify-start mb-3">
+      <div className="h-px w-12 bg-gradient-to-r from-orange-400 to-transparent" />
     </div>
 
     {/* Description */}
-    <p className="text-sm sm:text-base lg:text-lg text-white/75 mb-8 max-w-xl mx-auto sm:mx-0 leading-relaxed">
+    <p className="text-xs sm:text-sm lg:text-base text-white/75 mb-5 max-w-xl mx-auto sm:mx-0 leading-relaxed">
       {description}
     </p>
 
