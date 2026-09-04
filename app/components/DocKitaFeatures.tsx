@@ -557,9 +557,9 @@ const DocKITAServices: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div
+        <motion.div 
           variants={sectionReveal}
-          initial="hidden"
+          initial="hidden" 
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           className="text-center mb-14"
@@ -571,9 +571,9 @@ const DocKITAServices: React.FC = () => {
             {t.dockita_pillars_title_pre}{t.dockita_pillars_title_pre ? ' ' : ''}<span className="text-orange-500">{t.dockita_pillars_title_highlight}</span>{t.dockita_pillars_title_post ? ' ' : ''}{t.dockita_pillars_title_post}
           </h2>
           <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-gradient-to-r from-orange-400 to-amber-500" />
-          <p className="mt-5 max-w-3xl mx-auto text-sm md:text-base text-gray-600 leading-relaxed">
+          {/* <p className="mt-5 max-w-3xl mx-auto text-sm md:text-base text-gray-600 leading-relaxed">
             {t.dockita_hero_description}
-          </p>
+          </p> */}
         </motion.div>
 
         <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">

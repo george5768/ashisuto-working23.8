@@ -10,12 +10,7 @@ import {
   Wallet,
   BrainCircuit,
   Sparkles,
-  Database,
-  Lock,
   Workflow,
-  ScanEye,
-  KeyRound,
-  ClipboardList,
   ArrowRight,
   CheckCircle2,
   Globe2,
@@ -23,6 +18,9 @@ import {
 import CustomButton from '@/components/ui/custom-button';
 import { Routes } from '@/app/enum/global';
 import { useLanguageContext } from '@/app/context/LanguageContext';
+import { SageMakerIcon, RDSIcon, CloudTrailIcon, S3Icon, Ec2Icon, CognitoIcon, BedRockIcon, KMSIcon, CloudFrontIcon } from './aws-service-icons';
+
+type ServiceIcon = React.ComponentType<{ size?: number; className?: string }>;
 
 const easeStandard: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -35,6 +33,14 @@ const stagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
 };
+
+// ── Hero stats panel ─────────────────────────────────────────────────
+const HERO_STATS = [
+  { icon: Globe2, value: '34+', label: 'Global regions & availability zones' },
+  { icon: ShieldCheck, value: '100%', label: 'Enterprise-grade encryption by default' },
+  { icon: Gauge, value: 'Elastic', label: 'Auto-scaling infrastructure on demand' },
+  { icon: BrainCircuit, value: '200+', label: 'AI & cloud services ready to deploy' },
+];
 
 // ── Data ───────────────────────────────────────────────────────────
 const WHY_AWS = [
@@ -83,9 +89,9 @@ const SERVICE_INTEGRATIONS = [
     title: 'AI Data Prediction & Optimization',
     route: Routes.AI_PREDICTION_OPTIMIZATION,
     mappings: [
-      { icon: BrainCircuit, service: 'Amazon SageMaker', capability: 'Predictive Model Training', description: 'Trains and serves the machine learning models behind our no-code data prediction and optimization engine.' },
-      { icon: Database, service: 'Amazon RDS / Aurora', capability: 'Structured Data Warehousing', description: 'Reliable, queryable storage for the datasets that feed every forecast and optimization run.' },
-      { icon: ScanEye, service: 'Amazon CloudTrail', capability: 'Full Data Traceability', description: 'Every prediction and data touchpoint is logged and auditable for compliance and quality control.' },
+      { icon: SageMakerIcon, solidIcon: true, service: 'Amazon SageMaker', capability: 'Predictive Model Training', description: 'Trains and serves the machine learning models behind our no-code data prediction and optimization engine.' },
+      { icon: RDSIcon, solidIcon: true, service: 'Amazon RDS / Aurora', capability: 'Structured Data Warehousing', description: 'Reliable, queryable storage for the datasets that feed every forecast and optimization run.' },
+      { icon: CloudTrailIcon, solidIcon: true, service: 'Amazon CloudTrail', capability: 'Full Data Traceability', description: 'Every prediction and data touchpoint is logged and auditable for compliance and quality control.' },
     ],
   },
   {
@@ -93,9 +99,9 @@ const SERVICE_INTEGRATIONS = [
     title: 'AI Workflow Management System',
     route: Routes.DOC_KITA,
     mappings: [
-      { icon: Database, service: 'Amazon S3', capability: 'Secure Document Storage', description: 'Every scanned form, signature, and record is stored redundantly across multiple facilities. Nothing is ever lost.' },
-      { icon: Workflow, service: 'AWS Lambda & EC2', capability: 'Scalable Workflow Engine', description: 'Powers process automation so workflows keep running smoothly whether you have 10 or 10,000 users.' },
-      { icon: KeyRound, service: 'Amazon Cognito', capability: 'Role-Based Access Control', description: 'Fine-grained authentication ensures every signatory and approver only sees what they are authorized to access.' },
+      { icon: S3Icon, solidIcon: true, service: 'Amazon S3', capability: 'Secure Document Storage', description: 'Every scanned form, signature, and record is stored redundantly across multiple facilities. Nothing is ever lost.' },
+      { icon: Ec2Icon, solidIcon: true, service: 'AWS Lambda & EC2', capability: 'Scalable Workflow Engine', description: 'Powers process automation so workflows keep running smoothly whether you have 10 or 10,000 users.' },
+      { icon: CognitoIcon, solidIcon: true, service: 'Amazon Cognito', capability: 'Role-Based Access Control', description: 'Fine-grained authentication ensures every signatory and approver only sees what they are authorized to access.' },
     ],
   },
   {
@@ -103,9 +109,9 @@ const SERVICE_INTEGRATIONS = [
     title: 'AI Application Customization',
     route: Routes.AI_APPLICATION_CUSTOMIZE,
     mappings: [
-      { icon: Cloud, service: 'Amazon Bedrock', capability: 'Custom AI Agents & Chatbots', description: 'Builds tailored generative AI logic and chat experiences around your specific business processes.' },
-      { icon: Lock, service: 'AWS KMS', capability: 'End-to-End Encryption', description: 'Data is encrypted at rest and in transit, protecting every customized application and its data.' },
-      { icon: ClipboardList, service: 'Amazon CloudFront', capability: 'Fast Global App Delivery', description: 'A global content delivery network keeps custom applications responsive for teams everywhere.' },
+      { icon: BedRockIcon, solidIcon: true, service: 'Amazon Bedrock', capability: 'Custom AI Agents & Chatbots', description: 'Builds tailored generative AI logic and chat experiences around your specific business processes.' },
+      { icon: KMSIcon, solidIcon: true, service: 'AWS KMS', capability: 'End-to-End Encryption', description: 'Data is encrypted at rest and in transit, protecting every customized application and its data.' },
+      { icon: CloudFrontIcon, solidIcon: true, service: 'Amazon CloudFront', capability: 'Fast Global App Delivery', description: 'A global content delivery network keeps custom applications responsive for teams everywhere.' },
     ],
   },
 ];
@@ -248,11 +254,13 @@ function ReasonCard({
 
 function MappingCard({
   icon: Icon,
+  solidIcon,
   service,
   capability,
   description,
 }: {
-  icon: typeof Cloud;
+  icon: ServiceIcon;
+  solidIcon?: boolean;
   service: string;
   capability: string;
   description: string;
@@ -264,8 +272,12 @@ function MappingCard({
       className="flex flex-col gap-4 p-6 rounded-2xl bg-white border border-orange-100 shadow-sm hover:shadow-xl hover:border-orange-200 transition-all duration-300"
     >
       <div className="flex items-center gap-3">
-        <div className="w-11 h-11 shrink-0 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-sm">
-          <Icon size={20} className="text-white" />
+        <div
+          className={`w-11 h-11 shrink-0 rounded-xl flex items-center justify-center shadow-sm ${
+            solidIcon ? 'overflow-hidden' : 'bg-gradient-to-br from-orange-500 to-amber-500'
+          }`}
+        >
+          {solidIcon ? <Icon size={44} /> : <Icon size={20} className="text-white" />}
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-orange-500">{service}</p>
@@ -314,8 +326,28 @@ export default function AwsPage() {
 
         <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6">
-            <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl font-bold leading-tight">
-              Why <span className="text-primary">AWS?</span>
+            <motion.h1
+              variants={fadeUp}
+              className="text-4xl sm:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap"
+            >
+              Why{' '}
+              <a
+                href="https://aws.amazon.com/what-is-cloud-computing"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Learn about AWS Cloud Computing"
+                className="inline-flex items-center"
+              >
+                <Image
+                  src="/images/aws-new.png"
+                  alt="AWS"
+                  width="180"
+                  height="54"
+                  className="h-[0.85em] w-auto object-contain align-middle"
+                  priority
+                />
+              </a>
+              ?
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-lg text-muted-foreground font-medium">
@@ -348,23 +380,28 @@ export default function AwsPage() {
             transition={{ duration: 0.7, ease: easeStandard }}
             className="relative"
           >
-            <div className="relative p-10 flex items-center justify-center min-h-[280px]">
-              <a
-                href="https://aws.amazon.com/what-is-cloud-computing"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Learn about AWS Cloud Computing"
-                className="block"
-              >
-                <Image
-                  src="/images/aws-new.png"
-                  alt="Powered by AWS Cloud Computing"
-                  width="260"
-                  height="78"
-                  className="h-auto w-[260px] object-contain"
-                  priority
-                />
-              </a>
+            <div className="rounded-3xl bg-white/80 backdrop-blur border border-orange-100 shadow-xl p-8 space-y-7">
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-500">Amazon Web Services Partner</p>
+                <ShieldCheck size={22} className="text-orange-500 shrink-0" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                {HERO_STATS.map((stat) => (
+                  <motion.div key={stat.label} whileHover={{ y: -4 }} className="flex flex-col gap-2">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-sm">
+                      <stat.icon size={18} className="text-white" />
+                    </div>
+                    <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                    <p className="text-xs text-muted-foreground leading-snug">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="pt-2 border-t border-orange-100 flex items-center justify-between">
+                <span className="text-sm font-semibold text-foreground">Powered by AWS Cloud Computing</span>
+                <ArrowRight size={16} className="text-orange-500" />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -410,7 +447,7 @@ export default function AwsPage() {
       </section> */}
 
       {/* ── Why AWS grid ───────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-20 py-24">
+      <section className="px-4 sm:px-6 lg:px-20 py-24 bg-gradient-to-b from-white via-orange-50/40 to-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -438,7 +475,7 @@ export default function AwsPage() {
       </section>
 
       {/* ── AWS -> Services mapping ────────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-20 py-8 pb-24 bg-muted">
+      <section className="px-4 sm:px-6 lg:px-20 py-8 pb-24 bg-gradient-to-tr from-muted via-white to-muted">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -523,7 +560,7 @@ export default function AwsPage() {
       </section> */}
 
       {/* ── AWS subscription services ─────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-20 py-24 bg-muted">
+      <section className="px-4 sm:px-6 lg:px-20 py-24 bg-gradient-to-bl from-amber-50 via-orange-50/40 to-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -616,7 +653,7 @@ export default function AwsPage() {
       </section> */}
 
       {/* ── Trust / compliance strip ───────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-20 py-20">
+      <section className="px-4 sm:px-6 lg:px-20 py-20 bg-gradient-to-t from-orange-50/50 via-white to-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -656,7 +693,7 @@ export default function AwsPage() {
       </section>
 
       {/* ── CTA banner ─────────────────────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-20 pb-24">
+      <section className="px-4 sm:px-6 lg:px-20 pb-24 bg-gradient-to-b from-white to-orange-50/30">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

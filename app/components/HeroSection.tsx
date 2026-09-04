@@ -70,7 +70,7 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      backgroundImage: '/images/iot-tokyo.webp',
+      backgroundImage: '/images/iot-tokyo1.jpg',
       alt: 'AI-Powered Workplace Transformation',
       header: renderHeader({
         eyebrow: currentLanguage.home_slider_1_eyebrow,
@@ -81,7 +81,7 @@ export default function HeroSection() {
     },
     {
       id: 2,
-      backgroundImage: '/images/cover_2.jpg',
+      backgroundImage: '/images/cover_2.png',
       alt: 'ESG Driven Sustainable Business Growth',
       header: renderHeader({
         eyebrow: currentLanguage.home_slider_2_eyebrow,
@@ -92,7 +92,7 @@ export default function HeroSection() {
     },
     {
       id: 3,
-      backgroundImage: '/images/location-background.jpg',
+      backgroundImage: '/images/location-background1.png',
       alt: 'Global Presence – Our Locations',
       header: renderHeader({
         eyebrow: currentLanguage.home_slider_3_eyebrow,
