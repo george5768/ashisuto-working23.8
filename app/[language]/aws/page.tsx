@@ -110,6 +110,105 @@ const SERVICE_INTEGRATIONS = [
   },
 ];
 
+// const INDUSTRY_FOCUS = [
+//   {
+//     icon: Factory,
+//     industry: 'Manufacturing & Industrial Operations',
+//     focus: 'Production forecasting, quality visibility, approval workflows, and shop-floor digitization.',
+//   },
+//   {
+//     icon: Landmark,
+//     industry: 'Finance & Regulated Teams',
+//     focus: 'Secure document handling, audit trails, controlled access, and AI-assisted operational reporting.',
+//   },
+// ];
+
+// const CUSTOMER_USE_CASES = [
+//   {
+//     solution: 'AI Data Prediction & Optimization',
+//     route: Routes.AI_PREDICTION_OPTIMIZATION,
+//     scenarios: [
+//       {
+//         problem: 'Production planners were relying on manual spreadsheets for demand and material planning.',
+//         action: 'We connected historical operational data to AWS-backed prediction models and dashboard views.',
+//         outcome: 'Teams gained earlier risk visibility and faster planning cycles before production deadlines.',
+//       },
+//       {
+//         problem: 'Management needed a clearer view of cost, inventory, and capacity trade-offs.',
+//         action: 'We modelled optimization scenarios using secure cloud data storage and repeatable ML workflows.',
+//         outcome: 'Decision makers could compare options consistently instead of rebuilding analysis each month.',
+//       },
+//     ],
+//   },
+//   {
+//     solution: 'AI Workflow Management System',
+//     route: Routes.DOC_KITA,
+//     scenarios: [
+//       {
+//         problem: 'Paper forms and approval chains slowed down daily operations across departments.',
+//         action: 'We digitized document intake, storage, approvals, and role-based access on AWS services.',
+//         outcome: 'Records became searchable, traceable, and easier to audit from request to completion.',
+//       },
+//       {
+//         problem: 'Teams needed stronger control over who could review, sign, and approve sensitive documents.',
+//         action: 'We configured secure authentication and permission flows around each approval role.',
+//         outcome: 'Approvers only accessed the records they were authorized to handle.',
+//       },
+//     ],
+//   },
+//   {
+//     solution: 'AI Application Customization',
+//     route: Routes.AI_APPLICATION_CUSTOMIZE,
+//     scenarios: [
+//       {
+//         problem: 'Customers wanted AI assistants that understood their real process, not a generic chatbot.',
+//         action: 'We designed Bedrock-powered agents around internal documents, FAQs, and operating rules.',
+//         outcome: 'Users received faster answers while teams reduced repetitive support and admin tasks.',
+//       },
+//       {
+//         problem: 'Existing systems needed AI features without replacing the full application stack.',
+//         action: 'We added secure, modular AI services through AWS-hosted APIs and application components.',
+//         outcome: 'Businesses could launch targeted AI features while preserving their current workflows.',
+//       },
+//     ],
+//   },
+// ];
+
+const AWS_SUBSCRIPTION_SERVICES = [
+  {
+    icon: '/images/kiroicon.svg',
+    title: 'AWS Kiro',
+    description:
+      'For teams adopting Kiro, we help configure access, onboard developers, and shape practical AI-assisted development workflows around your existing delivery process.',
+    points: ['Subscription and workspace setup', 'Developer onboarding and workflow guidance', 'Use-case mapping for internal engineering teams'],
+  },
+  {
+    icon: '/images/quick-logo.png',
+    title: 'Amazon Quick',
+    description:
+      'For organizations that want subscription-based analytics, we help set up Quick dashboards, users, datasets, and reporting flows so business teams can move from raw data to useful insight.',
+    points: ['Quick subscription guidance', 'Dashboard and dataset setup', 'Operational reporting for management teams'],
+  },
+];
+
+// const CUSTOMER_REFERENCES = [
+//   {
+//     label: 'Manufacturing Client',
+//     quote:
+//       'Ashisuto helped us move from manual planning to clearer digital visibility across operational data and approvals.',
+//   },
+//   {
+//     label: 'Regulated Operations Team',
+//     quote:
+//       'The AWS-backed workflow gives our users controlled access, traceability, and a simpler approval experience.',
+//   },
+//   {
+//     label: 'AI Application Customer',
+//     quote:
+//       'We needed a practical AI feature around our own process. Ashisuto helped us deploy it without disrupting current systems.',
+//   },
+// ];
+
 // ── Reusable card ─────────────────────────────────────────────────
 function ReasonCard({
   icon: Icon,
@@ -178,6 +277,29 @@ function MappingCard({
   );
 }
 
+// function UseCaseCard({
+//   problem,
+//   action,
+//   outcome,
+// }: {
+//   problem: string;
+//   action: string;
+//   outcome: string;
+// }) {
+//   return (
+//     <motion.div
+//       variants={fadeUp}
+//       className="rounded-2xl bg-white border border-orange-100 p-5 shadow-sm h-full"
+//     >
+//       <div className="space-y-4 text-sm leading-relaxed">
+//         <p><span className="font-bold text-foreground">Problem:</span> <span className="text-muted-foreground">{problem}</span></p>
+//         <p><span className="font-bold text-foreground">What we did:</span> <span className="text-muted-foreground">{action}</span></p>
+//         <p><span className="font-bold text-foreground">Outcome:</span> <span className="text-muted-foreground">{outcome}</span></p>
+//       </div>
+//     </motion.div>
+//   );
+// }
+
 export default function AwsPage() {
   const { getCurrentLang } = useLanguageContext();
 
@@ -226,33 +348,66 @@ export default function AwsPage() {
             transition={{ duration: 0.7, ease: easeStandard }}
             className="relative"
           >
-            <div className="relative rounded-[2.5rem] p-[1.5px] bg-gradient-to-br from-orange-400 via-amber-400 to-orange-600 shadow-2xl">
-              <div className="relative rounded-[2.4rem] bg-gradient-to-br from-orange-500 via-[#FF6600] to-amber-400 p-10 flex flex-col items-center gap-6 overflow-hidden">
-                <div className="w-52 h-28 rounded-3xl bg-white flex items-center justify-center p-4 shadow-2xl">
-                  <a
-                    href="https://aws.amazon.com/what-is-cloud-computing"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Learn about AWS Cloud Computing"
-                  >
-                    <Image
-                      src="https://d0.awsstatic.com/logos/powered-by-aws.png"
-                      alt="Powered by AWS Cloud Computing"
-                      width="180"
-                      height="54"
-                      className="h-auto w-[180px] object-contain"
-                      priority
-                    />
-                  </a>
-                </div>
-                <p className="text-white text-center text-sm font-medium max-w-xs">
-                  Powering our AI solutions with secure, scalable, AI-ready cloud infrastructure.
-                </p>
-              </div>
+            <div className="relative p-10 flex items-center justify-center min-h-[280px]">
+              <a
+                href="https://aws.amazon.com/what-is-cloud-computing"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Learn about AWS Cloud Computing"
+                className="block"
+              >
+                <Image
+                  src="/images/aws-new.png"
+                  alt="Powered by AWS Cloud Computing"
+                  width="260"
+                  height="78"
+                  className="h-auto w-[260px] object-contain"
+                  priority
+                />
+              </a>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* ── Industry focus ─────────────────────────────────────── */}
+      {/* <section className="px-4 sm:px-6 lg:px-20 py-20 bg-muted">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={stagger}
+          className="max-w-7xl mx-auto"
+        >
+          <motion.div variants={fadeUp} className="max-w-3xl mb-10 space-y-4">
+            <p className="text-orange-500 font-bold uppercase tracking-[0.2em] text-sm">Industry Focus</p>
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              Starting where AWS-backed AI creates the clearest operational value
+            </h2>
+            <p className="text-muted-foreground">
+              Our strongest wedge is practical AI for manufacturing, industrial operations, and regulated teams where security, traceability, and measurable process improvement matter most. From there, the same AWS foundation can support healthcare, public sector, and broader enterprise use cases.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {INDUSTRY_FOCUS.map((item) => (
+              <motion.div
+                key={item.industry}
+                variants={fadeUp}
+                className="rounded-2xl bg-white border border-orange-100 p-6 shadow-sm flex gap-4"
+              >
+                <div className="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                  <item.icon size={22} className="text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-2">{item.industry}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.focus}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section> */}
 
       {/* ── Why AWS grid ───────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-20 py-24">
@@ -324,6 +479,141 @@ export default function AwsPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* ── Customer use cases ────────────────────────────────── */}
+      {/* <section className="px-4 sm:px-6 lg:px-20 py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={stagger}
+          className="max-w-7xl mx-auto"
+        >
+          <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+            <p className="text-orange-500 font-bold uppercase tracking-[0.2em] text-sm">Customer Use Cases</p>
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              From business problem to AWS-powered outcome
+            </h2>
+            <p className="text-muted-foreground">
+              These scenarios show how Ashisuto applies AWS services to practical customer needs across prediction, workflow, and custom AI applications.
+            </p>
+          </motion.div>
+
+          <div className="space-y-10">
+            {CUSTOMER_USE_CASES.map((group) => (
+              <motion.div key={group.solution} variants={fadeUp} className="space-y-5">
+                <Link
+                  href={`/${getCurrentLang().toLowerCase()}${group.route}`}
+                  className="inline-flex items-center gap-3 group/link"
+                >
+                  <h3 className="text-xl font-bold group-hover/link:text-orange-500 transition-colors">
+                    {group.solution}
+                  </h3>
+                  <ArrowRight size={18} className="text-orange-500" />
+                </Link>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {group.scenarios.map((scenario) => (
+                    <UseCaseCard key={scenario.problem} {...scenario} />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section> */}
+
+      {/* ── AWS subscription services ─────────────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-20 py-24 bg-muted">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={stagger}
+          className="max-w-7xl mx-auto"
+        >
+          <motion.div variants={fadeUp} className="max-w-3xl mb-12 space-y-4">
+            <p className="text-orange-500 font-bold uppercase tracking-[0.2em] text-sm">AWS Subscriptions</p>
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              Support for teams subscribing to AWS Kiro and Quick
+            </h2>
+            <p className="text-muted-foreground">
+              Beyond our core AI solutions, Ashisuto helps customers adopt selected AWS subscription services with setup, onboarding, and practical implementation support.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {AWS_SUBSCRIPTION_SERVICES.map((service) => (
+              <motion.div
+                key={service.title}
+                variants={fadeUp}
+                className="rounded-2xl bg-white border border-orange-100 p-7 shadow-sm flex flex-col gap-5"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-white border border-orange-100 p-2 shadow-sm flex items-center justify-center">
+                    <Image
+                      src={service.icon}
+                      alt={`${service.title} logo`}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold">{service.title}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                <ul className="space-y-3">
+                  {service.points.map((point) => (
+                    <li key={point} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <CheckCircle2 size={17} className="text-orange-500 shrink-0 mt-0.5" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <CustomButton href={`/${getCurrentLang().toLowerCase()}${Routes.CONTACT}`} className="w-fit mt-auto">
+                  Ask About This Service <ArrowRight size={18} />
+                </CustomButton>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── Customer references ───────────────────────────────── */}
+      {/* <section className="px-4 sm:px-6 lg:px-20 py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={stagger}
+          className="max-w-7xl mx-auto"
+        >
+          <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+            <p className="text-orange-500 font-bold uppercase tracking-[0.2em] text-sm">Customer References</p>
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              Credibility without exposing sensitive customer names
+            </h2>
+            <p className="text-muted-foreground">
+              Where named logos are not available for public use, we present anonymized customer references by industry and business need.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {CUSTOMER_REFERENCES.map((reference) => (
+              <motion.div
+                key={reference.label}
+                variants={fadeUp}
+                className="rounded-2xl bg-white border border-orange-100 p-6 shadow-sm flex flex-col gap-5"
+              >
+                <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center">
+                  <Quote size={20} className="text-orange-500" />
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">&ldquo;{reference.quote}&rdquo;</p>
+                <p className="text-sm font-bold text-foreground mt-auto">{reference.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section> */}
 
       {/* ── Trust / compliance strip ───────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-20 py-20">
