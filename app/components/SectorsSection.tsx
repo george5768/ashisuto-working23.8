@@ -22,7 +22,7 @@ export default function SectorsSection() {
     },
      {
       name: t.sectors_public_name,
-      icon: '/images/public-sector.jpg',
+      icon: '/images/publicsector.jpg',
       description: t.sectors_public_desc,
     },
      {

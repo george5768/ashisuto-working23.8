@@ -6,7 +6,7 @@ export default function AiPrediction() {
   return (
     <main>
       <SolutionPage
-        title="AI Data Prediction & Optimization"
+        title="Domain Twin"
         subtitle="Versatile for Multi-Purpose AI Applications"
         description=""
         imageUrl="/images/ai_prediction2.jpg"

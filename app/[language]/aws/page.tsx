@@ -18,7 +18,7 @@ import {
 import CustomButton from '@/components/ui/custom-button';
 import { Routes } from '@/app/enum/global';
 import { useLanguageContext } from '@/app/context/LanguageContext';
-import { SageMakerIcon, RDSIcon, CloudTrailIcon, S3Icon, Ec2Icon, CognitoIcon, BedRockIcon, KMSIcon, CloudFrontIcon } from './aws-service-icons';
+import { SageMakerIcon, RDSIcon, BedRockAgentCoreIcon, CloudTrailIcon, S3Icon, Ec2Icon, CognitoIcon, BedRockIcon, KMSIcon, CloudFrontIcon } from './aws-service-icons';
 
 type ServiceIcon = React.ComponentType<{ size?: number; className?: string }>;
 
@@ -86,12 +86,12 @@ const WHY_AWS = [
 const SERVICE_INTEGRATIONS = [
   {
     icon: BrainCircuit,
-    title: 'AI Data Prediction & Optimization',
+    title: 'Domain Twin',
     route: Routes.AI_PREDICTION_OPTIMIZATION,
     mappings: [
       { icon: SageMakerIcon, solidIcon: true, service: 'Amazon SageMaker', capability: 'Predictive Model Training', description: 'Trains and serves the machine learning models behind our no-code data prediction and optimization engine.' },
+      { icon: BedRockAgentCoreIcon, solidIcon: true, service: 'Amazon Bedrock Agent', capability: 'AI-Assisted Insight Generation', description: 'Automates reasoning over model outputs to surface actionable recommendations from your data twin.' },
       { icon: RDSIcon, solidIcon: true, service: 'Amazon RDS / Aurora', capability: 'Structured Data Warehousing', description: 'Reliable, queryable storage for the datasets that feed every forecast and optimization run.' },
-      { icon: CloudTrailIcon, solidIcon: true, service: 'Amazon CloudTrail', capability: 'Full Data Traceability', description: 'Every prediction and data touchpoint is logged and auditable for compliance and quality control.' },
     ],
   },
   {
@@ -101,7 +101,7 @@ const SERVICE_INTEGRATIONS = [
     mappings: [
       { icon: S3Icon, solidIcon: true, service: 'Amazon S3', capability: 'Secure Document Storage', description: 'Every scanned form, signature, and record is stored redundantly across multiple facilities. Nothing is ever lost.' },
       { icon: Ec2Icon, solidIcon: true, service: 'AWS Lambda & EC2', capability: 'Scalable Workflow Engine', description: 'Powers process automation so workflows keep running smoothly whether you have 10 or 10,000 users.' },
-      { icon: CognitoIcon, solidIcon: true, service: 'Amazon Cognito', capability: 'Role-Based Access Control', description: 'Fine-grained authentication ensures every signatory and approver only sees what they are authorized to access.' },
+      { icon: CloudTrailIcon, solidIcon: true, service: 'Amazon CloudTrail', capability: 'Full Data Traceability', description: 'Every workflow action and approval is logged and auditable for compliance and quality control.' },
     ],
   },
   {
@@ -355,8 +355,8 @@ export default function AwsPage() {
             </motion.p>
 
             <motion.p variants={fadeUp} className="text-base text-muted-foreground max-w-xl">
-              As an Amazon Web Services partner, Ashisuto builds and runs our AI Data Prediction &amp;
-              Optimization, AI Workflow Management, and AI Application Customization solutions on the
+              As an Amazon Web Services partner, Ashisuto builds and runs our Domain Twin,
+              AI Workflow Management, and AI Application Customization solutions on the
               world&apos;s most trusted cloud platform, giving every customer enterprise-grade
               reliability, security, and AI capability without the enterprise-grade complexity.
             </motion.p>

@@ -22,7 +22,7 @@ const categories: ServiceCategory[] = [
     mobilePosition: 'mb-8', // spacing on mobile
   },
   {
-    title: 'AI Data Prediction & Optimization',
+    title: 'Domain Twin',
     items: ['Non-Code Machine Learning', 'AI Studio', 'AI Lifecycle Management'],
     position: 'md:top-48 md:left-0 md:absolute', // bottom left on desktop
     mobilePosition: 'mb-8', // spacing on mobile
