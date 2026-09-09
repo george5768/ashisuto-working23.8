@@ -31,7 +31,7 @@ const renderHeader = ({
         <span className="text-orange-400 text-[10px] font-bold uppercase tracking-[0.28em]">
           {eyebrow}
         </span>
-        <span className="block w-1.5 h-1.5 rotate-45 bg-orange-400" />
+         <span className="block w-1.5 h-1.5 rotate-45 bg-orange-400" />
       </div>
     </div>
 
@@ -70,7 +70,7 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      backgroundImage: '/images/iot-tokyo1.jpg',
+      backgroundImage: '/images/download.webp',
       alt: 'AI-Powered Workplace Transformation',
       header: renderHeader({
         eyebrow: currentLanguage.home_slider_1_eyebrow,
@@ -81,7 +81,7 @@ export default function HeroSection() {
     },
     {
       id: 2,
-      backgroundImage: '/images/cover_2.png',
+      backgroundImage: '/images/society-5.0.jpg',
       alt: 'ESG Driven Sustainable Business Growth',
       header: renderHeader({
         eyebrow: currentLanguage.home_slider_2_eyebrow,

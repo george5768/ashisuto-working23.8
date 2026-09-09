@@ -1,6 +1,7 @@
 import HeroSection from "@/app/components/HeroSection";
 // import TrustedPartners from "@/app/components/trustedpartners";
 import SolutionsSection from "@/app/components/SolutionSection";
+import MobileAppBanner from "@/app/components/MobileAppBanner";
 import FeatureSection from "@/app/components/FeatureSection";
 import SectorsSection from "@/app/components/SectorsSection";
 import FeatureSection2 from "@/app/components/FeatureSection2";
@@ -13,6 +14,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <SolutionsSection />
+      <MobileAppBanner />
       {/* <TrustedPartners /> */}
       <FeatureSection />
       <SectorsSection />

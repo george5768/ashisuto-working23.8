@@ -14,6 +14,8 @@ type ServiceItem = {
   title: string;
   description: string;
   icon: string;
+  brandLogo?: string;
+  brandLogoAlt?: string;
   link: string;
   features: string[];
   stats: string;
@@ -144,23 +146,42 @@ const ServiceCard: React.FC<{
         {service.stats}
       </div>
 
-      <div
-        className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
-          isFeatured
-            ? 'bg-white/20 backdrop-blur-sm'
-            : 'bg-white shadow-md border border-orange-100'
-        }`}
-      >
-        <Image
-          src={service.icon}
-          alt={service.title}
-          width={38}
-          height={38}
-          className={`object-contain transition-all duration-300 ${
-            isFeatured ? 'brightness-0 invert' : ''
+      {service.brandLogo ? (
+        <div className="relative mb-7 overflow-hidden rounded-3xl border border-orange-100 bg-gradient-to-br from-white via-orange-50 to-amber-100 p-5 shadow-lg shadow-orange-100/70 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl group-hover:shadow-orange-200/80">
+          <div className="absolute inset-0 opacity-60 [background-image:radial-gradient(circle_at_20%_20%,rgba(251,146,60,0.22),transparent_28%),linear-gradient(135deg,rgba(251,146,60,0.08)_0_1px,transparent_1px_18px)]" />
+          <div className="relative flex min-h-[120px] items-center justify-center rounded-2xl bg-white/85 px-6 py-5 shadow-inner ring-1 ring-orange-100/80">
+            <Image
+              src={service.brandLogo}
+              alt={service.brandLogoAlt || service.title}
+              width={260}
+              height={110}
+              className="h-auto w-full max-w-[260px] object-contain drop-shadow-sm"
+            />
+          </div>
+          {/* <div className="relative mt-3 flex items-center justify-between gap-3">
+            <span className="text-xs font-black uppercase tracking-widest text-orange-600">DocKITA</span>
+            <span className="h-1.5 w-16 rounded-full bg-gradient-to-r from-orange-400 to-amber-400" />
+          </div> */}
+        </div>
+      ) : (
+        <div
+          className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
+            isFeatured
+              ? 'bg-white/20 backdrop-blur-sm'
+              : 'bg-white shadow-md border border-orange-100'
           }`}
-        />
-      </div>
+        >
+          <Image
+            src={service.icon}
+            alt={service.title}
+            width={38}
+            height={38}
+            className={`object-contain transition-all duration-300 ${
+              isFeatured ? 'brightness-0 invert' : ''
+            }`}
+          />
+        </div>
+      )}
 
       <h3 className={`text-2xl font-bold mb-3 min-h-[3.5rem] leading-snug ${
         isFeatured ? 'text-white' : 'text-gray-900'
@@ -311,6 +332,8 @@ const DocKITAServices: React.FC = () => {
       title: t.dockita_service_1_title,
       description: t.dockita_service_1_description,
       icon: '/icons/Workflow.png',
+      brandLogo: '/icons/dockita_logo.png',
+      brandLogoAlt: 'DocKITA logo',
       link: `/${langSlugStr}${Routes.DOC_KITA}`,
       features: [t.dockita_service_1_feature_1, t.dockita_service_1_feature_2, t.dockita_service_1_feature_3],
       stats: t.dockita_service_1_stats,

@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "d0.awsstatic.com",
         port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "find.ashisuto-tech.com",
+        port: "",
       }
     ],
     // Allow images from the public directory
