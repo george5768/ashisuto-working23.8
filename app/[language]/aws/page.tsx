@@ -663,7 +663,7 @@ export default function AwsPage() {
         >
           <motion.div variants={fadeUp} className="flex justify-center">
             <Image
-              src="/images/awscert1.png"
+              src="/images/aws1.png"
               alt="AWS Partner Certification"
               width={380}
               height={380}

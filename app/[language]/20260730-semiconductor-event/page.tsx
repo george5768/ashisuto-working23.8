@@ -390,15 +390,15 @@ export default function SemiconEventPage() {
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
                   Date &amp; Time
                 </p>
-                <p className="text-gray-800 font-semibold text-base">July 30 (Thursday)</p>
-                <p className="text-gray-800 font-semibold text-base">13:00–16:00</p>
+                <p className="text-gray-800 font-semibold text-base">Stay Tune</p>
+                {/* <p className="text-gray-800 font-semibold text-base">13:00–16:00</p> */}
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
                   Venue
                 </p>
-                <p className="text-gray-800 font-semibold text-base">Amari SPICE Penang</p>
-                <p className="text-gray-800 font-semibold text-base">4F, Jadeite</p>
+                <p className="text-gray-800 font-semibold text-base">Stay Tune</p>
+                {/* <p className="text-gray-800 font-semibold text-base">4F, Jadeite</p> */}
               </div>
               {/* <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
