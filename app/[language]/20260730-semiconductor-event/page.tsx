@@ -6,81 +6,81 @@ import Image from 'next/image'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const agendaItems = [
-  {
-    time: '13:00–13:20',
-    duration: '20 mins',
-    agenda: 'Registration, Demo Booths & Networking',
-    speaker: '',
-  },
-  {
-    time: '13:20–13:35',
-    duration: '15 mins',
-    agenda: 'Opening Speech',
-    speaker:
-      'YB Tuan Jagdeep Singh Deo, The Deputy Chief Minister II of Penang, Malaysia Science & Technology, Human Talent Development',
-  },
-  {
-    time: 'GROUP PHOTO',
-    duration: '',
-    agenda: '',
-    speaker: '',
-    isGroupPhoto: true,
-  },
-  {
-    time: '13:35–13:50',
-    duration: '15 mins',
-    agenda: 'Malaysia AI Adoption Insights',
-    speaker: 'Mr. Duncan Lee, Director of Technology, MSIA',
-  },
-  {
-    time: '13:50–14:10',
-    duration: '20 mins',
-    agenda: 'AI Adoption Success Cases',
-    speaker: 'Mr Tham Kok Tong, Specialist, Ashisuto',
-  },
-  {
-    time: '14:10–14:40',
-    duration: '30 mins',
-    agenda: 'AI Strategy in Semicon Industry',
-    speaker: 'Mr James Yang, Special Assistant to CEO, Profet AI',
-  },
-  {
-    time: '14:40–15:00',
-    duration: '20 mins',
-    agenda: 'Tea Break, Demo Booths & Networking',
-    speaker: '',
-  },
-  {
-    time: '15:00–15:15',
-    duration: '15 mins',
-    agenda:
-      'Building Cloud-Ready AI Foundations For Semiconductor: A Practical Path with AWS',
-    speaker:
-      'Ms Wong Mei Yin, Senior Partner Sales Manager, AWS (Amazon Web Services)',
-  },
-  {
-    time: '15:15–15:40',
-    duration: '25 mins',
-    agenda:
-      'Beyond Automation: How AI is Resharping the Industry and Decision-making in OSAT',
-    speaker:
-      'Dr Howard Hsieh, Consultant, Taiwan Artificial Intelligence Association',
-  },
-  {
-    time: '15:40–15:50',
-    duration: '10 mins',
-    agenda: 'Closing Remarks',
-    speaker:
-      'His Excellency Mr Machida Shinya, Consul-General of Japan in Penang',
-  },
-  {
-    time: '',
-    duration: '',
-    agenda: 'Networking',
-    speaker: '',
-  },
-]
+// const agendaItems = [
+//   {
+//     time: '13:00–13:20',
+//     duration: '20 mins',
+//     agenda: 'Registration, Demo Booths & Networking',
+//     speaker: '',
+//   },
+//   {
+//     time: '13:20–13:35',
+//     duration: '15 mins',
+//     agenda: 'Opening Speech',
+//     speaker:
+//       'YB Tuan Jagdeep Singh Deo, The Deputy Chief Minister II of Penang, Malaysia Science & Technology, Human Talent Development',
+//   },
+//   {
+//     time: 'GROUP PHOTO',
+//     duration: '',
+//     agenda: '',
+//     speaker: '',
+//     isGroupPhoto: true,
+//   },
+//   {
+//     time: '13:35–13:50',
+//     duration: '15 mins',
+//     agenda: 'Malaysia AI Adoption Insights',
+//     speaker: 'Mr. Duncan Lee, Director of Technology, MSIA',
+//   },
+//   {
+//     time: '13:50–14:10',
+//     duration: '20 mins',
+//     agenda: 'AI Adoption Success Cases',
+//     speaker: 'Mr Tham Kok Tong, Specialist, Ashisuto',
+//   },
+//   {
+//     time: '14:10–14:40',
+//     duration: '30 mins',
+//     agenda: 'AI Strategy in Semicon Industry',
+//     speaker: 'Mr James Yang, Special Assistant to CEO, Profet AI',
+//   },
+//   {
+//     time: '14:40–15:00',
+//     duration: '20 mins',
+//     agenda: 'Tea Break, Demo Booths & Networking',
+//     speaker: '',
+//   },
+//   {
+//     time: '15:00–15:15',
+//     duration: '15 mins',
+//     agenda:
+//       'Building Cloud-Ready AI Foundations For Semiconductor: A Practical Path with AWS',
+//     speaker:
+//       'Ms Wong Mei Yin, Senior Partner Sales Manager, AWS (Amazon Web Services)',
+//   },
+//   {
+//     time: '15:15–15:40',
+//     duration: '25 mins',
+//     agenda:
+//       'Beyond Automation: How AI is Resharping the Industry and Decision-making in OSAT',
+//     speaker:
+//       'Dr Howard Hsieh, Consultant, Taiwan Artificial Intelligence Association',
+//   },
+//   {
+//     time: '15:40–15:50',
+//     duration: '10 mins',
+//     agenda: 'Closing Remarks',
+//     speaker:
+//       'His Excellency Mr Machida Shinya, Consul-General of Japan in Penang',
+//   },
+//   {
+//     time: '',
+//     duration: '',
+//     agenda: 'Networking',
+//     speaker: '',
+//   },
+// ]
 
 const features = [
   {
@@ -210,48 +210,48 @@ function Field({
   )
 }
 
-const inputCls =
-  'w-full border border-gray-300 rounded-lg px-4 py-2.5 text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#2E9E8E]/40 focus:border-[#2E9E8E] transition placeholder-gray-400'
+// const inputCls =
+//   'w-full border border-gray-300 rounded-lg px-4 py-2.5 text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#2E9E8E]/40 focus:border-[#2E9E8E] transition placeholder-gray-400'
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function SemiconEventPage() {
-  const [formData, setFormData] = useState<FormData>(emptyForm)
+
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
+  // const handleChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  // ) => {
+  //   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  // }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-    try {
-      await fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSdXYjXcHIr7Piu8b6sxoBKA3Wh_r6LTHUc7yaH0ogVXLcERgw/formResponse', {
-        method: 'POST',
-        mode: 'no-cors', // Google Forms always returns a CORS error; no-cors lets the request through silently
-        // No Content-Type header — browser sets it automatically with the correct boundary when using URLSearchParams
-        body: new URLSearchParams({
-            "entry.1062703884": formData["entry.1062703884"],  // Email
-            "entry.1905216335": formData["entry.1905216335"],  // Name
-            "entry.989688833": formData["entry.989688833"],    // Company
-            "entry.279530392": formData["entry.279530392"],    // Job Title
-            "entry.662329868": formData["entry.662329868"],    // Contact Number
-            "entry.577908083": formData["entry.577908083"],    // Invited By
-            "entry.1729592948": formData["entry.1729592948"],  // AI Development Status
-            "entry.1811735037": formData["entry.1811735037"],  // Any Question
-        }),
-      })
-      // With no-cors the response is opaque — we can't read res.ok.
-      // A resolved promise means the request was dispatched successfully.
-      setStatus('success')
-      setFormData(emptyForm)
-    } catch {
-      setStatus('error')
-    }
-  }
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setStatus('loading')
+  //   try {
+  //     await fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSdXYjXcHIr7Piu8b6sxoBKA3Wh_r6LTHUc7yaH0ogVXLcERgw/formResponse', {
+  //       method: 'POST',
+  //       mode: 'no-cors', // Google Forms always returns a CORS error; no-cors lets the request through silently
+  //       // No Content-Type header — browser sets it automatically with the correct boundary when using URLSearchParams
+  //       body: new URLSearchParams({
+  //           "entry.1062703884": formData["entry.1062703884"],  // Email
+  //           "entry.1905216335": formData["entry.1905216335"],  // Name
+  //           "entry.989688833": formData["entry.989688833"],    // Company
+  //           "entry.279530392": formData["entry.279530392"],    // Job Title
+  //           "entry.662329868": formData["entry.662329868"],    // Contact Number
+  //           "entry.577908083": formData["entry.577908083"],    // Invited By
+  //           "entry.1729592948": formData["entry.1729592948"],  // AI Development Status
+  //           "entry.1811735037": formData["entry.1811735037"],  // Any Question
+  //       }),
+  //     })
+  //     // With no-cors the response is opaque — we can't read res.ok.
+  //     // A resolved promise means the request was dispatched successfully.
+  //     setStatus('success')
+  //     setFormData(emptyForm)
+  //   } catch {
+  //     setStatus('error')
+  //   }
+  // }
 
   return (
     <main className="bg-white overflow-x-hidden">
@@ -382,20 +382,7 @@ export default function SemiconEventPage() {
             </div>
 
             {/* CTA buttons */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              <a
-                href="#register"
-                className="bg-[#F04E23] hover:bg-[#d4431e] text-white font-semibold text-base px-6 py-3 rounded-full transition-colors duration-200 shadow-sm"
-              >
-                Register on this page
-              </a>
-              <a
-                href="#agenda"
-                className="border border-gray-400 hover:border-gray-700 text-gray-700 font-semibold text-base px-6 py-3 rounded-full transition-colors duration-200"
-              >
-                View agenda
-              </a>
-            </div>
+       
 
             {/* Event meta */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 border-t border-gray-200 pt-7">
@@ -413,14 +400,14 @@ export default function SemiconEventPage() {
                 <p className="text-gray-800 font-semibold text-base">Amari SPICE Penang</p>
                 <p className="text-gray-800 font-semibold text-base">4F, Jadeite</p>
               </div>
-              <div>
+              {/* <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
                   Approval
                 </p>
                 <p className="text-gray-800 font-semibold text-base">
                   Registration subject to organizer approval
                 </p>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 
@@ -497,344 +484,7 @@ export default function SemiconEventPage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════
-          EVENT AGENDA
-      ════════════════════════════════════════════════════════ */}
-      <section
-        id="agenda"
-        className="py-16 md:py-20 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24"
-      >
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-20 mb-10">
-              <div className="lg:w-1/2">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
-                  Event agenda
-                </h2>
-              </div>
-              <div className="lg:w-1/2 flex items-center">
-                <p className="text-gray-500 text-base md:text-lg leading-relaxed">
-                  Agenda and speakers are subject to change. Registration and demo booth
-                  networking open at 13:00.
-                </p>
-              </div>
-            </div>
-          </FadeIn>
 
-          {/* Desktop table */}
-          <FadeIn delay={0.1}>
-            <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-              <table className="w-full text-base">
-                <thead>
-                  <tr className="bg-[#2E9E8E] text-white">
-                    <th className="text-left px-6 py-4 font-semibold w-36">Time</th>
-                    <th className="text-left px-6 py-4 font-semibold w-28">Duration</th>
-                    <th className="text-left px-6 py-4 font-semibold">Agenda</th>
-                    <th className="text-left px-6 py-4 font-semibold w-72">PIC / Speaker</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {agendaItems.map((item, i) =>
-                    item.isGroupPhoto ? (
-                      <tr key="group-photo" className="bg-gray-100 border-t border-gray-200">
-                        <td
-                          colSpan={4}
-                          className="px-6 py-3 text-center font-bold text-gray-700 tracking-widest uppercase text-sm"
-                        >
-                          GROUP PHOTO
-                        </td>
-                      </tr>
-                    ) : (
-                      <tr
-                        key={item.time + item.agenda}
-                        className={
-                          i % 2 === 0
-                            ? 'bg-white border-t border-gray-100'
-                            : 'bg-gray-50/60 border-t border-gray-100'
-                        }
-                      >
-                        <td className="px-6 py-4 font-semibold text-gray-700 whitespace-nowrap align-top">
-                          {item.time}
-                        </td>
-                        <td className="px-6 py-4 text-gray-500 whitespace-nowrap align-top text-sm">
-                          {item.duration}
-                        </td>
-                        <td className="px-6 py-4 text-gray-700 align-top">{item.agenda}</td>
-                        <td className="px-6 py-4 text-gray-500 align-top text-sm leading-relaxed">
-                          {item.speaker}
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </FadeIn>
-
-          {/* Mobile cards */}
-          <div className="md:hidden space-y-3">
-            {agendaItems.map((item, i) =>
-              item.isGroupPhoto ? (
-                <div
-                  key="group-photo"
-                  className="bg-gray-100 rounded-xl border border-gray-200 px-4 py-3 text-center font-bold text-gray-700 tracking-widest uppercase text-sm"
-                >
-                  GROUP PHOTO
-                </div>
-              ) : (
-                <FadeIn key={item.time + item.agenda} delay={i * 0.05}>
-                  <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      {item.time && (
-                        <span className="inline-block bg-[#2E9E8E] text-white text-sm font-semibold px-3 py-1 rounded-full">
-                          {item.time}
-                        </span>
-                      )}
-                      {item.duration && (
-                        <span className="inline-block bg-gray-100 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-full">
-                          {item.duration}
-                        </span>
-                      )}
-                    </div>
-                    <p className="font-semibold text-gray-800 text-base mb-1">{item.agenda}</p>
-                    {item.speaker && (
-                      <p className="text-gray-500 text-sm leading-relaxed">{item.speaker}</p>
-                    )}
-                  </div>
-                </FadeIn>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════
-          REGISTER
-      ════════════════════════════════════════════════════════ */}
-      <section
-        id="register"
-        className="bg-gray-50 py-16 md:py-20 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24"
-      >
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-20 mb-10">
-              <div className="lg:w-2/5">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
-                  Register for the session
-                </h2>
-              </div>
-              <div className="lg:w-3/5 flex items-center">
-                <p className="text-gray-500 text-base md:text-lg leading-relaxed">
-                  Submit your details directly here. Seats are limited, and registration
-                  is subject to organizer approval.
-                  <br /><br />
-                  <strong className="text-gray-700">Registration closes on 24 July 2026.</strong>
-                </p>
-              </div>
-            </div>
-          </FadeIn>
-
-          <div className="flex flex-col lg:flex-row gap-8 xl:gap-10">
-
-            {/* ── Event details + Map ── */}
-            <FadeIn className="lg:w-2/5">
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                <h3 className="font-bold text-gray-900 mb-6 text-xl">Event details</h3>
-                <dl className="space-y-4 text-base">
-                  <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">
-                      DATE
-                    </dt>
-                    <dd className="text-gray-800 font-semibold">July 30 (Thursday)</dd>
-                  </div>
-                  <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">
-                      TIME
-                    </dt>
-                    <dd className="text-gray-800 font-semibold">13:00–16:00</dd>
-                  </div>
-                  <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">
-                      VENUE
-                    </dt>
-                    <dd className="text-gray-800 font-semibold">Amari SPICE Penang, 4F, Jadeite</dd>
-                  </div>
-                </dl>
-
-                {/* Google Maps embed */}
-                <div className="mt-6 rounded-xl overflow-hidden border border-gray-200">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.5657782750363!2d100.27878617609836!3d5.330208994648347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304ac18a353aeff5%3A0x69f4db7ff29a8fec!2sAmari%20SPICE%20Penang!5e0!3m2!1sen!2smy!4v1783560025906!5m2!1sen!2smy"
-                    width="100%"
-                    height="220"
-                    style={{ border: 0, display: 'block' }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    title="Amari SPICE Penang map"
-                  />
-                </div>
-
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Amari%20SPICE%20Penang%204F%20Jadeite"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 mt-3 text-base text-[#2E9E8E] hover:underline font-medium"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  Open in Google Maps
-                </a>
-
-                <p className="text-sm text-gray-400 mt-4">
-                  Registration is subject to organizer approval.
-                </p>
-              </div>
-            </FadeIn>
-
-            {/* ── Registration form ── */}
-            <FadeIn delay={0.1} className="lg:w-3/5">
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
-                  <form onSubmit={handleSubmit} className="space-y-5">
-
-                    {/* Email */}
-                    <Field label="Email" required>
-                      <input
-                        type="email"
-                        name="entry.1062703884"
-                        required
-                        autoComplete="email"
-                        placeholder="name@company.com"
-                        value={formData["entry.1062703884"]}
-                        onChange={handleChange}
-                        className={inputCls}
-                      />
-                    </Field>
-
-                    {/* Name + Company */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <Field label="Name" required>
-                        <input
-                          type="text"
-                          name="entry.1905216335"
-                          required
-                          autoComplete="name"
-                          value={formData["entry.1905216335"]}
-                          onChange={handleChange}
-                          className={inputCls}
-                        />
-                      </Field>
-                      <Field label="Company" required>
-                        <input
-                          type="text"
-                          name="entry.989688833"
-                          required
-                          autoComplete="organization"
-                          value={formData["entry.989688833"]}
-                          onChange={handleChange}
-                          className={inputCls}
-                        />
-                      </Field>
-                    </div>
-
-                    {/* Job Title + Contact Number */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <Field label="Job Title" required>
-                        <input
-                          type="text"
-                          name="entry.279530392"
-                          required
-                          autoComplete="organization-title"
-                          value={formData["entry.279530392"]}
-                          onChange={handleChange}
-                          className={inputCls}
-                        />
-                      </Field>
-                      <Field label="Contact Number" required>
-                        <input
-                          type="tel"
-                          name="entry.662329868"
-                          required
-                          autoComplete="tel"
-                          value={formData["entry.662329868"]}
-                          onChange={handleChange}
-                          className={inputCls}
-                        />
-                      </Field>
-                    </div>
-
-                    {/* Invited By */}
-                    <Field label="Invited By" required>
-                      <select
-                        name="entry.577908083"
-                        required
-                        value={formData["entry.577908083"]}
-                        onChange={handleChange}
-                        className={inputCls}
-                      >
-                        <option value="">Select</option>
-                        <option value="Ashisuto">Ashisuto</option>
-                        <option value="Profet AI">Profet AI</option>
-                        <option value="MSIA">MSIA</option>
-                        <option value="AWS">AWS</option>
-                        <option value="VSTECS">VSTECS</option>
-                      </select>
-                    </Field>
-
-                    {/* AI development status */}
-                    <Field label="Current status of AI development" required>
-                      <select
-                        name="entry.1729592948"
-                        required
-                        value={formData["entry.1729592948"]}
-                        onChange={handleChange}
-                        className={inputCls}
-                      >
-                        <option value="">Select the closest option</option>
-                        <option value="Individual experimentation (Employees are using tools like ChatGPT on their own)">Individual experimentation (Employees are using tools like ChatGPT on their own)</option>
-                        <option value="Enterprise productivity tools (The company has adopted tools such as Microsoft Copilot, ChatGPT Enterprise, or Gemini.)">Enterprise productivity tools (The company has adopted tools such as Microsoft Copilot, ChatGPT Enterprise, or Gemini.)</option>
-                        <option value="Project-based AI use cases">Project-based AI use cases</option>
-                        <option value="Governed workflow adoption (AI or AI agents are embedded into workflows with access control, monitoring, and auditability.)">Governed workflow adoption (AI or AI agents are embedded into workflows with access control, monitoring, and auditability.)</option>
-                        <option value="I'm not sure">I&#x27;m not sure</option>
-                      </select>
-                    </Field>
-
-                    {/* Questions */}
-                    <Field label="Any questions you'd like to ask beforehand">
-                      <textarea
-                        name="entry.1811735037"
-                        rows={3}
-                        placeholder="Optional"
-                        value={formData["entry.1811735037"]}
-                        onChange={handleChange}
-                        className={`${inputCls} resize-none`}
-                      />
-                    </Field>
-
-                    {status === 'error' && (
-                      <p className="text-base text-red-500 bg-red-50 border border-red-200 rounded-lg px-4 py-2.5">
-                        Something went wrong. Please try again or contact us directly.
-                      </p>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={status === 'loading'}
-                      className="w-full bg-[#F04E23] hover:bg-[#d4431e] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-colors duration-200 text-base"
-                    >
-                      {status === 'loading' ? 'Submitting…' : 'Submit registration'}
-                    </button>
-                  </form>
-              </div>
-            </FadeIn>
-
-          </div>
-        </div>
-      </section>
 
       {/* ════════════════════════════════════════════════════════
           ORGANIZERS AND PARTNERS
