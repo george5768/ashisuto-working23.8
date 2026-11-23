@@ -326,10 +326,7 @@ export default function AwsPage() {
 
         <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-6">
-            <motion.h1
-              variants={fadeUp}
-              className="text-4xl sm:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap"
-            >
+            <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl font-bold leading-tight flex items-center gap-3">
               Why{' '}
               <a
                 href="https://aws.amazon.com/what-is-cloud-computing"
@@ -350,9 +347,19 @@ export default function AwsPage() {
               ?
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-lg text-muted-foreground font-medium">
-              The cloud foundation behind our AI solutions&apos; reliability, security, and performance.
-            </motion.p>
+            <motion.div variants={fadeUp} className="flex items-center gap-4 sm:gap-8">
+              <p className="text-lg text-muted-foreground font-medium max-w-sm">
+                The cloud foundation behind our AI solutions&apos; reliability, security, and performance.
+              </p>
+              <Image
+                src="/images/aws_select_tier_services.webp"
+                alt="AWS Partner Select Tier Services"
+                width={500}
+                height={500}
+                className="h-auto w-28 min-[375px]:w-32 sm:w-36 shrink-0 mix-blend-multiply"
+                priority
+              />
+            </motion.div>
 
             <motion.p variants={fadeUp} className="text-base text-muted-foreground max-w-xl">
               As an Amazon Web Services partner, Ashisuto builds and runs our Domain Twin,
