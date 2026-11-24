@@ -352,7 +352,7 @@ export default function AwsPage() {
                 The cloud foundation behind our AI solutions&apos; reliability, security, and performance.
               </p>
               <Image
-                src="/images/aws_select_tier_services.webp"
+                src="/images/aws_select_tier_services.png"
                 alt="AWS Partner Select Tier Services"
                 width={500}
                 height={500}
@@ -670,7 +670,7 @@ export default function AwsPage() {
         >
           <motion.div variants={fadeUp} className="flex justify-center">
             <Image
-              src="/images/aws1.png"   
+              src="/images/aws11.png"   
               alt="AWS Partner Certification"
               width={380}
               height={380}
